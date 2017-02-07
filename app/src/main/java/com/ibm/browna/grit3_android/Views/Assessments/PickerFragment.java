@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ibm.browna.grit3_android.Models.Tumbler;
 import com.ibm.browna.grit3_android.R;
 
 
@@ -19,10 +20,9 @@ import com.ibm.browna.grit3_android.R;
 
 public class PickerFragment extends Fragment {
 
-    ImageView mLeftTumbler1,mLeftTumbler2,mLeftTumbler3,mLeftTumbler4,
-            mRightTumbler1,mRightTumbler2,mRightTumbler3,mRightTumbler4;
-    TextView mTumbler1,mTumbler2,mTumbler3,mTumbler4;
+
     Button mSaveButton;
+    Tumbler mTumbler1, mTumbler2, mTumbler3,mTumbler4;
 
 
 
@@ -35,13 +35,20 @@ public class PickerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_word_pick,null,false);
-        initViews(v);
 
-        String [] tumblerWords1 = {"Hat", "Cat", "Words", "Sit"};
-        String [] tumblerWords2 = {"Hat", "Cat", "Words", "Sit"};
-        String [] tumblerWords3 = {"Hat", "Cat", "Words", "Sit"};
-        String [] tumblerWords4 = {"Hat", "Cat", "Words", "Sit"};
 
+        String [] tumblerWords = {"Hat", "Cat", "Words", "Sit"};
+        mTumbler1 = new Tumbler(R.id.leftArrow1,R.id.RightArrow1, R.id.word_tumbler1, tumblerWords,1);
+        mTumbler2 = new Tumbler(R.id.leftArrow2,R.id.RightArrow2,R.id.word_tumbler2, tumblerWords,2);
+        mTumbler3 = new Tumbler(R.id.leftArrow3,R.id.RightArrow3,R.id.word_tumbler3, tumblerWords,3);
+        mTumbler4 = new Tumbler(R.id.leftArrow4,R.id.RightArrow4,R.id.word_tumbler4, tumblerWords,4);
+
+        createTumbler(v, mTumbler1);
+        createTumbler(v, mTumbler2);
+        createTumbler(v, mTumbler3);
+        createTumbler(v, mTumbler4);
+
+        mSaveButton = (Button) v.findViewById(R.id.picker_save_button);
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,19 +59,30 @@ public class PickerFragment extends Fragment {
         return v;
     }
 
-    public void initViews(View v){
-        mLeftTumbler1 =(ImageView) v.findViewById(R.id.leftArrow1) ;
-        mLeftTumbler2 = (ImageView) v.findViewById(R.id.leftArrow2);
-        mLeftTumbler3 = (ImageView) v.findViewById(R.id.leftArrow3);
-        mLeftTumbler4 = (ImageView) v.findViewById(R.id.leftArrow4);
-        mRightTumbler1 = (ImageView) v.findViewById(R.id.RightArrow1);
-        mRightTumbler2 = (ImageView) v.findViewById(R.id.RightArrow2);
-        mRightTumbler3 = (ImageView) v.findViewById(R.id.RightArrow3);
-        mRightTumbler4 = (ImageView) v.findViewById(R.id.RightArrow4);
-        mTumbler1 = (TextView) v.findViewById(R.id.word_tumbler1);
-        mTumbler2 = (TextView) v.findViewById(R.id.word_tumbler2);
-        mTumbler3 = (TextView) v.findViewById(R.id.word_tumbler3);
-        mTumbler4 = (TextView) v.findViewById(R.id.word_tumbler4);
-        mSaveButton = (Button) v.findViewById(R.id.picker_save_button);
+    private void createTumbler(View v, final Tumbler tumbler){
+        final TextView textView =(TextView) v.findViewById(tumbler.getmWordsTV());
+        ImageView leftArrow = (ImageView) v.findViewById(tumbler.getmLeftArrow());
+        ImageView rightArrow = (ImageView) v.findViewById(tumbler.getmRightArrow());
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tumbler.setmCurrentWord(tumbler.getmCurrentWord()==3?0:tumbler.getmCurrentWord()+1);
+                String newText = (tumbler.getmWordArray())[tumbler.getmCurrentWord()];
+                textView.setText(newText);
+            }
+        });
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tumbler.setmCurrentWord(tumbler.getmCurrentWord()==0?3:tumbler.getmCurrentWord()-1);
+                String newText = (tumbler.getmWordArray())[tumbler.getmCurrentWord()];
+                textView.setText(newText);
+            }
+        });
+
     }
+
+
 }

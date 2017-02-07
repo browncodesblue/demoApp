@@ -40,49 +40,49 @@
             android:contentDescription="@string/number_selector"
             android:id="@+id/life_check_button_1"
             android:layout_weight="1"
-            android:src="@drawable/life_check_button_1_active"/>
+            android:src="@drawable/circle_1_notselected"/>
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:contentDescription="@string/number_selector"
             android:id="@+id/life_check_button_2"
-            android:src="@drawable/life_check_button_2_active"/>
+            android:src="@drawable/circle_2_notselected"/>
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:contentDescription="@string/number_selector"
             android:id="@+id/life_check_button_3"
-            android:src="@drawable/life_check_button_3_active"/>
+            android:src="@drawable/circle_3_notselected"/>
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:contentDescription="@string/number_selector"
             android:id="@+id/life_check_button_4"
-            android:src="@drawable/life_check_button_4_active"/>
+            android:src="@drawable/circle_4_notselected"/>
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:contentDescription="@string/number_selector"
             android:id="@+id/life_check_button_5"
-            android:src="@drawable/life_check_button_5_active"/>
+            android:src="@drawable/circle_5_notselected"/>
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:contentDescription="@string/number_selector"
             android:id="@+id/life_check_button_6"
-            android:src="@drawable/life_check_button_6_active"/>
+            android:src="@drawable/circle_6_notselected"/>
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:contentDescription="@string/number_selector"
             android:id="@+id/life_check_button_7"
-            android:src="@drawable/life_check_button_7_active"/>
+            android:src="@drawable/circle_7_notselected"/>
 
     </LinearLayout>
 

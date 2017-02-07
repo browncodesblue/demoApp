@@ -29,6 +29,7 @@ public class CheckFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_life_check,null,false);
         initViews(v);
+        setNumberClickListeners();
 
         mCheckSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,5 +80,92 @@ public class CheckFragment extends Fragment {
         mQuestion = (TextView) v.findViewById(R.id.life_check_prompt);
         mCheckSaveButton = (Button)v.findViewById(R.id.life_check_save) ;
         count = 1;
+    }
+
+    private void setNumberClickListeners(){
+        mButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mButton1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.life_check_button_1_active));
+                mButton2.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_2_notselected));
+                mButton3.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_3_notselected));
+                mButton4.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_4_notselected));
+                mButton5.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_5_notselected));
+                mButton6.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_6_notselected));
+                mButton7.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_7_notselected));
+            }
+        });
+        mButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mButton1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_1_notselected));
+                mButton2.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.life_check_button_2_active));
+                mButton3.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_3_notselected));
+                mButton4.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_4_notselected));
+                mButton5.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_5_notselected));
+                mButton6.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_6_notselected));
+                mButton7.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_7_notselected));
+            }
+        });
+        mButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mButton1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_1_notselected));
+                mButton2.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_2_notselected));
+                mButton3.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.life_check_button_3_active));
+                mButton4.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_4_notselected));
+                mButton5.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_5_notselected));
+                mButton6.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_6_notselected));
+                mButton7.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_7_notselected));
+            }
+        });
+        mButton4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mButton1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_1_notselected));
+                mButton2.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_2_notselected));
+                mButton3.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_3_notselected));
+                mButton4.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.life_check_button_4_active));
+                mButton5.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_5_notselected));
+                mButton6.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_6_notselected));
+                mButton7.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_7_notselected));
+            }
+        });
+        mButton5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mButton1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_1_notselected));
+                mButton2.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_2_notselected));
+                mButton3.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_3_notselected));
+                mButton4.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_4_notselected));
+                mButton5.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.life_check_button_5_active));
+                mButton6.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_6_notselected));
+                mButton7.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_7_notselected));
+            }
+        });
+        mButton6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mButton1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_1_notselected));
+                mButton2.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_2_notselected));
+                mButton3.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_3_notselected));
+                mButton4.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_4_notselected));
+                mButton5.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_5_notselected));
+                mButton6.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.life_check_button_6_active));
+                mButton7.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_7_notselected));
+            }
+        });
+        mButton7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mButton1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_1_notselected));
+                mButton2.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_2_notselected));
+                mButton3.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_3_notselected));
+                mButton4.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_4_notselected));
+                mButton5.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_5_notselected));
+                mButton6.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_6_notselected));
+                mButton7.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.life_check_button_7_active));
+            }
+        });
     }
 }
