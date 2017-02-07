@@ -219,7 +219,6 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         Action viewAction = Action.newAction(
@@ -232,7 +231,6 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
                 //  Make sure this auto-generated app URL is correct.
                 Uri.parse("android-app://com.ibm.browna.grit3_android/http/host/path")
         );
-        AppIndex.AppIndexApi.start(client, viewAction);
     }
 
     /**
@@ -346,13 +344,8 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
     /**
      * When the option is selected in the dropdown we turn on the bluetooth
      */
-    public void onItemSelected(AdapterView<?> parent, View view, int pos,
-                               long id) {
-
-
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         if (pos != 0) {
-
-
                 //Actual work
                 DataHandler.getInstance().setID(pos);
                 if (!h7 && ((BluetoothDevice) pairedDevices.toArray()[DataHandler.getInstance().getID() - 1]).getName().contains("H7") && DataHandler.getInstance().getReader() == null) {
@@ -368,13 +361,7 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
                     normal = true;
                 }
                 menuBool = true;
-
             }
-
-
-
-        }
-
     }
 
     public boolean onPrepareOptionsMenu(Menu menu) {
