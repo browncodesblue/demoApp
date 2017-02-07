@@ -45,6 +45,7 @@
         android:layout_marginTop="58dp"
         android:id="@+id/replay_story"
         tools:text="Replay"
-        android:background="@color/white" />
+        android:background="@color/white"
+        android:visibility="gone"/>
 
 </RelativeLayout>

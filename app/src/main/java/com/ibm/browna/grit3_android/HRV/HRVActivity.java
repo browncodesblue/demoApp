@@ -16,6 +16,9 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.ibm.browna.grit3_android.R;
 
+import com.ibm.browna.grit3_android.Views.Assessments.AssessmentActivity;
+import com.ibm.browna.grit3_android.WatsonTone.MainActivity;
+
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -24,10 +27,13 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,9 +41,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 
 /**
@@ -59,30 +67,57 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
     private Spinner spinner1;
     private Spinner fileSpinner;
     private Context context;
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-
+    private ListView mDrawerList;
+    private ArrayAdapter<String> mAdapter;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private DrawerLayout mDrawerLayout;
+    private String mActivityTitle;
 
     public Context getContext() {
-
         if (context == null) {
             context = this.getApplicationContext();
         }
-
         return context;
     }
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hrv_main);
+
+        mDrawerList = (ListView)findViewById(R.id.navList);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+
+        setActionBar(myToolbar);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        Intent i = new Intent(getApplicationContext(),AssessmentActivity.class);
+                        startActivity(i);
+                        break;
+                    case 1:
+                        Intent i2 = new Intent(getApplicationContext(),HRVActivity.class);
+                        startActivity(i2);
+                        break;
+                    case 2:
+                        Intent i3 = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(i3);
+                        break;
+                }
+            }
+        });
+
+        setupDrawer();
+        addDrawerItems();
+
+        mActivityTitle = getTitle().toString();
+
         Log.i("Main Activity", "Starting Polar HR monitor main activity");
         DataHandler.getInstance().addObserver(this);
-
-
         //Verify if device is to old for BTLE
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
 
@@ -121,8 +156,6 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
                     listBT();
                 }
             }
-
-
             // Create Graph
             plot = (XYPlot) findViewById(R.id.dynamicPlot);
             if (plot.getSeriesSet().size() == 0) {
@@ -130,11 +163,9 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
                 DataHandler.getInstance().setSeries1(new SimpleXYSeries(Arrays.asList(series1Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Heart Rate"));
             }
             DataHandler.getInstance().setNewValue(false);
-
         } else {
             listBT();
             plot = (XYPlot) findViewById(R.id.dynamicPlot);
-
         }
         //LOAD Graph
         LineAndPointFormatter series1Format = new LineAndPointFormatter(Color.rgb(0, 0, 255), Color.rgb(200, 200, 200), null, null);
@@ -185,6 +216,7 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
 
     public void onStart() {
         super.onStart();
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
@@ -271,6 +303,10 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
      * When menu button are pressed
      */
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
         int id = item.getItemId();
         Log.d("Main Activity", "Menu pressed");
         if (id == R.id.action_settings) { //close connection
@@ -317,7 +353,6 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
         if (pos != 0) {
 
 
-
                 //Actual work
                 DataHandler.getInstance().setID(pos);
                 if (!h7 && ((BluetoothDevice) pairedDevices.toArray()[DataHandler.getInstance().getID() - 1]).getName().contains("H7") && DataHandler.getInstance().getReader() == null) {
@@ -333,6 +368,8 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
                     normal = true;
                 }
                 menuBool = true;
+
+            }
 
 
 
@@ -369,9 +406,7 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
                     Spinner spinner1 = (Spinner) findViewById(R.id.HRV_device_spinner1);
                     if (DataHandler.getInstance().getID() < spinner1.getCount())
                         spinner1.setSelection(DataHandler.getInstance().getID());
-
                     if (!h7) {
-
                         Log.w("Main Activity", "starting H7 after error");
                         DataHandler.getInstance().setReader(null);
                         DataHandler.getInstance().setH7(new H7ConnectThread((BluetoothDevice) pairedDevices.toArray()[DataHandler.getInstance().getID() - 1], ac));
@@ -396,9 +431,6 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
      * Update Gui with new value from receiver
      */
     public void receiveData() {
-        //ANALYTIC
-        //t.setScreenName("Polar Bluetooth Used");
-        //t.send(new HitBuilders.AppViewBuilder().build());
 
         runOnUiThread(new Runnable() {
             public void run() {
@@ -420,15 +452,10 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
                 TextView max = (TextView) findViewById(R.id.max);
                 max.setText(DataHandler.getInstance().getMax());
 
-
                 if (DataHandler.getInstance().getmHRV() > 0) {
                     TextView textHRV = (TextView) findViewById(R.id.hrv);
                     textHRV.setText("Score: " + String.valueOf(DataHandler.getInstance().getmHRV()));
                 }
-
-
-
-
             }
         });
     }
@@ -436,22 +463,52 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
 
     public void onStop() {
         super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, //  choose an action type.
-                "Main Page", //  Define a title for the content shown.
-                // : If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                //  Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.ibm.browna.grit3_android/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
     }
 
+    private void setupDrawer() {
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                R.string.drawer_open, R.string.drawer_close) {
+
+            /** Called when a drawer has settled in a completely open state. */
+            public void onDrawerOpened(View drawerView) {
+            }
+            /** Called when a drawer has settled in a completely closed state. */
+            public void onDrawerClosed(View view) {
+            }
+        };
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+    }
+
+    public void onDrawerClosed(View view) {
+        onDrawerClosed(view);
+        getActionBar().setTitle(mActivityTitle);
+        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+    }
+
+    public void onDrawerOpened(View drawerView) {
+        onDrawerOpened(drawerView);
+        getActionBar().setTitle("Navigation!");
+        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+    }
+    private void addDrawerItems() {
+        String[] osArray = { "Facade", "HRV", "ToneAnalyzer"};
+        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
+        mDrawerList.setAdapter(mAdapter);
+
+    }
+
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
 
 }

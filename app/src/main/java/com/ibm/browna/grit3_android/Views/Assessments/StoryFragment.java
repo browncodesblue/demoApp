@@ -70,7 +70,7 @@ public class StoryFragment extends Fragment {
                         mStoryRecord.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.story_pause));
                         count++;
 
-                            AudioSavePathInDevice =
+                       /*     AudioSavePathInDevice =
                                     Environment.getExternalStorageDirectory().getAbsolutePath() + "/" +
                                             CreateRandomAudioFileName(5) + "AudioRecording.3gp";
 
@@ -87,19 +87,17 @@ public class StoryFragment extends Fragment {
                                 e.printStackTrace();
                             }
                             Toast.makeText(getActivity(), "Recording started",
-                                    Toast.LENGTH_LONG).show();
-
-
+                                    Toast.LENGTH_LONG).show();*/
 
                         break;
                     case 2:
                         mStoryRecord.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.story_re_record));
                         mStorySave.setClickable(true);
                         count=3;
-                       if(mediaPlayer!= null) mediaRecorder.stop();
+                      /* if(mediaPlayer!= null) mediaRecorder.stop();
 
                         Toast.makeText(getActivity(), "Recording Completed",
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_LONG).show();*/
                         break;
                     case 3:
                         mStoryRecord.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.story_record));
