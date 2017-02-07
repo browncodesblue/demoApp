@@ -53,12 +53,6 @@ public class MainActivity extends AppCompatActivity {
     private final int ColorVeryLikely = Color.RED;
 
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
-
     public MainActivity() {
     }
 
@@ -69,13 +63,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
         messageToAnalyze = (EditText) findViewById(R.id.messageEditText);
-
-
         analysisButton = (Button) findViewById(R.id.sendAnalysisButton);
-     //   analsisTextView = (TextView) findViewById(R.id.analysisTextView);
         gridView = (GridLayout) findViewById(R.id.gridView);
         gridView.setRowCount(5);
         gridView.setColumnCount(2);
@@ -83,21 +72,13 @@ public class MainActivity extends AppCompatActivity {
 
         analysisButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-
-
                     InputMethodManager imm =  (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-
-
-
                 if (!messageToAnalyze.getText().toString().isEmpty()) {
 
                     String message = messageToAnalyze.getText().toString();
                     new ToneAnalyzerCall().execute(message, null, null);
-
                 }
-
 
             }
 
@@ -111,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         ProgressDialog pdLoading = new ProgressDialog(MainActivity.this);
         ToneAnalysis tone = null;
         boolean success = false;
-
 
         @Override
         protected Void doInBackground(String... params) {
@@ -175,9 +155,6 @@ public class MainActivity extends AppCompatActivity {
 
                 String toneScore = "";
 
-
-
-
                 Iterator entries = valuesMap.entrySet().iterator();
                 while (entries.hasNext()) {
                     Map.Entry thisEntry = (Map.Entry) entries.next();
@@ -221,11 +198,6 @@ public class MainActivity extends AppCompatActivity {
                     viewScore.setTextSize(20f);
 
 
-
-                   // toneScore += thisEntry.getKey() + ": " + probability + "\n";
-
-
-
                     gridView.addView(viewEmotions);
 
                     GridLayout.LayoutParams param =new GridLayout.LayoutParams();
@@ -246,25 +218,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-              //  analsisTextView.setText(toneScore, TextView.BufferType.SPANNABLE);
 
             }
         }
 
     }
 
-    /**
-    GridLayout.LayoutParams param =new GridLayout.LayoutParams();
-    param.height = LayoutParams.WRAP_CONTENT;
-    param.width = LayoutParams.WRAP_CONTENT;
-    param.rightMargin = 5;
-    param.topMargin = 5;
-    param.setGravity(Gravity.CENTER);
-    param.columnSpec = GridLayout.spec(c);
-    param.rowSpec = GridLayout.spec(r);
-    titleText.setLayoutParams (param);
-
-     **/
 
 
     @Override

@@ -71,6 +71,7 @@
     </string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="watson_toneresults_prompt_">Watson Helps you understand how likely an emotion will show up in what you said</string>
 
 
 

@@ -179,36 +179,6 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
 
     }
 
-    /*
-    private void populateFileSpinner() {
-
-
-        //Populate drop down
-
-        fileSpinner = (Spinner) findViewById(R.id.selectFile);
-        File[] files = getContext().getFilesDir().listFiles();
-
-        String[] list = new String[files.length];
-        String[] spinnerList = new String[files.length];
-
-        for (int i = 0; i < files.length; i++) {
-
-
-            String path = files[i].getAbsolutePath().toString();
-            list[i] = path;
-            spinnerList[i] = list[i].substring(list[i].lastIndexOf("/") + 1);
-
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, spinnerList);
-        fileSpinner.setAdapter(adapter);
-
-        fileSpinner.setOnItemSelectedListener(this);
-        fileSpinner.setAdapter(adapter);
-
-    }
-**/
-
     protected void onDestroy() {
         super.onDestroy();
         DataHandler.getInstance().deleteObserver(this);
@@ -371,7 +341,6 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
     }
 
     public void onNothingSelected(AdapterView<?> arg0) {
-
 
     }
 
