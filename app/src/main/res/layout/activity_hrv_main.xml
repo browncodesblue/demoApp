@@ -5,49 +5,79 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:weightSum="1"
     tools:context=".HRV.HRVActivity"
-    tools:ignore="MergeRootFrame">
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.04"
-        android:text="@string/selectDevice" />
-
-    <Spinner
-        android:id="@+id/spinner1"
+    android:background="@color/girtblue">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="38dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
-    <TextView
-        android:id="@+id/rpm"
-        android:layout_width="88dp"
-        android:layout_height="55dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.03"
-        android:paddingTop="20dp"
-        android:text="@string/rpm"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:src="@drawable/grit_spelling"
+            android:id="@+id/grit_spelling"/>
+        <TextView
+            android:id="@+id/select_device_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/selectDevice"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_below="@+id/grit_spelling"
+            android:textSize="15sp"/>
+
+        <Spinner
+            android:id="@+id/HRV_device_spinner1"
+            android:layout_height="38dp"
+            android:layout_below="@+id/grit_spelling"
+            android:layout_width="250dp"
+            android:layout_toEndOf="@+id/select_device_text"
+
+            />
+
+    </RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HRV"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:id="@+id/hrv" />
+
+        <com.androidplot.xy.XYPlot
+            android:id="@+id/dynamicPlot"
+            title="Heart Rate"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            />
 
 
+    </FrameLayout>
 
-    <TextView
-
-        android:layout_width="139dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/hrv" />
-
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
             android:id="@+id/min"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textSize="25sp"
             android:gravity="center"
             android:text="@string/min" />
 
@@ -56,43 +86,22 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textSize="25sp"
             android:gravity="center"
             android:text="@string/avg" />
 
-    <com.androidplot.xy.XYPlot
-        android:id="@+id/dynamicPlot"
-        title="Heart Rate"
-        android:layout_width="wrap_content"
-        android:layout_height="138dp"
-        android:layout_marginTop="10dp"></com.androidplot.xy.XYPlot>
-
-    <Button
-            android:id="@+id/saveButton"
-            android:layout_width="129dp"
-            android:layout_height="wrap_content"
-            android:text="Save" />
-
-    <TextView
+        <TextView
             android:id="@+id/max"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textSize="25sp"
             android:gravity="center"
             android:text="@string/max" />
 
 
-    <TextView
-            android:id="@+id/fileNameView"
-            android:layout_width="232dp"
-            android:layout_height="wrap_content"
-        android:text="TextView" />
-
-
-    <Spinner
-        android:id="@+id/selectFile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.04" />
-
+    </LinearLayout>
 
 </LinearLayout>
