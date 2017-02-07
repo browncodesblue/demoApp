@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blue_background">
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/git_logo"
+        android:id="@+id/start_Logo"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:text="We keep you unbreakable no matter where you are in life. As we get to know each other, you will:"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <TextView
+            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:id="@+id/welcome1"
+            android:layout_marginTop="20dp"
+            android:textSize="16sp"
+            android:text="1. Connect with people you trust"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/white"
+            android:id="@+id/welcome2"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/welcome1"
+            android:textSize="16sp"
+            android:text="2. Complete some icebreaking activities"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/welcome2"
+            android:id="@+id/welcome3"
+            android:textSize="16sp"
+            android:text="3. Decide if and how you want to share your data"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_marginTop="45dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#6fdc6f"
+        android:background="@drawable/sign_up"
+        android:id="@+id/start_Button"
+        android:text="Start"/>
+
+</LinearLayout>

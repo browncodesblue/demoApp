@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">GRIT</string>
+    <string name="story_prompt">Record a story about a time you overcame a stressful event.</string>
+    <string name="record">Record</string>
+    <string name="save">Save</string>
+    <string name="logo_text">Grit Logo</string>
+    <string name="email_hint">Your Email</string>
+    <string name="password_hint">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="forgot_text">Forgot your password?</string>
+    <string name="or_facebook">or Sign in with Facebook</string>
+    <string name="not_ready_expore_app">Not ready to Sign up? Explore the app</string>
+    <string name="facebook">Facebook</string>
+    <string name="word_picker_nav">Word Picker</string>
+    <string name="story_record_nav">Story Record</string>
+    <string name="life_check_nav">Life Check</string>
+    <string name="squad_builder_nav">Squad Builder</string>
+    <string name="white_nav_desc">Empty Nav</string>
+    <string name="dot_nav_desc">Filled Dot Nav</string>
+    <string name="word_picker_prompt">Select the words that resonate most with you</string>
+    <string name="word_picker_leftarrow">Left Arrow</string>
+    <string name="word_picker_rightarrow">Right Arrow</string>
+    <string name="word_picker_choice1">Outgoing</string>
+    <string name="word_picker_choice2">Credit</string>
+    <string name="word_picker_choice3">Fun</string>
+    <string name="word_picker_choice4">Outgoing</string>
+    <string name="nunber_one_of_five">1 / 5</string>
+    <string name="nunber_two_of_five">2 / 5</string>
+    <string name="nunber_three_of_five">3 / 5</string>
+    <string name="nunber_four_of_five">4 / 5</string>
+    <string name="nunber_five_of_five">5 / 5</string>
+    <string name="life_check_question_1">In most ways my life is close to my ideal</string>
+    <string name="life_check_question_2">The conditions of my life are excellent</string>
+    <string name="life_check_question_3">I am satisfied with my life</string>
+    <string name="life_check_question_4">So far I have gotten the important things I want in life</string>
+    <string name="life_check_question_5">If I could live my life over, I would change almost nothing</string>
+    <string name="number_selector">Number selector</string>
+    <string name="squad_directions_top_text">Start Your Squad to help grow your GRIT</string>
+    <string name="squad_directions_add">Add at least 3 people you trust to give honest feedback about you. Here\'s how this works:</string>
+    <string name="squad_directions_1">1. Squadmats will complete three similar activities</string>
+    <string name="squad_directions_2">2. You won\'t see their responses and they won\'t see yours</string>
+    <string name="squad_directions_3">3. We aggregate all responses to inform Your Path</string>
+    <string name="squad_directions_4">4. Then, you can choose if you want to share any information</string>
+    <string name="sqaud_direction_addfrom_facebook">Add Contacts Via Facebook</string>
+    <string name="sqaud_direction_addfrom_contacts">Add Contacts Via My Contacts</string>
+    <string name="name1">Josheph Kung</string>
+    <string name="name2">Robert Smith</string>
+    <string name="name3">Jennifer Knapp</string>
+    <string name="name4">Sarah Mysore</string>
+    <string name="name5">James Huffman</string>
+    <string name="send_invite">Send Invite</string>
+
+
+
+
+
+
+
+
+</resources>
