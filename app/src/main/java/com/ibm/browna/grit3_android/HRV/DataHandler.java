@@ -71,10 +71,29 @@ public class DataHandler extends Observable{
 		}
 		pos++;
 	}
-	
+
+	/*
 	public void cleanInput(int i, Integer[] beatVar){
 		valBPM =i;
 		if(valBPM !=0){
+			data+= valBPM;//Average maths
+			total++;//Average maths
+		}
+		if(valBPM <min||min==0)
+			min= valBPM;
+		else if(valBPM >max)
+			max= valBPM;
+
+		if (beatVar!= null) addToBeatToBeat(beatVar);
+		setChanged();
+		notifyObservers();
+	}
+
+	**/
+
+	public void cleanInput(int i, Integer[] beatVar){
+		mHRV =i;
+		if(mHRV !=0){
 			data+= valBPM;//Average maths
 			total++;//Average maths
 		}

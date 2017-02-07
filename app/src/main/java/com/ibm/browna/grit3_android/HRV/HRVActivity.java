@@ -64,7 +64,6 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
 
 
     public Context getContext() {
@@ -144,48 +143,12 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
         plot.setTicksPerRangeLabel(3);
         plot.getGraphWidget().setDomainLabelOrientation(-45);
 
-        //ANALYTIC
-
-        //t = GoogleAnalytics.getInstance(this).newTracker("UA-51478243-1");
-        //#t.setScreenName("Polar main page");
-        //#t.send(new HitBuilders.AppViewBuilder().build());
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-
-        // adding save button to write latest hrv results to local file system
-
-/**
-         Button button = (Button) findViewById(R.id.saveButton);
-         button.setOnClickListener(new View.OnClickListener() {
-         public void onClick(View v) {
-
-         // assemble the payload of 2 numbers: average heartbeat per minute, hrv score - separated by comma
-         String payload = "45,55";
 
 
-         String filename =  DataAccess.writeToFile(payload, getContext());
-
-         if (filename != null) {
-
-         TextView lastFile = (TextView) findViewById(R.id.fileNameView);
-         lastFile.setText(filename);
-         populateFileSpinner();
-         }
-
-
-
-
-
-
-         }
-         });
-
-**/
 
     }
 
+    /*
     private void populateFileSpinner() {
 
 
@@ -213,7 +176,7 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
         fileSpinner.setAdapter(adapter);
 
     }
-
+**/
 
     protected void onDestroy() {
         super.onDestroy();
@@ -235,7 +198,7 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 //  Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://org.marco45.polarheartmonitor/http/host/path")
+                Uri.parse("android-app://com.ibm.browna.grit3_android/http/host/path")
         );
         AppIndex.AppIndexApi.start(client, viewAction);
     }
@@ -255,7 +218,10 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
                 // Loop through paired devices
                 for (BluetoothDevice device : pairedDevices) {
                     // Add the name and address to an array adapter to show in a ListView
-                    list.add(device.getName() + "\n" + device.getAddress());
+
+                    if (device.getName().contains("Polar")) {
+                        list.add(device.getName() + "\n" + device.getAddress());
+                    }
                 }
             }
             if (!h7) {
@@ -289,7 +255,7 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
             }
 
             //Populate drop down
-            spinner1 = (Spinner) findViewById(R.id.spinner1);
+            spinner1 = (Spinner) findViewById(R.id.HRV_device_spinner1);
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,
                     android.R.layout.simple_spinner_item, list);
             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -350,7 +316,7 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
 
         if (pos != 0) {
 
-            if (parent.getId() == R.id.spinner1) {
+
 
                 //Actual work
                 DataHandler.getInstance().setID(pos);
@@ -368,18 +334,7 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
                 }
                 menuBool = true;
 
-            } else if (parent.getId() == R.id.selectFile) {
 
-                String selected = parent.getItemAtPosition(pos).toString();
-                Intent intent = new Intent(HRVActivity.this, HRVSecondActivity.class);
-                intent.putExtra("fileName", selected);
-                startActivity(intent);
-
-
-                // For Open New Screen
-                setContentView(R.layout.activity_hrv_second);
-                
-            }
 
         }
 
@@ -411,7 +366,7 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
                     Toast.makeText(getBaseContext(), getString(R.string.couldnotconnect), Toast.LENGTH_SHORT).show();
                     //TextView rpm = (TextView) findViewById(R.id.rpm);
                     //rpm.setText("0 BMP");
-                    Spinner spinner1 = (Spinner) findViewById(R.id.spinner1);
+                    Spinner spinner1 = (Spinner) findViewById(R.id.HRV_device_spinner1);
                     if (DataHandler.getInstance().getID() < spinner1.getCount())
                         spinner1.setSelection(DataHandler.getInstance().getID());
 
@@ -448,8 +403,6 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
         runOnUiThread(new Runnable() {
             public void run() {
                 //menuBool=true;
-                TextView rpm = (TextView) findViewById(R.id.rpm);
-                rpm.setText(DataHandler.getInstance().getLastBpmValue());
 
                 if (DataHandler.getInstance().getLastBPMIntValue() != 0) {
                     DataHandler.getInstance().getSeries1().addLast(0, DataHandler.getInstance().getLastBPMIntValue());
@@ -467,39 +420,13 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
                 TextView max = (TextView) findViewById(R.id.max);
                 max.setText(DataHandler.getInstance().getMax());
 
-/**
-               TextView rr = (TextView) findViewById(R.id.rr);
-                rr.setText(DataHandler.getInstance().getLastRR());
- **/
+
                 if (DataHandler.getInstance().getmHRV() > 0) {
                     TextView textHRV = (TextView) findViewById(R.id.hrv);
                     textHRV.setText("Score: " + String.valueOf(DataHandler.getInstance().getmHRV()));
                 }
 
-                // adding save button to write latest hrv results to local file system
 
-               /**
-                Button button = (Button) findViewById(R.id.saveButton);
-                button.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-
-                        // assemble the payload of 2 numbers: average heartbeat per minute, hrv score - separated by comma
-                        String payload = DataHandler.getInstance().getAvg() + "," + DataHandler.getInstance().getmHRV();
-
-
-                        String filename = DataAccess.writeToFile(payload, getContext());
-
-                        if (filename != null) {
-
-                            TextView lastFile = (TextView) findViewById(R.id.fileNameView);
-                            lastFile.setText(filename);
-                            populateFileSpinner();
-                        }
-
-                    }
-                });
-
-                **/
 
 
             }
@@ -520,7 +447,7 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 //  Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://org.marco45.polarheartmonitor/http/host/path")
+                Uri.parse("android-app://com.ibm.browna.grit3_android/http/host/path")
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
