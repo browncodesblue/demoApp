@@ -19,15 +19,13 @@
         <activity android:name=".HRV.HRVSecondActivity"/>
         <activity android:name=".Views.Assessments.AssessmentActivity"/>
         <activity android:name=".Views.WelcomeActivity"/>
+
         <activity android:name=".Views.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-
-
 
 
     </application>
