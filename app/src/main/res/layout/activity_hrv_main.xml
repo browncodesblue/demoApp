@@ -1,0 +1,98 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:weightSum="1"
+    tools:context=".HRV.HRVActivity"
+    tools:ignore="MergeRootFrame">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.04"
+        android:text="@string/selectDevice" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="38dp" />
+
+    <TextView
+        android:id="@+id/rpm"
+        android:layout_width="88dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.03"
+        android:paddingTop="20dp"
+        android:text="@string/rpm"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+
+
+    <TextView
+
+        android:layout_width="139dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/hrv" />
+
+    <TextView
+            android:id="@+id/min"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/min" />
+
+        <TextView
+            android:id="@+id/avg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/avg" />
+
+    <com.androidplot.xy.XYPlot
+        android:id="@+id/dynamicPlot"
+        title="Heart Rate"
+        android:layout_width="wrap_content"
+        android:layout_height="138dp"
+        android:layout_marginTop="10dp"></com.androidplot.xy.XYPlot>
+
+    <Button
+            android:id="@+id/saveButton"
+            android:layout_width="129dp"
+            android:layout_height="wrap_content"
+            android:text="Save" />
+
+    <TextView
+            android:id="@+id/max"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/max" />
+
+
+    <TextView
+            android:id="@+id/fileNameView"
+            android:layout_width="232dp"
+            android:layout_height="wrap_content"
+        android:text="TextView" />
+
+
+    <Spinner
+        android:id="@+id/selectFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.04" />
+
+
+</LinearLayout>
