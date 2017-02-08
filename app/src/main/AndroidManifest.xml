@@ -12,14 +12,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WatsonTone.MainActivity"/>
-        <activity android:name=".WatsonTone.SecondActivity"/>
-        <activity android:name=".HRV.HRVActivity">
+        <activity android:name=".WatsonTone.MainActivity">
 
         <intent-filter>
             <action android:name="android.intent.action.MAIN"/>
             <category android:name="android.intent.category.LAUNCHER"/>
         </intent-filter>
+
+           </activity>
+        <activity android:name=".WatsonTone.SecondActivity"/>
+        <activity android:name=".HRV.HRVActivity">
+
 
         </activity>
         <activity android:name=".HRV.AboutActivity"/>
