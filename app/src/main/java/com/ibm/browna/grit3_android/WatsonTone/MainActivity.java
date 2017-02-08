@@ -29,6 +29,7 @@ import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneScore;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneOptions;
 
 
+import java.lang.reflect.Array;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.HashMap;
@@ -41,16 +42,29 @@ public class MainActivity extends AppCompatActivity {
     private EditText messageToAnalyze;
     private TextView analsisTextView;
     private Button analysisButton;
-    private Map valuesMap = new HashMap();
+    private Map emotionValuesMap = new HashMap(5);
+    private String probabilityEmotions[] = new String[5];
+    private String probabilitySocial[] = new String[5];
+    private  Map socialValuesMap = new HashMap(5);
 
     private final String  LIKELY = "Likely";
     private final  String VERYLIKELY = "Very Likely";
-    private final  String UNLIKELY = "Unlikely";
+    private final  String UNLIKELY = "Not likely";
     private GridLayout gridView;
 
     private final int ColorUnlikely = Color.GRAY;
-    private final int ColorLikely = Color.YELLOW;
+    private final int ColorLikely = Color.MAGENTA;
     private final int ColorVeryLikely = Color.RED;
+
+    public String getTextToAnalyze() {
+        return textToAnalyze;
+    }
+
+    public void setTextToAnalyze(String textToAnalyze) {
+        this.textToAnalyze = textToAnalyze;
+    }
+
+    private String textToAnalyze = null;
 
 
     public MainActivity() {
@@ -86,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 
 
     private class ToneAnalyzerCall extends AsyncTask<String, Void, Void> {
@@ -139,23 +155,27 @@ public class MainActivity extends AppCompatActivity {
             //this method will be running on UI thread
             if (success) {
                 pdLoading.dismiss();
-                valuesMap.clear();
+                emotionValuesMap.clear();
+                socialValuesMap.clear();
                 for (ToneCategory tc : tone.getDocumentTone().getTones())
 
-                    if (tc.getId().equals("emotion_tone")) {
+
                         for (ToneScore ts : tc.getTones()) {
 
+                            if (tc.getId().equals("emotion_tone")) {
 
-                            valuesMap.put(ts.getName(), ts.getScore());
+                                emotionValuesMap.put(ts.getName(), ts.getScore());
 
+                            } else if (tc.getId().equals("social_tone")) {
+
+                                socialValuesMap.put(ts.getName(), ts.getScore());
+
+                            }
 
                         }
 
-                    }
 
-                String toneScore = "";
-
-                Iterator entries = valuesMap.entrySet().iterator();
+                Iterator entries = emotionValuesMap.entrySet().iterator();
                 while (entries.hasNext()) {
                     Map.Entry thisEntry = (Map.Entry) entries.next();
                     Log.e("Entry", (String) thisEntry.getKey());
@@ -183,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
                         probability = VERYLIKELY;
                         probColor = ColorVeryLikely;
                     }
+
 
                     viewEmotions = new TextView(getApplicationContext());
                     viewScore = new TextView(getApplicationContext());
