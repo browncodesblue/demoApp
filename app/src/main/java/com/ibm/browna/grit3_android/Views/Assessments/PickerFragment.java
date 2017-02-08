@@ -37,11 +37,16 @@ public class PickerFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_word_pick,null,false);
 
 
-        String [] tumblerWords = {"Hat", "Cat", "Words", "Sit"};
-        mTumbler1 = new Tumbler(R.id.leftArrow1,R.id.RightArrow1, R.id.word_tumbler1, tumblerWords,1);
-        mTumbler2 = new Tumbler(R.id.leftArrow2,R.id.RightArrow2,R.id.word_tumbler2, tumblerWords,2);
-        mTumbler3 = new Tumbler(R.id.leftArrow3,R.id.RightArrow3,R.id.word_tumbler3, tumblerWords,3);
-        mTumbler4 = new Tumbler(R.id.leftArrow4,R.id.RightArrow4,R.id.word_tumbler4, tumblerWords,4);
+
+        String [] tumblerWords1 =	{"Career", "Active", "Outgoing", "Money", "Activity", "Breathe"};
+        String [] tumblerWords2 =	{"Social" , "Credit", "Professional" , "Pastime", "Love", "Affect", "Endurance"};
+        String [] tumblerWords3=	{"Fitness" , "Fun", "Popular" , "Earn", "Service", "Related", "Feeling"};
+        String [] tumblerWords4 =	{"Occupation" , "nergy", "Peers" , "Investment", "Passion", "Partner", "Satisfaction"};
+
+        mTumbler1 = new Tumbler(R.id.leftArrow1,R.id.RightArrow1, R.id.word_tumbler1, tumblerWords1,1);
+        mTumbler2 = new Tumbler(R.id.leftArrow2,R.id.RightArrow2,R.id.word_tumbler2, tumblerWords2,2);
+        mTumbler3 = new Tumbler(R.id.leftArrow3,R.id.RightArrow3,R.id.word_tumbler3, tumblerWords3,3);
+        mTumbler4 = new Tumbler(R.id.leftArrow4,R.id.RightArrow4,R.id.word_tumbler4, tumblerWords4,4);
 
         createTumbler(v, mTumbler1);
         createTumbler(v, mTumbler2);

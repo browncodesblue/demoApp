@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/girtblue">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:text="@string/value_prompt"
+        android:id="@+id/draggable_prompt_text"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="15dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/white"
+        android:layout_below="@+id/draggable_prompt_text"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginStart="35dp"
+        android:id="@+id/draggable_white_line"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_number_one"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:text="@string/one_list"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/draggable_white_line"
+        android:layout_alignStart="@id/draggable_white_line"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_number_two"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:text="@string/two_list"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/list_number_one"
+        android:layout_alignStart="@id/draggable_white_line"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_number_three"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:text="@string/three_list"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/list_number_two"
+        android:layout_alignStart="@id/draggable_white_line"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sign_up"
+        android:layout_toEndOf="@+id/list_number_one"
+        android:layout_alignBottom="@+id/list_number_one"
+        android:layout_marginEnd="45dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:textSize="30sp"
+            android:textColor="@android:color/black"
+            android:text="@string/value_stock1"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp" />
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sign_up"
+        android:layout_toEndOf="@+id/list_number_two"
+        android:layout_alignBottom="@+id/list_number_two"
+        android:layout_marginEnd="45dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:textSize="30sp"
+            android:textColor="@android:color/black"
+            android:text="@string/value_stock2"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp" />
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sign_up"
+        android:layout_toEndOf="@+id/list_number_three"
+        android:layout_alignBottom="@+id/list_number_three"
+        android:layout_marginEnd="45dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:textSize="30sp"
+            android:textColor="@android:color/black"
+            android:text="@string/value_stock3"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp" />
+
+
+    </RelativeLayout>
+    
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/gritgreen"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/list_number_three"
+        android:src="@drawable/ic_add_white"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#6fdc6f"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/sign_up"
+        android:id="@+id/story_save_button"
+        android:text="@string/save"/>
+
+</RelativeLayout>

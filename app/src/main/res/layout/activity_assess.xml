@@ -10,7 +10,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <Toolbar
+        <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -22,7 +22,7 @@
                 android:layout_height="50dp"
                 android:src="@drawable/grit_spelling"
                 android:id="@+id/grit_spelling"/>
-        </Toolbar>
+        </android.support.v7.widget.Toolbar>
 
 
         <LinearLayout

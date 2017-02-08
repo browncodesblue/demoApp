@@ -72,7 +72,13 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="watson_toneresults_prompt_">Watson Helps you understand how likely an emotion will show up in what you said</string>
-
+    <string name="value_prompt">Is this what you value? The order matters</string>
+    <string name="value_stock1">Family</string>
+    <string name="value_stock2">Wellbeing</string>
+    <string name="value_stock3">Community</string>
+    <string name="one_list">1.</string>
+    <string name="two_list">2.</string>
+    <string name="three_list">3.</string>
 
 
 

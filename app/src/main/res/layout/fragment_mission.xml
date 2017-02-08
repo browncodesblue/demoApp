@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blue_background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="25dp"
+        android:background="@color/girtblue"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gritgreen"
+            android:textSize="35sp"
+            android:text="Mission"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="55dp"/>
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:layout_gravity="center_horizontal"
+            android:text="I will grow my ability to Manage Stress with the help of my squad over the next 6 months."
+            />
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:textColor="#6fdc6f"
+            android:background="@drawable/sign_up"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:id="@+id/life_check_save"
+            android:text="Commit"/>
+
+    </LinearLayout>
+</FrameLayout>

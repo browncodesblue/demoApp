@@ -1,15 +1,23 @@
 package com.ibm.browna.grit3_android.Views.Assessments;
 
-import android.app.Activity;
+import android.Manifest;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +25,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,12 +33,16 @@ import com.ibm.browna.grit3_android.HRV.HRVActivity;
 import com.ibm.browna.grit3_android.R;
 import com.ibm.browna.grit3_android.WatsonTone.MainActivity;
 
+import static android.Manifest.permission.RECORD_AUDIO;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
+
 
 /**
  * Created by browna on 2/2/2017.
  */
 
-public class AssessmentActivity extends Activity {
+public class AssessmentActivity extends ActionBarActivity {
 
     LinearLayout pickerButton, storyButton,lifeButton,squadButton;
     ImageView   pickerDot, storyDot, lifeDot, squadDot;
@@ -58,9 +70,9 @@ public class AssessmentActivity extends Activity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
 
-        setActionBar(myToolbar);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         setupDrawer();
         addDrawerItems();
@@ -95,6 +107,11 @@ public class AssessmentActivity extends Activity {
             }
         });
 
+
+
+
+
+
     }
 
     @Override
@@ -108,26 +125,22 @@ public class AssessmentActivity extends Activity {
 
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
+                onDrawerOpened(drawerView);
+                getActionBar().setTitle("Navigation!");
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
+                onDrawerClosed(view);
+                getActionBar().setTitle(mActivityTitle);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    public void onDrawerClosed(View view) {
-        onDrawerClosed(view);
-        getActionBar().setTitle(mActivityTitle);
-        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-    }
 
-    public void onDrawerOpened(View drawerView) {
-        onDrawerOpened(drawerView);
-        getActionBar().setTitle("Navigation!");
-        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-    }
 
     private void addOnClick(){
         pickerButton.setOnClickListener(new View.OnClickListener() {
@@ -226,4 +239,6 @@ public class AssessmentActivity extends Activity {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
+
+
 }
