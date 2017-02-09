@@ -11,37 +11,46 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:layout_margin="15dp"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:background="@drawable/sign_up"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="15dp"
-        android:id="@+id/watson_tone_text_returned"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@drawable/sign_up"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/watson_tone_text_returned"/>
+        <!-- -->
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textColor="#6fdc6f"
+            android:background="@drawable/sign_up"
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="right"
+            android:id="@+id/analyze_me"
+            android:text="Analyze Me!"/>
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
+        android:id="@+id/tone_table"
         android:background="@drawable/sign_up"
         android:layout_marginStart="35dp"
-        android:layout_marginEnd="35dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginTop="35dp"
         android:layout_marginBottom="10dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:padding="5dp"
-            android:textSize="20dp"
-            android:text="Emotions:"
-
-            android:id="@+id/tone_emotion1"/>
 
 
-    </LinearLayout>
+
+    </TableLayout>
 
        <Button
         android:layout_width="250dp"
@@ -50,7 +59,7 @@
         android:background="@drawable/sign_up"
         android:layout_margin="20dp"
         android:layout_gravity="center"
-        android:id="@+id/life_check_save"
+        android:id="@+id/tone_save_button"
         android:text="@string/save"/>
 
 </LinearLayout>
