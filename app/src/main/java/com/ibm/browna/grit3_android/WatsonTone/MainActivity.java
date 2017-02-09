@@ -29,6 +29,7 @@ import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneScore;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneOptions;
 
 
+import java.lang.reflect.Array;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.HashMap;
@@ -41,16 +42,31 @@ public class MainActivity extends AppCompatActivity {
     private EditText messageToAnalyze;
     private TextView analsisTextView;
     private Button analysisButton;
-    private Map valuesMap = new HashMap();
+    private Map emotionValuesMap = new HashMap(5);
+    private String probabilityEmotions[] = new String[5];
+    private String probabilitySocial[] = new String[5];
+    private  Map socialValuesMap = new HashMap(5);
 
     private final String  LIKELY = "Likely";
     private final  String VERYLIKELY = "Very Likely";
-    private final  String UNLIKELY = "Unlikely";
+    private final  String UNLIKELY = "Not likely";
     private GridLayout gridView;
-
+/*
     private final int ColorUnlikely = Color.GRAY;
-    private final int ColorLikely = Color.YELLOW;
+    private final int ColorLikely = Color.MAGENTA;
     private final int ColorVeryLikely = Color.RED;
+
+    **/
+
+    public String getTextToAnalyze() {
+        return textToAnalyze;
+    }
+
+    public void setTextToAnalyze(String textToAnalyze) {
+        this.textToAnalyze = textToAnalyze;
+    }
+
+    private String textToAnalyze = null;
 
 
     public MainActivity() {
@@ -66,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         messageToAnalyze = (EditText) findViewById(R.id.messageEditText);
         analysisButton = (Button) findViewById(R.id.sendAnalysisButton);
         gridView = (GridLayout) findViewById(R.id.gridView);
-        gridView.setRowCount(5);
+       // gridView.setRowCount(12);
         gridView.setColumnCount(2);
 
 
@@ -86,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 
 
     private class ToneAnalyzerCall extends AsyncTask<String, Void, Void> {
@@ -132,96 +150,231 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(result);
 
             TextView viewEmotions;
-            TextView viewScore;
+            TextView viewEmotionsScore;
+            TextView viewSocial;
+            TextView viewSocialScore;
             gridView.removeAllViews();
             int probColor;
 
             //this method will be running on UI thread
             if (success) {
                 pdLoading.dismiss();
-                valuesMap.clear();
-                for (ToneCategory tc : tone.getDocumentTone().getTones())
-
-                    if (tc.getId().equals("emotion_tone")) {
-                        for (ToneScore ts : tc.getTones()) {
+                emotionValuesMap.clear();
+                socialValuesMap.clear();
 
 
-                            valuesMap.put(ts.getName(), ts.getScore());
+
+                for (ToneCategory tc : tone.getDocumentTone().getTones()) {
+
+
+                    for (ToneScore ts : tc.getTones()) {
+
+
+                        String probability;
+
+                        if (ts.getScore() < 0.3) {
+
+                            probability = UNLIKELY;
+
+
+                        } else if (ts.getScore() >= 0.3 && ts.getScore() < 0.6) {
+
+                            probability = LIKELY;
+
+
+                        } else {
+
+                            probability = VERYLIKELY;
+
+                        }
+
+
+                        if (tc.getId().equals("emotion_tone")) {
+
+                            emotionValuesMap.put(ts.getName(), probability);
+
+
+                        } else if (tc.getId().equals("social_tone")) {
+
+                            Log.e("social tone:", tc.getName());
+
+                            socialValuesMap.put(ts.getName(), probability);
 
 
                         }
 
                     }
 
-                String toneScore = "";
 
-                Iterator entries = valuesMap.entrySet().iterator();
+                }
+
+
+
+            // now dynamically populate our grid with Emotions and Social tones
+
+                viewEmotions = new TextView(getApplicationContext());
+                viewEmotions.setText("Emotions");
+                viewEmotions.setTextColor(Color.BLACK);
+                viewEmotions.setTextSize(20f);
+                gridView.addView(viewEmotions);
+                GridLayout.LayoutParams param =new GridLayout.LayoutParams();
+
+                param.setGravity(Gravity.LEFT);
+
+                viewEmotions.setLayoutParams (param);
+
+                viewEmotionsScore = new TextView(getApplicationContext());
+                viewEmotionsScore.setText("");
+                gridView.addView(viewEmotionsScore);
+
+                GridLayout.LayoutParams param1 =new GridLayout.LayoutParams();
+
+                param1.setGravity(Gravity.CENTER);
+                viewEmotionsScore.setLayoutParams(param1);
+
+
+
+                Iterator entries = emotionValuesMap.entrySet().iterator();
                 while (entries.hasNext()) {
+
                     Map.Entry thisEntry = (Map.Entry) entries.next();
                     Log.e("Entry", (String) thisEntry.getKey());
 
-                    String probability;
-
-                    if ((double)thisEntry.getValue() < 0.3) {
-
-                        probability = UNLIKELY;
-
-                        probColor = ColorUnlikely;
-
-
-
-                    } else if ((double)thisEntry.getValue() > 0.3 && (double)thisEntry.getValue() < 0.6) {
-
-                        probability = LIKELY;
-                        probColor = ColorLikely;
-
-
-
-
-                    } else {
-
-                        probability = VERYLIKELY;
-                        probColor = ColorVeryLikely;
-                    }
 
                     viewEmotions = new TextView(getApplicationContext());
-                    viewScore = new TextView(getApplicationContext());
+                    viewEmotionsScore = new TextView(getApplicationContext());
+
+
 
 
                     viewEmotions.setText((CharSequence) thisEntry.getKey() + ": ");
                     viewEmotions.setTextColor(Color.BLACK);
-                    viewEmotions.setTextSize(20f);
+                    viewEmotions.setTextSize(18f);
+                    viewEmotions.setGravity(Gravity.LEFT);
 
 
-                    viewScore.setText((CharSequence)probability);
-                    viewScore.setTextColor(probColor);
-                    viewScore.setTextSize(20f);
+                    viewEmotionsScore.setText((CharSequence)thisEntry.getValue());
+                    viewEmotionsScore.setTextColor(showColor((String)thisEntry.getValue()));
+                    viewEmotionsScore.setTextSize(18f);
 
 
                     gridView.addView(viewEmotions);
 
-                    GridLayout.LayoutParams param =new GridLayout.LayoutParams();
+                    GridLayout.LayoutParams paramEmotions =new GridLayout.LayoutParams();
 
-                    param.setGravity(Gravity.LEFT);
+                    paramEmotions.setGravity(Gravity.LEFT);
 
-                    viewEmotions.setLayoutParams (param);
+                    viewEmotions.setLayoutParams (paramEmotions);
 
 
 
-                    gridView.addView(viewScore);
+                    gridView.addView(viewEmotionsScore);
 
-                    GridLayout.LayoutParams param1 =new GridLayout.LayoutParams();
+                    GridLayout.LayoutParams paramScore =new GridLayout.LayoutParams();
 
-                    param1.setGravity(Gravity.CENTER);
-                    viewScore.setLayoutParams(param1);
+                    paramScore.setGravity(Gravity.CENTER);
+
+                    viewEmotions.setLayoutParams (paramScore);
+
+
+
+                }
+
+
+                viewSocial = new TextView(getApplicationContext());
+                viewSocial.setText("Social Tone");
+                viewSocial.setTextColor(Color.BLACK);
+                viewSocial.setTextSize(20f);
+                gridView.addView(viewSocial);
+                GridLayout.LayoutParams paramS =new GridLayout.LayoutParams();
+
+                paramS.setGravity(Gravity.LEFT);
+
+                viewSocial.setLayoutParams (paramS);
+
+                viewSocialScore = new TextView(getApplicationContext());
+                viewSocialScore.setText("");
+                gridView.addView(viewSocialScore);
+
+                GridLayout.LayoutParams paramS1 =new GridLayout.LayoutParams();
+
+                paramS1.setGravity(Gravity.CENTER);
+                viewSocialScore.setLayoutParams(paramS1);
+
+
+
+                Iterator socials = socialValuesMap.entrySet().iterator();
+                while (socials.hasNext()) {
+
+                    Map.Entry thisEntry = (Map.Entry)socials.next();
+                    Log.e("Entry", (String) thisEntry.getKey());
+
+
+                    viewSocial = new TextView(getApplicationContext());
+                    viewSocialScore = new TextView(getApplicationContext());
+
+
+
+
+                    viewSocial.setText((CharSequence) thisEntry.getKey() + ": ");
+                    viewSocial.setTextColor(Color.BLACK);
+                    viewSocial.setTextSize(18f);
+
+
+                    viewSocialScore.setText((CharSequence)thisEntry.getValue());
+                    viewSocialScore.setTextColor(showColor((String)thisEntry.getValue()));
+                    viewSocialScore.setTextSize(18f);
+
+
+                    gridView.addView(viewSocial);
+
+                    GridLayout.LayoutParams paramEmotions =new GridLayout.LayoutParams();
+
+                    paramEmotions.setGravity(Gravity.LEFT);
+
+                    viewSocial.setLayoutParams (paramEmotions);
+
+
+
+                    gridView.addView(viewSocialScore);
+
+                    GridLayout.LayoutParams paramScore =new GridLayout.LayoutParams();
+
+                    paramScore.setGravity(Gravity.CENTER);
+
+                    viewSocial.setLayoutParams (paramScore);
+
+
 
                 }
 
 
 
             }
-        }
 
+
+    }
+
+
+    }
+
+
+    private int showColor(String probability) {
+
+        int color;
+
+            if (probability.equals(UNLIKELY)) {
+
+                color = Color.GRAY;
+
+            } else if (probability.equals(LIKELY)) {
+
+                color = Color.MAGENTA;
+            } else {
+
+                color = Color.RED;
+            }
+        return  color;
     }
 
 

@@ -72,7 +72,7 @@ public class DataHandler extends Observable{
 		pos++;
 	}
 
-	/*
+	/**
 	public void cleanInput(int i, Integer[] beatVar){
 		valBPM =i;
 		if(valBPM !=0){
@@ -89,11 +89,12 @@ public class DataHandler extends Observable{
 		notifyObservers();
 	}
 
-	**/
+	 **/
+
 
 	public void cleanInput(int i, Integer[] beatVar){
-		mHRV =i;
-		if(mHRV !=0){
+		valBPM =i;
+		if(valBPM !=0){
 			data+= valBPM;//Average maths
 			total++;//Average maths
 		}
@@ -107,9 +108,13 @@ public class DataHandler extends Observable{
 		notifyObservers();
 	}
 
+
+
+
+
     public String getLastBpmValue(){
 
-        return valBPM + " BPM";
+        return  "BPM " + valBPM;
     }
 
     public int getLastBPMIntValue(){
@@ -123,13 +128,13 @@ public class DataHandler extends Observable{
 	
 	public String getMax(){
 
-		return "Max " + max + " BPM";
+		return  max + " Max BPM";
 	}
 	
 	public String getAvg(){
 		if(total==0)
-            return "Avg " + 0 + " BPM";
-		return "Avg " + data/total + " BPM";
+            return  0 + " Avg  BPM";
+		return  data/total + " Avg BPM";
 	}
 
 	public void setNewValue(boolean newValue) {

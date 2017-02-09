@@ -11,6 +11,12 @@ import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.PointLabelFormatter;
 import com.androidplot.xy.XYPlot;
 import com.androidplot.xy.SimpleXYSeries;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -73,6 +79,7 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private String mActivityTitle;
+    private LineChart mChart;
 
     public Context getContext() {
         if (context == null) {
@@ -158,26 +165,143 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
                 }
             }
             // Create Graph
+
+            mChart = (LineChart) findViewById(R.id.dynamicPlot);
+
+
+
+            // add an empty data object
+            mChart.setData(new LineData());
+
+
+
+
+            /**
             plot = (XYPlot) findViewById(R.id.dynamicPlot);
             if (plot.getSeriesSet().size() == 0) {
                 Number[] series1Numbers = {};
                 DataHandler.getInstance().setSeries1(new SimpleXYSeries(Arrays.asList(series1Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Heart Rate"));
             }
             DataHandler.getInstance().setNewValue(false);
+
+             **/
         } else {
             listBT();
+            mChart = (LineChart) findViewById(R.id.dynamicPlot);
+
+            /**
             plot = (XYPlot) findViewById(R.id.dynamicPlot);
+             **/
         }
         //LOAD Graph
+        /**
         LineAndPointFormatter series1Format = new LineAndPointFormatter(Color.rgb(0, 0, 255), Color.rgb(200, 200, 200), null, null);
         series1Format.setPointLabelFormatter(new PointLabelFormatter());
         plot.addSeries(DataHandler.getInstance().getSeries1(), series1Format);
         plot.setTicksPerRangeLabel(3);
         plot.getGraphWidget().setDomainLabelOrientation(-45);
+         **/
+
+        mChart.setDrawGridBackground(false);
+        mChart.getDescription().setEnabled(false);
+
+        mChart.invalidate();
 
 
 
 
+    }
+
+    /*
+    private void populateFileSpinner() {
+
+
+        //Populate drop down
+
+        fileSpinner = (Spinner) findViewById(R.id.selectFile);
+        File[] files = getContext().getFilesDir().listFiles();
+
+        String[] list = new String[files.length];
+        String[] spinnerList = new String[files.length];
+
+        for (int i = 0; i < files.length; i++) {
+
+
+            String path = files[i].getAbsolutePath().toString();
+            list[i] = path;
+            spinnerList[i] = list[i].substring(list[i].lastIndexOf("/") + 1);
+
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, spinnerList);
+        fileSpinner.setAdapter(adapter);
+
+        fileSpinner.setOnItemSelectedListener(this);
+        fileSpinner.setAdapter(adapter);
+
+    }
+**/
+
+
+    //graph handling
+
+    private void addEntry(float value) {
+
+        LineData data = mChart.getData();
+
+        ILineDataSet set = data.getDataSetByIndex(0);
+        // set.addEntry(...); // can be called as well
+
+
+        if (set == null) {
+            set = createSet();
+            data.addDataSet(set);
+        }
+
+
+       // set.addEntry(new Entry(0,value));
+
+        // choose a random dataSet
+
+        // choose a random dataSet
+
+        /**
+        int randomDataSetIndex = (int) (Math.random() * data.getDataSetCount());
+        float yValue = (float) (Math.random() * 10) + 50f;
+
+
+
+        data.addEntry(new Entry(data.getDataSetByIndex(data.getDataSetCount()).getEntryCount(), value));
+         **/
+
+        data.addEntry(new Entry(0,value),0);
+        data.notifyDataChanged();
+
+        // let the chart know it's data has changed
+        mChart.notifyDataSetChanged();
+
+
+     //   mChart.setVisibleXRangeMaximum(6);
+        //mChart.setVisibleYRangeMaximum(15, AxisDependency.LEFT);
+//
+//            // this automatically refreshes the chart (calls invalidate())
+       // mChart.moveViewTo(data.getEntryCount() - 7, 50f, YAxis.AxisDependency.LEFT);
+
+
+    }
+
+    private LineDataSet createSet() {
+
+        LineDataSet set = new LineDataSet(null, "HRV Score");
+        set.setLineWidth(2.5f);
+        set.setCircleRadius(4.5f);
+        set.setColor(Color.rgb(240, 99, 99));
+        set.setCircleColor(Color.rgb(240, 99, 99));
+        set.setHighLightColor(Color.rgb(190, 190, 190));
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+        set.setValueTextSize(10f);
+
+        return set;
     }
 
     protected void onDestroy() {
@@ -343,6 +467,7 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
 
     public void onNothingSelected(AdapterView<?> arg0) {
 
+
     }
 
     /**
@@ -393,11 +518,34 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
             public void run() {
                 //menuBool=true;
 
+                /**
+
                 if (DataHandler.getInstance().getLastBPMIntValue() != 0) {
-                    DataHandler.getInstance().getSeries1().addLast(0, DataHandler.getInstance().getLastBPMIntValue());
-                    if (DataHandler.getInstance().getSeries1().size() > MAX_SIZE)
+                 DataHandler.getInstance().getSeries1().addLast(0, DataHandler.getInstance().getLastBPMIntValue());
+                 if (DataHandler.getInstance().getSeries1().size() > MAX_SIZE)
+                 DataHandler.getInstance().getSeries1().removeFirst();//Prevent graph to overload data.
+                 plot.redraw();
+                 }
+
+                 **/
+
+                if (DataHandler.getInstance().getmHRV() != 0) {
+
+                    /**
+                    DataHandler.getInstance().getSeries1().addLast(0, DataHandler.getInstance().getmHRV());
+                    if (DataHandler.getInstance().getSeries1().size() > MAX_SIZE) {
                         DataHandler.getInstance().getSeries1().removeFirst();//Prevent graph to overload data.
+                    }
                     plot.redraw();
+
+                     **/
+
+                  addEntry((float)DataHandler.getInstance().getmHRV());
+
+                    TextView textHRV = (TextView) findViewById(R.id.hrv);
+                    textHRV.setText("Score: " + String.valueOf(DataHandler.getInstance().getmHRV()));
+
+
                 }
 
                 TextView min = (TextView) findViewById(R.id.min);
@@ -409,10 +557,12 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
                 TextView max = (TextView) findViewById(R.id.max);
                 max.setText(DataHandler.getInstance().getMax());
 
+                /**
                 if (DataHandler.getInstance().getmHRV() > 0) {
                     TextView textHRV = (TextView) findViewById(R.id.hrv);
                     textHRV.setText("Score: " + String.valueOf(DataHandler.getInstance().getmHRV()));
                 }
+                 **/
             }
         });
     }
