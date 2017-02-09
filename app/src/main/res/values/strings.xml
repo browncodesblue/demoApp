@@ -11,10 +11,10 @@
     <string name="or_facebook">or Sign in with Facebook</string>
     <string name="not_ready_expore_app">Not ready to Sign up? Explore the app</string>
     <string name="facebook">Facebook</string>
-    <string name="word_picker_nav">Word Picker</string>
-    <string name="story_record_nav">Story Record</string>
-    <string name="life_check_nav">Life Check</string>
-    <string name="squad_builder_nav">Squad Builder</string>
+    <string name="word_picker_nav">Word\nPicker</string>
+    <string name="story_record_nav">Story\nRecord</string>
+    <string name="life_check_nav">Life\nCheck</string>
+    <string name="squad_builder_nav">Squad\nBuilder</string>
     <string name="white_nav_desc">Empty Nav</string>
     <string name="dot_nav_desc">Filled Dot Nav</string>
     <string name="word_picker_prompt">Select the words that resonate most with you</string>
@@ -79,6 +79,11 @@
     <string name="one_list">1.</string>
     <string name="two_list">2.</string>
     <string name="three_list">3.</string>
+    <string name="goal_directions_top">Let\'s gear you up to meet your Goal!</string>
+    <string name="goal_dircetions_middle">Set up a path to meet you goal by completing the next three pages. Here\'s what you will find: </string>
+    <string name="goals_directions_bullet1">1.  Choose a method to communicate with your squad</string>
+    <string name="goals_directions_bullet2">2.  Set a physical task to keep you on track</string>
+    <string name="goals_directions_bullet3">3.  Set a mental task to keep you on track</string>
 
 
 

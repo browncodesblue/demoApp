@@ -72,7 +72,7 @@ public class PickerFragment extends Fragment {
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tumbler.setmCurrentWord(tumbler.getmCurrentWord()==3?0:tumbler.getmCurrentWord()+1);
+                tumbler.setmCurrentWord(tumbler.getmCurrentWord()==5?0:tumbler.getmCurrentWord()+1);
                 String newText = (tumbler.getmWordArray())[tumbler.getmCurrentWord()];
                 textView.setText(newText);
             }
@@ -81,7 +81,7 @@ public class PickerFragment extends Fragment {
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tumbler.setmCurrentWord(tumbler.getmCurrentWord()==0?3:tumbler.getmCurrentWord()-1);
+                tumbler.setmCurrentWord(tumbler.getmCurrentWord()==0?5:tumbler.getmCurrentWord()-1);
                 String newText = (tumbler.getmWordArray())[tumbler.getmCurrentWord()];
                 textView.setText(newText);
             }

@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4c5c8c">
+    android:background="@drawable/blue_background">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginBottom="50dp"
             android:layout_gravity="center"
-            android:id="@+id/life_check_save"
+            android:id="@+id/text_feedback_back"
             android:text="Back"/>
 
     </LinearLayout>

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textSize="30sp"
-        android:text="@string/value_prompt"
+        android:text="Choose a Physical Path"
         android:id="@+id/draggable_prompt_text"
         android:layout_marginTop="15dp"
         android:layout_marginStart="35dp"
@@ -29,44 +29,24 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/list_number_one"
+        android:id="@+id/recommended"
         android:textColor="@color/white"
-        android:textSize="30sp"
-        android:text="@string/one_list"
+        android:textSize="20sp"
+        android:text="Recommended"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/draggable_white_line"
         android:layout_alignStart="@id/draggable_white_line"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/list_number_two"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:text="@string/two_list"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/list_number_one"
-        android:layout_alignStart="@id/draggable_white_line"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/list_number_three"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:text="@string/three_list"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/list_number_two"
-        android:layout_alignStart="@id/draggable_white_line"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/sign_up"
-        android:layout_toEndOf="@+id/list_number_one"
-        android:layout_alignBottom="@+id/list_number_one"
+        android:layout_below="@+id/recommended"
+        android:layout_alignStart="@+id/recommended"
+        android:layout_marginTop="10dp"
         android:id="@+id/draggable_box1"
+        android:layout_marginStart="5dp"
         android:layout_marginEnd="45dp"
         >
         <TextView
@@ -74,10 +54,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_marginStart="20dp"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:textColor="@android:color/black"
             android:id="@+id/drag_text_1"
-            android:text="@string/value_stock1"/>
+            android:text="Track HRV"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,13 +66,27 @@
 
 
     </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/alts"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="Recommended"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/draggable_box1"
+        android:layout_alignStart="@id/draggable_white_line"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/sign_up"
-        android:layout_toEndOf="@+id/list_number_two"
-        android:layout_alignBottom="@+id/list_number_two"
+        android:layout_below="@+id/alts"
+        android:layout_centerHorizontal="true"
         android:id="@+id/draggable_box2"
+        android:layout_marginTop="10dp"
+        android:layout_alignStart="@+id/alts"
+        android:layout_marginStart="5dp"
         android:layout_marginEnd="45dp"
         >
         <TextView
@@ -100,10 +94,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_marginStart="20dp"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:textColor="@android:color/black"
             android:id="@+id/drag_text_2"
-            android:text="@string/value_stock2"/>
+            android:text="Workout with Squad"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -116,9 +110,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/sign_up"
-        android:layout_toEndOf="@+id/list_number_three"
-        android:layout_alignBottom="@+id/list_number_three"
+        android:layout_below="@+id/draggable_box2"
         android:layout_marginEnd="45dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_alignStart="@+id/alts"
+        android:layout_marginStart="5dp"
         android:id="@+id/draggable_box3"
         >
         <TextView
@@ -126,10 +123,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_marginStart="20dp"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:textColor="@android:color/black"
             android:id="@+id/drag_text_3"
-            android:text="@string/value_stock3"/>
+            android:text="Go to a meet up"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -138,15 +135,7 @@
 
 
     </RelativeLayout>
-    
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:backgroundTint="@color/gritgreen"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/list_number_three"
-        android:src="@drawable/ic_add_white"
-        android:layout_marginTop="20dp"/>
+
 
     <Button
         android:layout_width="250dp"
@@ -154,9 +143,20 @@
         android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
         android:textColor="#6fdc6f"
+        android:layout_above="@+id/goal_path_finish"
+        android:background="@drawable/sign_up"
+        android:id="@+id/goal_path_save"
+        android:text="@string/save"/>
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#6fdc6f"
         android:layout_alignParentBottom="true"
         android:background="@drawable/sign_up"
-        android:id="@+id/drag_rank_save"
-        android:text="@string/save"/>
+        android:id="@+id/goal_path_finish"
+        android:visibility="invisible"
+        android:text="finish"/>
 
 </RelativeLayout>

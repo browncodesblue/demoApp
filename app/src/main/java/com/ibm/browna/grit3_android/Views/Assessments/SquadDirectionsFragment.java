@@ -18,7 +18,7 @@ public class SquadDirectionsFragment extends Fragment {
 
     Button mAddfromFB;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_squad_builder_directions,null,false);
+        View v = inflater.inflate(R.layout.fragment_squad_builder_directions,container,false);
         mAddfromFB =(Button) v.findViewById(R.id.add_from_facebook);
         mAddfromFB.setOnClickListener(new View.OnClickListener() {
             @Override

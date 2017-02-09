@@ -1,6 +1,7 @@
 package com.ibm.browna.grit3_android.Views.Assessments;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.ibm.browna.grit3_android.R;
+import com.ibm.browna.grit3_android.Views.Goals.GoalPagerActivity;
+import com.ibm.browna.grit3_android.Views.Values.SquadCongratsFragment;
+import com.ibm.browna.grit3_android.Views.Values.ValueActivity;
 
 
 /**
@@ -27,7 +31,8 @@ public class SquadAdderFragment extends Fragment {
         mInviteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((AssessmentActivity)getActivity()).swapFragments(new SquadCongratsFragment());
+                Intent i = new Intent(getActivity(), ValueActivity.class);
+                startActivity(i);
             }
         });
         mAdder1.setOnClickListener(new View.OnClickListener() {

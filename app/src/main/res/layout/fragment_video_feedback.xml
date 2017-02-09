@@ -18,7 +18,7 @@
             android:background="@drawable/sign_up"
             android:layout_marginTop="40dp"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/life_check_save"
+            android:id="@+id/video_feedback_back"
             android:text="Back"/>
 
 

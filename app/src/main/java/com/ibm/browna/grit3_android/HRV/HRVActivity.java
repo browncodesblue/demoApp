@@ -33,6 +33,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.Menu;
@@ -45,7 +46,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
 
 
 /**
@@ -53,7 +54,7 @@ import android.widget.Toolbar;
  *
  * @author Marco
  */
-public class HRVActivity extends Activity implements OnItemSelectedListener, Observer {
+public class HRVActivity extends ActionBarActivity implements OnItemSelectedListener, Observer {
 
 
     private int MAX_SIZE = 60; //graph max size
@@ -88,9 +89,9 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
 
-        setActionBar(myToolbar);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -448,8 +449,8 @@ public class HRVActivity extends Activity implements OnItemSelectedListener, Obs
         invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
     }
     private void addDrawerItems() {
-        String[] osArray = { "Facade", "HRV", "ToneAnalyzer"};
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
+        String[] osArray = { "GRIT Experience", "HRV", "ToneAnalyzer"};
+        mAdapter = new ArrayAdapter<String>(this, R.layout.list_item_nav, osArray);
         mDrawerList.setAdapter(mAdapter);
 
     }

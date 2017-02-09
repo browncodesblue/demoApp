@@ -1,51 +1,33 @@
-package com.ibm.browna.grit3_android.Views.Assessments;
+package com.ibm.browna.grit3_android.Views.Values;
 
-import android.Manifest;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.ibm.browna.grit3_android.HRV.HRVActivity;
 import com.ibm.browna.grit3_android.R;
+import com.ibm.browna.grit3_android.Views.Assessments.AssessmentActivity;
 import com.ibm.browna.grit3_android.WatsonTone.MainActivity;
 
-import static android.Manifest.permission.RECORD_AUDIO;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-
-
-
 /**
- * Created by browna on 2/2/2017.
+ * Created by browna on 2/8/2017.
  */
 
-public class AssessmentActivity extends ActionBarActivity {
+public class ValueActivity extends ActionBarActivity {
 
-    LinearLayout pickerButton, storyButton,lifeButton,squadButton;
-    ImageView   pickerDot, storyDot, lifeDot, squadDot;
     private ListView mDrawerList;
     private ArrayAdapter<String> mAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -55,18 +37,9 @@ public class AssessmentActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assess);
+        setContentView(R.layout.activity_values);
 
         mDrawerList = (ListView)findViewById(R.id.navList);
-        pickerButton = (LinearLayout) findViewById(R.id.word_nav);
-        storyButton = (LinearLayout) findViewById(R.id.story_nav);
-        lifeButton = (LinearLayout) findViewById(R.id.life_nav);
-        squadButton = (LinearLayout) findViewById(R.id.squad_nav);
-
-        pickerDot = (ImageView)findViewById(R.id.word_dot);
-        storyDot = (ImageView)findViewById(R.id.story_dot);
-        lifeDot = (ImageView)findViewById(R.id.life_dot);
-        squadDot = (ImageView)findViewById(R.id.squad_dot);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
 
@@ -80,10 +53,9 @@ public class AssessmentActivity extends ActionBarActivity {
         mActivityTitle = getTitle().toString();
 
         FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().add(R.id.fragmentContainer, new PickerFragment(),"");
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().add(R.id.fragmentContainer, new SquadCongratsFragment(),"");
         fragmentTransaction.commit();
 
-        addOnClick();
 
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -135,72 +107,6 @@ public class AssessmentActivity extends ActionBarActivity {
     }
 
 
-
-    private void addOnClick(){
-        pickerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (pickerDot.getVisibility() != View.VISIBLE){
-                    squadDot.setVisibility(View.INVISIBLE);
-                    lifeDot.setVisibility(View.INVISIBLE);
-                    storyDot.setVisibility(View.INVISIBLE);
-                    pickerDot.setVisibility(View.VISIBLE);
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.fragmentContainer, new PickerFragment());
-                    fragmentTransaction.commit();
-                }
-
-            }
-        });
-        storyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                    squadDot.setVisibility(View.INVISIBLE);
-                    lifeDot.setVisibility(View.INVISIBLE);
-                    storyDot.setVisibility(View.VISIBLE);
-                    pickerDot.setVisibility(View.INVISIBLE);
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.fragmentContainer, new StoryFragment());
-                    fragmentTransaction.commit();
-
-
-            }
-        });
-        lifeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (lifeDot.getVisibility() != View.VISIBLE){
-                    squadDot.setVisibility(View.INVISIBLE);
-                    lifeDot.setVisibility(View.VISIBLE);
-                    storyDot.setVisibility(View.INVISIBLE);
-                    pickerDot.setVisibility(View.INVISIBLE);
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.fragmentContainer, new CheckFragment(),"");
-                    fragmentTransaction.commit();
-                }
-
-            }
-        });
-        squadButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (squadDot.getVisibility() != View.VISIBLE){
-                    squadDot.setVisibility(View.VISIBLE);
-                    lifeDot.setVisibility(View.INVISIBLE);
-                    storyDot.setVisibility(View.INVISIBLE);
-                    pickerDot.setVisibility(View.INVISIBLE);
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.fragmentContainer, new SquadDirectionsFragment(),"");
-                    fragmentTransaction.commit();
-                }
-
-            }
-        });
-
-    }
     public void swapFragments(Fragment fragment){
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment,"");
@@ -233,6 +139,4 @@ public class AssessmentActivity extends ActionBarActivity {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
-
-
 }

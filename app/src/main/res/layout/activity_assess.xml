@@ -69,7 +69,10 @@
                     android:layout_height="wrap_content"
                     android:text="@string/word_picker_nav"
                     android:textColor="@color/white"
+                    android:layout_gravity="center_horizontal"
                     android:layout_margin="10dp"
+                    android:gravity="center_horizontal"
+
                     />
 
             </LinearLayout>
@@ -108,6 +111,7 @@
                     android:text="@string/story_record_nav"
                     android:layout_margin="10dp"
                     android:textColor="@color/white"
+                    android:gravity="center_horizontal"
                     />
 
             </LinearLayout>
@@ -145,6 +149,7 @@
                     android:text="@string/life_check_nav"
                     android:layout_margin="10dp"
                     android:layout_marginStart="5dp"
+                    android:gravity="center_horizontal"
                     android:textColor="@color/white"
                     />
             </LinearLayout>
@@ -182,6 +187,7 @@
                     android:text="@string/squad_builder_nav"
                     android:layout_margin="10dp"
                     android:layout_marginStart="5dp"
+                    android:gravity="center_horizontal"
                     android:textColor="@color/white"
                     />
             </LinearLayout>
@@ -199,8 +205,11 @@
     </LinearLayout>
     <ListView
         android:id="@+id/navList"
-        android:layout_width="200dp"
+        android:layout_width="350dp"
+        android:backgroundTint="#EE39a789"
         android:layout_height="match_parent"
         android:layout_gravity="left|start"
+        android:dividerHeight="0dp"
+        android:divider="@null"
         android:background="#ffeeeeee"/>
 </android.support.v4.widget.DrawerLayout>

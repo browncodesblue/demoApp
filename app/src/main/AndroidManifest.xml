@@ -22,14 +22,19 @@
         <activity android:name=".HRV.AboutActivity"/>
         <activity android:name=".HRV.HRVSecondActivity"/>
         <activity android:name=".Views.Assessments.AssessmentActivity">
+
+        </activity>
+        <activity android:name=".Views.WelcomeActivity"/>
+
+        <activity android:name=".Views.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Views.WelcomeActivity"/>
 
-        <activity android:name=".Views.LoginActivity">
+        <activity android:name=".Views.Goals.GoalPagerActivity"/>
+        <activity android:name=".Views.Values.ValueActivity">
 
         </activity>
 
