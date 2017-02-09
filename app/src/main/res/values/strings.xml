@@ -1,4 +1,5 @@
 <resources>
+    <!-- -->
     <string name="app_name"></string>
     <string name="story_prompt">Record a story about a time you overcame a stressful event.</string>
     <string name="save">Save</string>
