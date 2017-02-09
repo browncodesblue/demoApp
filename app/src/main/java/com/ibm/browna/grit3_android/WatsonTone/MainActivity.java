@@ -18,9 +18,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.SentenceTone;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneAnalysis;
@@ -33,8 +34,8 @@ import java.lang.reflect.Array;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.HashMap;
-
 import com.ibm.browna.grit3_android.R;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private final String  LIKELY = "Likely";
     private final  String VERYLIKELY = "Very Likely";
     private final  String UNLIKELY = "Not likely";
-    private GridLayout gridView;
+    private TableLayout tableLayout;
 /*
     private final int ColorUnlikely = Color.GRAY;
     private final int ColorLikely = Color.MAGENTA;
@@ -75,15 +76,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tone_main);
+        setContentView(R.layout.fragment_tone_results);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        messageToAnalyze = (EditText) findViewById(R.id.messageEditText);
-        analysisButton = (Button) findViewById(R.id.sendAnalysisButton);
-        gridView = (GridLayout) findViewById(R.id.gridView);
+        messageToAnalyze = (EditText) findViewById(R.id.watson_tone_text_returned);
+        analysisButton = (Button) findViewById(R.id.analyze_me);
+        tableLayout = (TableLayout) findViewById(R.id.tone_table);
        // gridView.setRowCount(12);
-        gridView.setColumnCount(2);
+
 
 
         analysisButton.setOnClickListener(new View.OnClickListener() {
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             TextView viewEmotionsScore;
             TextView viewSocial;
             TextView viewSocialScore;
-            gridView.removeAllViews();
+            tableLayout.removeAllViews();
             int probColor;
 
             //this method will be running on UI thread
@@ -212,25 +213,33 @@ public class MainActivity extends AppCompatActivity {
 
             // now dynamically populate our grid with Emotions and Social tones
 
+         //       tl.addView(tr, new TableLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+
+                TableRow headRowEmotions = new TableRow(getApplicationContext());
+
                 viewEmotions = new TextView(getApplicationContext());
                 viewEmotions.setText("Emotions");
                 viewEmotions.setTextColor(Color.BLACK);
                 viewEmotions.setTextSize(20f);
-                gridView.addView(viewEmotions);
-                GridLayout.LayoutParams param =new GridLayout.LayoutParams();
 
-                param.setGravity(Gravity.LEFT);
+                headRowEmotions.addView(viewEmotions);
+                tableLayout.addView(headRowEmotions);
+                headRowEmotions = null;
 
-                viewEmotions.setLayoutParams (param);
+             //   GridLayout.LayoutParams param =new GridLayout.LayoutParams();
 
-                viewEmotionsScore = new TextView(getApplicationContext());
-                viewEmotionsScore.setText("");
-                gridView.addView(viewEmotionsScore);
+             //   param.setGravity(Gravity.LEFT);
 
-                GridLayout.LayoutParams param1 =new GridLayout.LayoutParams();
+            //    viewEmotions.setLayoutParams (param);
 
-                param1.setGravity(Gravity.CENTER);
-                viewEmotionsScore.setLayoutParams(param1);
+            //    viewEmotionsScore = new TextView(getApplicationContext());
+           //     viewEmotionsScore.setText("");
+             //   tableLayout.addView(viewEmotionsScore);
+
+          //      GridLayout.LayoutParams param1 =new GridLayout.LayoutParams();
+
+          //      param1.setGravity(Gravity.CENTER);
+            //    viewEmotionsScore.setLayoutParams(param1);
 
 
 
@@ -257,9 +266,11 @@ public class MainActivity extends AppCompatActivity {
                     viewEmotionsScore.setTextColor(showColor((String)thisEntry.getValue()));
                     viewEmotionsScore.setTextSize(18f);
 
+                    createTableRow(viewEmotions,viewEmotionsScore);
 
-                    gridView.addView(viewEmotions);
 
+
+                    /**
                     GridLayout.LayoutParams paramEmotions =new GridLayout.LayoutParams();
 
                     paramEmotions.setGravity(Gravity.LEFT);
@@ -268,7 +279,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                    gridView.addView(viewEmotionsScore);
+                    tableLayout.addView(viewEmotionsScore);
 
                     GridLayout.LayoutParams paramScore =new GridLayout.LayoutParams();
 
@@ -276,16 +287,22 @@ public class MainActivity extends AppCompatActivity {
 
                     viewEmotions.setLayoutParams (paramScore);
 
-
+                    **/
 
                 }
 
+                TableRow socialHead = new TableRow(getApplicationContext());
 
                 viewSocial = new TextView(getApplicationContext());
                 viewSocial.setText("Social Tone");
                 viewSocial.setTextColor(Color.BLACK);
                 viewSocial.setTextSize(20f);
-                gridView.addView(viewSocial);
+                socialHead.addView(viewSocial);
+                tableLayout.addView(socialHead);
+                socialHead = null;
+
+
+                /**
                 GridLayout.LayoutParams paramS =new GridLayout.LayoutParams();
 
                 paramS.setGravity(Gravity.LEFT);
@@ -301,7 +318,7 @@ public class MainActivity extends AppCompatActivity {
                 paramS1.setGravity(Gravity.CENTER);
                 viewSocialScore.setLayoutParams(paramS1);
 
-
+                **/
 
                 Iterator socials = socialValuesMap.entrySet().iterator();
                 while (socials.hasNext()) {
@@ -309,7 +326,7 @@ public class MainActivity extends AppCompatActivity {
                     Map.Entry thisEntry = (Map.Entry)socials.next();
                     Log.e("Entry", (String) thisEntry.getKey());
 
-
+                    TableRow socialRow = new TableRow(getApplicationContext());
                     viewSocial = new TextView(getApplicationContext());
                     viewSocialScore = new TextView(getApplicationContext());
 
@@ -326,7 +343,12 @@ public class MainActivity extends AppCompatActivity {
                     viewSocialScore.setTextSize(18f);
 
 
-                    gridView.addView(viewSocial);
+                    createTableRow(viewSocial, viewSocialScore);
+
+
+
+
+                    /**
 
                     GridLayout.LayoutParams paramEmotions =new GridLayout.LayoutParams();
 
@@ -344,6 +366,11 @@ public class MainActivity extends AppCompatActivity {
 
                     viewSocial.setLayoutParams (paramScore);
 
+                     **/
+
+
+
+
 
 
                 }
@@ -354,6 +381,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+    }
+
+
+    public void createTableRow(View v1, View v2) {
+
+        TableRow tr = new TableRow(this);
+
+        tr.addView(v1);
+        tr.addView(v2);
+        tableLayout.addView(tr);
+
 
 
     }

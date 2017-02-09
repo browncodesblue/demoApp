@@ -35,7 +35,8 @@ dependencies {
     compile 'com.ibm.watson.developer_cloud:java-sdk:3.0.1'
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
     compile 'com.google.gms:google-services:3.0.0'
-    compile files('libs/androidplot-core-0.6.0.jar')
+    compile "com.androidplot:androidplot-core:1.4.1"
+   // compile files('libs/androidplot-core-0.6.2.jar')
     testCompile 'junit:junit:4.12'
 
 }
