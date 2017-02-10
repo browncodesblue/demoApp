@@ -60,7 +60,7 @@ import android.support.v7.widget.Toolbar;
 public class HRVActivity extends ActionBarActivity implements OnItemSelectedListener, Observer {
 
 
-    private int MAX_SIZE = 5; //graph max size
+    private int MAX_SIZE = 10; //graph max size
     boolean searchBt = true;
     BluetoothAdapter mBluetoothAdapter;
     List<BluetoothDevice> pairedDevices = new ArrayList<>();
@@ -76,7 +76,8 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private String mActivityTitle;
-   // private LineChart mChart;
+    LineAndPointFormatter series1Format;
+    // private LineChart mChart;
 
     public Context getContext() {
         if (context == null) {
@@ -176,7 +177,7 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
 
             {
                 Number[] series1Numbers = {};
-                DataHandler.getInstance().setSeries1(new SimpleXYSeries(Arrays.asList(series1Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Heart Rate"));
+                DataHandler.getInstance().setSeries1(new SimpleXYSeries(Arrays.asList(series1Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "HRV"));
             }
             DataHandler.getInstance().setNewValue(false);
 
@@ -188,15 +189,35 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
 
             plot = (XYPlot) findViewById(R.id.dynamicPlot);
 
+
         }
         //LOAD Graph
 
-        LineAndPointFormatter series1Format = new LineAndPointFormatter(Color.rgb(0, 0, 255), Color.rgb(200, 200, 200), null, null);
-        series1Format.setPointLabelFormatter(new PointLabelFormatter());
-        series1Format.setInterpolationParams( new CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal));
+        series1Format = new LineAndPointFormatter(Color.rgb(0, 0, 255), Color.rgb(200, 200, 200), null, null);
+        // series1Format.setPointLabelFormatter(new PointLabelFormatter());
+     //   series1Format.setInterpolationParams( new CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal));
 
 
         plot.addSeries(DataHandler.getInstance().getSeries1(), series1Format);
+        plot.setRangeBoundaries(20,90,BoundaryMode.SHRINK);
+        plot.setRangeLabel("HRV Score");
+        plot.setDomainLabel("");
+      //  plot.setDomainStep(StepMode.INCREMENT_BY_VAL,10);
+      //  plot.setTicksPerRangeLabel(3);
+     //   plot.getG.setDomainLabelOrientation(-45);
+
+
+
+
+        /**
+        mChart.setDrawGridBackground(false);
+        mChart.getDescription().setEnabled(false);
+
+        mChart.invalidate();
+         **/
+
+
+
 
     }
 
@@ -258,6 +279,7 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner1.setOnItemSelectedListener(this);
             spinner1.setAdapter(dataAdapter);
+
 
             if (DataHandler.getInstance().getID() != 0 && DataHandler.getInstance().getID() < spinner1.getCount())
                 spinner1.setSelection(DataHandler.getInstance().getID());
@@ -382,19 +404,37 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
             public void run() {
                 //menuBool=true;
 
+
+
+               /**
+
                 if (DataHandler.getInstance().getLastBPMIntValue() != 0) {
                  DataHandler.getInstance().getSeries1().addLast(0, DataHandler.getInstance().getLastBPMIntValue());
+
                  if (DataHandler.getInstance().getSeries1().size() > MAX_SIZE)
                  DataHandler.getInstance().getSeries1().removeFirst();//Prevent graph to overload data.
+
                  plot.redraw();
                  }
 
                 if (DataHandler.getInstance().getmHRV() != 0) {
+                **/
+
+
+
+                if (DataHandler.getInstance().getmHRV() > 0) {
+
+
 
 
                     DataHandler.getInstance().getSeries1().addLast(0, DataHandler.getInstance().getmHRV());
                     if (DataHandler.getInstance().getSeries1().size() > MAX_SIZE) {
                         DataHandler.getInstance().getSeries1().removeFirst();//Prevent graph to overload data.
+                    }
+
+                    if (DataHandler.getInstance().getSeries1().size() > 2){
+
+                        series1Format.setInterpolationParams( new CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal));
                     }
                     plot.redraw();
 
@@ -403,10 +443,13 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
                 //  addEntry((float)DataHandler.getInstance().getmHRV());
 
                     TextView textHRV = (TextView) findViewById(R.id.hrv);
-                    textHRV.setText("Score: " + String.valueOf(DataHandler.getInstance().getmHRV()));
+                    textHRV.setText("HRV Score: " + String.valueOf(DataHandler.getInstance().getmHRV()));
+                    DataHandler.getInstance().resetHRV();
 
 
                 }
+
+
 
                 TextView min = (TextView) findViewById(R.id.min);
                 min.setText(DataHandler.getInstance().getMin());
@@ -418,10 +461,12 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
                 max.setText(DataHandler.getInstance().getMax());
 
 
+                /**
                 if (DataHandler.getInstance().getmHRV() > 0) {
                     TextView textHRV = (TextView) findViewById(R.id.hrv);
                     textHRV.setText("Score: " + String.valueOf(DataHandler.getInstance().getmHRV()));
                 }
+                 **/
 
             }
         });

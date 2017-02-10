@@ -187,4 +187,9 @@ public class DataHandler extends Observable{
 
 		return mHRV;
 	}
+
+	public  void resetHRV()
+	{
+		mHRV = 0;
+	}
 }
