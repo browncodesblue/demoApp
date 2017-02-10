@@ -1,51 +1,67 @@
-package com.ibm.browna.grit3_android.Views.Goals;
+package com.ibm.browna.grit3_android.HRVFragments;
 
+import android.app.AlertDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.androidplot.xy.CatmullRomInterpolator;
+import com.androidplot.xy.LineAndPointFormatter;
+import com.androidplot.xy.PointLabelFormatter;
+import com.androidplot.xy.SimpleXYSeries;
+import com.androidplot.xy.XYPlot;
 import com.ibm.browna.grit3_android.HRV.HRVActivity;
 import com.ibm.browna.grit3_android.R;
 import com.ibm.browna.grit3_android.Views.Assessments.AssessmentActivity;
+import com.ibm.browna.grit3_android.Views.Assessments.PickerFragment;
+import com.ibm.browna.grit3_android.Views.Goals.GoalPagerActivity;
 import com.ibm.browna.grit3_android.Views.Values.ValueActivity;
 import com.ibm.browna.grit3_android.WatsonTone.MainActivity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Observable;
+
 /**
- * Created by browna on 2/8/2017.
+ * Created by browna on 2/10/2017.
  */
 
-public class GoalPagerActivity extends AppCompatActivity{
-
-    private static final int NUM_PAGES = 3;
-    private ViewPager mPager;
-    private PagerAdapter mPagerAdapter;
+public class HRVViewHolder extends ActionBarActivity {
     private ListView mDrawerList;
     private ArrayAdapter<String> mAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
+    private String mActivityTitle;
 
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_goal_pager);
+        setContentView(R.layout.activity_values);
 
-        mPager = (ViewPager) findViewById(R.id.pager);
         mDrawerList = (ListView)findViewById(R.id.navList);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -53,17 +69,6 @@ public class GoalPagerActivity extends AppCompatActivity{
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-
-        setupDrawer();
-        addDrawerItems();
-
-
-
-        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-        mPager.setAdapter(mPagerAdapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabDots);
-        tabLayout.setupWithViewPager(mPager, true);
-
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -92,61 +97,76 @@ public class GoalPagerActivity extends AppCompatActivity{
 
             }
         });
+        setupDrawer();
+        addDrawerItems();
+        mActivityTitle = getTitle().toString();
 
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().add(R.id.fragmentContainer, new HRVFragment(),"");
+        fragmentTransaction.commit();
     }
 
-    public void changePage(int i, boolean b){
 
-        mPager.setCurrentItem(i,b);
-    }
 
-    @Override
-    public void onBackPressed() {
-        if (mPager.getCurrentItem() == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
-            super.onBackPressed();
-        } else {
-            // Otherwise, select the previous step.
-            mPager.setCurrentItem(mPager.getCurrentItem()==0? 2:mPager.getCurrentItem() - 1);
+    /**
+     * When menu button are pressed
+     */
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
         }
+
+        return super.onOptionsItemSelected(item);
     }
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+
+
+    public boolean onPrepareOptionsMenu(Menu menu) {
+       // menu.findItem(R.id.action_settings).setEnabled(menuBool);
+        //menu.findItem(R.id.action_settings).setVisible(menuBool);
+        return true;
+    }
+
+
     private void setupDrawer() {
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.string.drawer_open, R.string.drawer_close) {
 
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
-               /* onDrawerOpened(drawerView);
-                getActionBar().setTitle("Navigation!");
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()*/
             }
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
-                /*onDrawerClosed(view);
-                getActionBar().setTitle(mActivityTitle);
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()*/
             }
         };
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
+    public void onDrawerClosed(View view) {
+        onDrawerClosed(view);
+        getActionBar().setTitle(mActivityTitle);
+        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+    }
+
+    public void onDrawerOpened(View drawerView) {
+        onDrawerOpened(drawerView);
+        getActionBar().setTitle("Navigation!");
+        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+    }
     private void addDrawerItems() {
         String[] navArray = { "Level Set", "Values","Goals", "HRV", "ToneAnalyzer"};
         mAdapter = new ArrayAdapter<String>(this, R.layout.list_item_nav, navArray);
         mDrawerList.setAdapter(mAdapter);
-
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return false;
-        }
-        return super.onOptionsItemSelected(item);
-
-    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -158,34 +178,5 @@ public class GoalPagerActivity extends AppCompatActivity{
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
-
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            switch (position){
-                case 0:
-                    return new SquadCommsFragment();
-
-                case 1:
-                    return new PhysicalFragment();
-
-                case 2:
-                    return new MentalFragment();
-                default:
-                    return new SquadCommsFragment();
-            }
-
-        }
-
-        @Override
-        public int getCount() {
-            return NUM_PAGES;
-        }
     }
 }

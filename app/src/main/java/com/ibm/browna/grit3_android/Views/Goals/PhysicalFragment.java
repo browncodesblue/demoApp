@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ public class PhysicalFragment extends Fragment {
 
     RelativeLayout mBox1, mBox2, mBox3;
     TextView mPrompt, mBoxText1, mBoxText2, mBoxText3;
+    Button mSave;
 
 
     @Nullable
@@ -32,6 +34,7 @@ public class PhysicalFragment extends Fragment {
         mBox1 =(RelativeLayout) v.findViewById(R.id.draggable_box1);
         mBox2 =(RelativeLayout) v.findViewById(R.id.draggable_box2);
         mBox3 =(RelativeLayout) v.findViewById(R.id.draggable_box3);
+        mSave = (Button)v.findViewById(R.id.goal_path_save);
 
         mBox1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +70,12 @@ public class PhysicalFragment extends Fragment {
             }
         });
 
-
+        mSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((GoalPagerActivity)getActivity()).changePage(2,true);
+            }
+        });
         return v;
     }
 }

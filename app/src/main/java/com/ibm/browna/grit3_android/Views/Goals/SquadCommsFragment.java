@@ -34,6 +34,14 @@ public class SquadCommsFragment extends Fragment{
         mTumbler3 = new Tumbler(R.id.leftArrow3,R.id.RightArrow3,R.id.word_tumbler3, tumblerWords,3);
         mTumbler4 = new Tumbler(R.id.leftArrow4,R.id.RightArrow4,R.id.word_tumbler4, tumblerWords,4);
         mTumbler5 = new Tumbler(R.id.leftArrow5,R.id.RightArrow5,R.id.word_tumbler5, tumblerWords,5);
+        mSaveButton = (Button)v.findViewById(R.id.send_squad_invites);
+
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((GoalPagerActivity)getActivity()).changePage(1,true);
+            }
+        });
 
         createTumbler(v, mTumbler1);
         createTumbler(v, mTumbler2);
@@ -68,4 +76,5 @@ public class SquadCommsFragment extends Fragment{
         });
 
     }
+
 }

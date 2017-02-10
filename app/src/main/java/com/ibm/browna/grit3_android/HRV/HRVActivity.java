@@ -20,6 +20,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.ibm.browna.grit3_android.R;
 
 import com.ibm.browna.grit3_android.Views.Assessments.AssessmentActivity;
+import com.ibm.browna.grit3_android.Views.Goals.GoalPagerActivity;
+import com.ibm.browna.grit3_android.Views.Values.ValueActivity;
 import com.ibm.browna.grit3_android.WatsonTone.MainActivity;
 
 
@@ -106,14 +108,23 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
                         startActivity(i);
                         break;
                     case 1:
-                        Intent i2 = new Intent(getApplicationContext(),HRVActivity.class);
-                        startActivity(i2);
+                        Intent i1 = new Intent(getApplicationContext(),ValueActivity.class);
+                        startActivity(i1);
                         break;
                     case 2:
-                        Intent i3 = new Intent(getApplicationContext(),MainActivity.class);
+                        Intent i2 = new Intent(getApplicationContext(),GoalPagerActivity.class);
+                        startActivity(i2);
+                        break;
+                    case 3:
+                        Intent i3 = new Intent(getApplicationContext(),HRVActivity.class);
                         startActivity(i3);
                         break;
+                    case 4:
+                        Intent i4 = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(i4);
+                        break;
                 }
+
             }
         });
 
@@ -164,18 +175,6 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
                     listBT();
                 }
             }
-            // Create Graph
-
-          //  mChart = (LineChart) findViewById(R.id.dynamicPlot);
-
-
-
-            // add an empty data object
-         //   mChart.setData(new LineData());
-
-
-
-
 
             plot = (XYPlot) findViewById(R.id.dynamicPlot);
 
@@ -247,119 +246,6 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
 
 
     }
-
-    /*
-    private void populateFileSpinner() {
-
-
-        //Populate drop down
-
-        fileSpinner = (Spinner) findViewById(R.id.selectFile);
-        File[] files = getContext().getFilesDir().listFiles();
-
-        String[] list = new String[files.length];
-        String[] spinnerList = new String[files.length];
-
-        for (int i = 0; i < files.length; i++) {
-
-
-            String path = files[i].getAbsolutePath().toString();
-            list[i] = path;
-            spinnerList[i] = list[i].substring(list[i].lastIndexOf("/") + 1);
-
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, spinnerList);
-        fileSpinner.setAdapter(adapter);
-
-        fileSpinner.setOnItemSelectedListener(this);
-        fileSpinner.setAdapter(adapter);
-
-    }
-**/
-
-
-    //graph handling
-
-    /**
-
-    private void addEntry(float value) {
-
-        LineData data = mChart.getData();
-
-        ILineDataSet set = data.getDataSetByIndex(0);
-        // set.addEntry(...); // can be called as well
-
-
-        if (set == null) {
-            set = createSet();
-            data.addDataSet(set);
-        }
-
-
-       // set.addEntry(new Entry(0,value));
-
-        // choose a random dataSet
-
-        // choose a random dataSet
-
-
-
-        data.addEntry(new Entry(0,value),0);
-        data.notifyDataChanged();
-
-        // let the chart know it's data has changed
-        mChart.notifyDataSetChanged();
-
-
-     //   mChart.setVisibleXRangeMaximum(6);
-        //mChart.setVisibleYRangeMaximum(15, AxisDependency.LEFT);
-//
-//            // this automatically refreshes the chart (calls invalidate())
-       // mChart.moveViewTo(data.getEntryCount() - 7, 50f, YAxis.AxisDependency.LEFT);
-
-
-    }
-
-    private LineDataSet createSet() {
-
-        LineDataSet set = new LineDataSet(null, "HRV Score");
-        set.setLineWidth(2.5f);
-        set.setCircleRadius(4.5f);
-        set.setColor(Color.rgb(240, 99, 99));
-        set.setCircleColor(Color.rgb(240, 99, 99));
-        set.setHighLightColor(Color.rgb(190, 190, 190));
-        set.setAxisDependency(YAxis.AxisDependency.LEFT);
-        set.setValueTextSize(10f);
-
-        return set;
-    }
-
-    protected void onDestroy() {
-        super.onDestroy();
-        DataHandler.getInstance().deleteObserver(this);
-    }
-
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW,
-                "Main Page", //  Define a title for the content shown.
-                //  If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                //  Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.ibm.browna.grit3_android/http/host/path")
-        );
-    }
-
-     **/
 
     /**
      * Run on startup to list bluetooth paired device
@@ -457,11 +343,6 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
                 normal = false;
             }
             return true;
-        } else if (id == R.id.about) { //about menu
-
-            Log.i("Main Activity", "opening about");
-            Intent intent = new Intent(this, AboutActivity.class);
-            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -502,10 +383,7 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
         return true;
     }
 
-    public void onNothingSelected(AdapterView<?> arg0) {
-
-
-    }
+    public void onNothingSelected(AdapterView<?> arg0) {    }
 
     /**
      * Called when bluetooth connection failed
@@ -568,6 +446,7 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
                  plot.redraw();
                  }
 
+                if (DataHandler.getInstance().getmHRV() != 0) {
                 **/
 
 
@@ -647,10 +526,9 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
         invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
     }
     private void addDrawerItems() {
-        String[] osArray = { "GRIT Experience", "HRV", "ToneAnalyzer"};
-        mAdapter = new ArrayAdapter<String>(this, R.layout.list_item_nav, osArray);
-       // mDrawerList.setAdapter(mAdapter);
-
+        String[] navArray = { "Level Set", "Values","Goals", "HRV", "ToneAnalyzer"};
+        mAdapter = new ArrayAdapter<String>(this, R.layout.list_item_nav, navArray);
+        mDrawerList.setAdapter(mAdapter);
     }
      **/
 
