@@ -54,6 +54,8 @@ public class HRVFragment extends Fragment implements AdapterView.OnItemSelectedL
     private Spinner fileSpinner;
     private Context context;
 
+    //
+
     public Context getContext() {
         if (context == null) {
             context = getActivity().getApplicationContext();
