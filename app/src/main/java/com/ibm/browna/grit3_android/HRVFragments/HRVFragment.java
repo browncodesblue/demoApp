@@ -1,64 +1,46 @@
-package com.ibm.browna.grit3_android.HRV;
+package com.ibm.browna.grit3_android.HRVFragments;
 
-import java.io.File;
+import android.app.AlertDialog;
+import android.app.Fragment;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.androidplot.xy.CatmullRomInterpolator;
+import com.androidplot.xy.LineAndPointFormatter;
+import com.androidplot.xy.PointLabelFormatter;
+import com.androidplot.xy.SimpleXYSeries;
+import com.androidplot.xy.XYPlot;
+
+import com.ibm.browna.grit3_android.R;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Created by browna on 2/10/2017.
+ */
 
-import com.androidplot.xy.*;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.ibm.browna.grit3_android.R;
-
-import com.ibm.browna.grit3_android.Views.Assessments.AssessmentActivity;
-import com.ibm.browna.grit3_android.Views.Goals.GoalPagerActivity;
-import com.ibm.browna.grit3_android.Views.Values.ValueActivity;
-import com.ibm.browna.grit3_android.WatsonTone.MainActivity;
-
-
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.DashPathEffect;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.support.v7.widget.Toolbar;
-
-
-
-public class HRVActivity extends ActionBarActivity implements OnItemSelectedListener, Observer {
-
+public class HRVFragment extends Fragment implements AdapterView.OnItemSelectedListener, Observer {
 
     private int MAX_SIZE = 5; //graph max size
     boolean searchBt = true;
@@ -71,66 +53,20 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
     private Spinner spinner1;
     private Spinner fileSpinner;
     private Context context;
-    private ListView mDrawerList;
-    private ArrayAdapter<String> mAdapter;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private DrawerLayout mDrawerLayout;
-    private String mActivityTitle;
-   // private LineChart mChart;
 
     public Context getContext() {
         if (context == null) {
-            context = this.getApplicationContext();
+            context = getActivity().getApplicationContext();
         }
         return context;
     }
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hrv_main);
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        View v = inflater.inflate(R.layout.fragment_hrv,container,false);
 
-        mDrawerList = (ListView)findViewById(R.id.navList);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-
-        setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
-                    case 0:
-                        Intent i = new Intent(getApplicationContext(),AssessmentActivity.class);
-                        startActivity(i);
-                        break;
-                    case 1:
-                        Intent i1 = new Intent(getApplicationContext(),ValueActivity.class);
-                        startActivity(i1);
-                        break;
-                    case 2:
-                        Intent i2 = new Intent(getApplicationContext(),GoalPagerActivity.class);
-                        startActivity(i2);
-                        break;
-                    case 3:
-                        Intent i3 = new Intent(getApplicationContext(),HRVActivity.class);
-                        startActivity(i3);
-                        break;
-                    case 4:
-                        Intent i4 = new Intent(getApplicationContext(),MainActivity.class);
-                        startActivity(i4);
-                        break;
-                }
-
-            }
-        });
-
-        setupDrawer();
-        addDrawerItems();
-
-        mActivityTitle = getTitle().toString();
-
-        Log.i("Main Activity", "Starting Polar HR monitor main activity");
+        Log.e("HRV Activity", "Starting Polar HR monitor main activity");
         DataHandler.getInstance().addObserver(this);
         //Verify if device is to old for BTLE
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -146,7 +82,7 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
             mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
             if (mBluetoothAdapter != null) {
                 if (!mBluetoothAdapter.isEnabled()) {
-                    new AlertDialog.Builder(this)
+                    new AlertDialog.Builder(getActivity())
                             .setTitle(R.string.bluetooth)
                             .setMessage(R.string.bluetoothOff)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -157,7 +93,7 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     }
-                                    listBT();
+                                    listBT(getView());
                                 }
                             })
                             .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -167,11 +103,11 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
                             })
                             .show();
                 } else {
-                    listBT();
+                    listBT(v);
                 }
             }
 
-            plot = (XYPlot) findViewById(R.id.dynamicPlot);
+            plot = (XYPlot) v.findViewById(R.id.dynamicPlot);
             if (plot.getY() == 0)
 
             {
@@ -182,11 +118,11 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
 
 
         } else {
-            listBT();
-         //   mChart = (LineChart) findViewById(R.id.dynamicPlot);
+            listBT(v);
+            //   mChart = (LineChart) findViewById(R.id.dynamicPlot);
 
 
-            plot = (XYPlot) findViewById(R.id.dynamicPlot);
+            plot = (XYPlot) v.findViewById(R.id.dynamicPlot);
 
         }
         //LOAD Graph
@@ -198,12 +134,13 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
 
         plot.addSeries(DataHandler.getInstance().getSeries1(), series1Format);
 
+        return v;
     }
 
     /**
      * Run on startup to list bluetooth paired device
      */
-    public void listBT() {
+    public void listBT(View v) {
         Log.d("Main Activity", "Listing BT elements");
         if (searchBt) {
             //Discover bluetooth devices
@@ -252,8 +189,8 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
             }
 
             //Populate drop down
-            spinner1 = (Spinner) findViewById(R.id.HRV_device_spinner1);
-            ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,
+            spinner1 = (Spinner) v.findViewById(R.id.HRV_device_spinner1);
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getContext(),
                     android.R.layout.simple_spinner_item, list);
             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner1.setOnItemSelectedListener(this);
@@ -268,9 +205,6 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
      * When menu button are pressed
      */
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
 
         int id = item.getItemId();
         Log.d("Main Activity", "Menu pressed");
@@ -297,40 +231,34 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
     }
 
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
     /**
      * When the option is selected in the dropdown we turn on the bluetooth
      */
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         if (pos != 0) {
-                //Actual work
-                DataHandler.getInstance().setID(pos);
-                if (!h7 && ((BluetoothDevice) pairedDevices.toArray()[DataHandler.getInstance().getID() - 1]).getName().contains("H7") && DataHandler.getInstance().getReader() == null) {
+            //Actual work
+            DataHandler.getInstance().setID(pos);
+            if (!h7 && ((BluetoothDevice) pairedDevices.toArray()[DataHandler.getInstance().getID() - 1]).getName().contains("H7") && DataHandler.getInstance().getReader() == null) {
 
-                    Log.i("Main Activity", "Starting h7");
-                    DataHandler.getInstance().setH7(new H7ConnectThread((BluetoothDevice) pairedDevices.toArray()[DataHandler.getInstance().getID() - 1], this));
-                    h7 = true;
-                } else if (!normal && DataHandler.getInstance().getH7() == null) {
+                Log.i("Main Activity", "Starting h7");
+                DataHandler.getInstance().setH7(new H7ConnectThread((BluetoothDevice) pairedDevices.toArray()[DataHandler.getInstance().getID() - 1],this ));
+                h7 = true;
+            } else if (!normal && DataHandler.getInstance().getH7() == null) {
 
-                    Log.i("Main Activity", "Starting normal");
-                    DataHandler.getInstance().setReader(new ConnectThread((BluetoothDevice) pairedDevices.toArray()[pos - 1], this));
-                    DataHandler.getInstance().getReader().start();
-                    normal = true;
-                }
-                menuBool = true;
+                Log.i("Main Activity", "Starting normal");
+                DataHandler.getInstance().setReader(new ConnectThread((BluetoothDevice) pairedDevices.toArray()[pos - 1], this));
+                DataHandler.getInstance().getReader().start();
+                normal = true;
             }
+            menuBool = true;
+        }
     }
 
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.action_settings).setEnabled(menuBool);
-        menu.findItem(R.id.action_settings).setVisible(menuBool);
-        return true;
-    }
+//    public boolean onPrepareOptionsMenu(Menu menu) {
+//        menu.findItem(R.id.action_settings).setEnabled(menuBool);
+//        menu.findItem(R.id.action_settings).setVisible(menuBool);
+//        return true;
+//    }
 
     public void onNothingSelected(AdapterView<?> arg0) {    }
 
@@ -343,13 +271,13 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
         if (menuBool) {//did not manually tried to disconnect
             Log.d("Main Activity", "in the app");
             menuBool = false;
-            final HRVActivity ac = this;
-            runOnUiThread(new Runnable() {
+            final HRVFragment ac = this;
+            getActivity().runOnUiThread(new Runnable() {
                 public void run() {
-                    Toast.makeText(getBaseContext(), getString(R.string.couldnotconnect), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getBaseContext(), getString(R.string.couldnotconnect), Toast.LENGTH_SHORT).show();
                     //TextView rpm = (TextView) findViewById(R.id.rpm);
                     //rpm.setText("0 BMP");
-                    Spinner spinner1 = (Spinner) findViewById(R.id.HRV_device_spinner1);
+                    Spinner spinner1 = (Spinner) getView().findViewById(R.id.HRV_device_spinner1);
                     if (DataHandler.getInstance().getID() < spinner1.getCount())
                         spinner1.setSelection(DataHandler.getInstance().getID());
                     if (!h7) {
@@ -378,16 +306,16 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
      */
     public void receiveData() {
 
-        runOnUiThread(new Runnable() {
+        getActivity().runOnUiThread(new Runnable() {
             public void run() {
                 //menuBool=true;
 
                 if (DataHandler.getInstance().getLastBPMIntValue() != 0) {
-                 DataHandler.getInstance().getSeries1().addLast(0, DataHandler.getInstance().getLastBPMIntValue());
-                 if (DataHandler.getInstance().getSeries1().size() > MAX_SIZE)
-                 DataHandler.getInstance().getSeries1().removeFirst();//Prevent graph to overload data.
-                 plot.redraw();
-                 }
+                    DataHandler.getInstance().getSeries1().addLast(0, DataHandler.getInstance().getLastBPMIntValue());
+                    if (DataHandler.getInstance().getSeries1().size() > MAX_SIZE)
+                        DataHandler.getInstance().getSeries1().removeFirst();//Prevent graph to overload data.
+                    plot.redraw();
+                }
 
                 if (DataHandler.getInstance().getmHRV() != 0) {
 
@@ -400,26 +328,26 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
 
 
 
-                //  addEntry((float)DataHandler.getInstance().getmHRV());
+                    //  addEntry((float)DataHandler.getInstance().getmHRV());
 
-                    TextView textHRV = (TextView) findViewById(R.id.hrv);
+                    TextView textHRV = (TextView) getView().findViewById(R.id.hrv);
                     textHRV.setText("Score: " + String.valueOf(DataHandler.getInstance().getmHRV()));
 
 
                 }
 
-                TextView min = (TextView) findViewById(R.id.min);
+                TextView min = (TextView) getView().findViewById(R.id.min);
                 min.setText(DataHandler.getInstance().getMin());
 
-                TextView avg = (TextView) findViewById(R.id.avg);
+                TextView avg = (TextView) getView().findViewById(R.id.avg);
                 avg.setText(DataHandler.getInstance().getAvg());
 
-                TextView max = (TextView) findViewById(R.id.max);
+                TextView max = (TextView) getView().findViewById(R.id.max);
                 max.setText(DataHandler.getInstance().getMax());
 
 
                 if (DataHandler.getInstance().getmHRV() > 0) {
-                    TextView textHRV = (TextView) findViewById(R.id.hrv);
+                    TextView textHRV = (TextView) getView().findViewById(R.id.hrv);
                     textHRV.setText("Score: " + String.valueOf(DataHandler.getInstance().getmHRV()));
                 }
 
@@ -427,54 +355,8 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
         });
     }
 
-
     public void onStop() {
         super.onStop();
-    }
-
-    private void setupDrawer() {
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                R.string.drawer_open, R.string.drawer_close) {
-
-            /** Called when a drawer has settled in a completely open state. */
-            public void onDrawerOpened(View drawerView) {
-            }
-            /** Called when a drawer has settled in a completely closed state. */
-            public void onDrawerClosed(View view) {
-            }
-        };
-        mDrawerToggle.setDrawerIndicatorEnabled(true);
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-    }
-
-    public void onDrawerClosed(View view) {
-        onDrawerClosed(view);
-        getActionBar().setTitle(mActivityTitle);
-        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-    }
-
-    public void onDrawerOpened(View drawerView) {
-        onDrawerOpened(drawerView);
-        getActionBar().setTitle("Navigation!");
-        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-    }
-    private void addDrawerItems() {
-        String[] navArray = { "Level Set", "Values","Goals", "HRV", "ToneAnalyzer"};
-        mAdapter = new ArrayAdapter<String>(this, R.layout.list_item_nav, navArray);
-        mDrawerList.setAdapter(mAdapter);
-    }
-
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        mDrawerToggle.syncState();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
 }

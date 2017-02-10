@@ -30,7 +30,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.ibm.browna.grit3_android.HRV.HRVActivity;
+import com.ibm.browna.grit3_android.HRVFragments.HRVViewHolder;
 import com.ibm.browna.grit3_android.R;
+import com.ibm.browna.grit3_android.Views.Goals.GoalDirectionsActivity;
+import com.ibm.browna.grit3_android.Views.Goals.GoalPagerActivity;
+import com.ibm.browna.grit3_android.Views.Values.ValueActivity;
+import com.ibm.browna.grit3_android.Views.WelcomeActivity;
 import com.ibm.browna.grit3_android.WatsonTone.MainActivity;
 
 import static android.Manifest.permission.RECORD_AUDIO;
@@ -94,12 +99,20 @@ public class AssessmentActivity extends ActionBarActivity {
                         startActivity(i);
                         break;
                     case 1:
-                        Intent i2 = new Intent(getApplicationContext(),HRVActivity.class);
-                        startActivity(i2);
+                        Intent i1 = new Intent(getApplicationContext(),ValueActivity.class);
+                        startActivity(i1);
                         break;
                     case 2:
-                        Intent i3 = new Intent(getApplicationContext(),MainActivity.class);
+                        Intent i2 = new Intent(getApplicationContext(),GoalPagerActivity.class);
+                        startActivity(i2);
+                        break;
+                    case 3:
+                        Intent i3 = new Intent(getApplicationContext(),HRVViewHolder.class);
                         startActivity(i3);
+                        break;
+                    case 4:
+                        Intent i4 = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(i4);
                         break;
                 }
 
@@ -161,7 +174,7 @@ public class AssessmentActivity extends ActionBarActivity {
                     storyDot.setVisibility(View.VISIBLE);
                     pickerDot.setVisibility(View.INVISIBLE);
                     FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.fragmentContainer, new StoryFragment());
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.fragmentContainer, new WatsonToneFragment());
                     fragmentTransaction.commit();
 
 
@@ -207,7 +220,7 @@ public class AssessmentActivity extends ActionBarActivity {
         fragmentTransaction.commit();
     }
     private void addDrawerItems() {
-        String[] navArray = { "GRIT Experience", "HRV", "ToneAnalyzer"};
+        String[] navArray = { "Level Set", "Values","Goals", "HRV", "ToneAnalyzer"};
         mAdapter = new ArrayAdapter<String>(this, R.layout.list_item_nav, navArray);
         mDrawerList.setAdapter(mAdapter);
 

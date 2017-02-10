@@ -30,6 +30,7 @@ public class GoalDirectionsFragment extends Fragment {
             public void onClick(View view) {
                  Intent i = new Intent(getActivity(), GoalPagerActivity.class);
                  startActivity(i);
+                getActivity().finish();
             }
         });
         return v;

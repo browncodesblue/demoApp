@@ -1,5 +1,6 @@
 package com.ibm.browna.grit3_android.Views.Goals;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -43,7 +44,7 @@ public class MentalFragment extends Fragment {
         mBoxText2.setText("Journal");
         mBoxText3.setText("Add Recording");
 
-        mFinish.setVisibility(View.VISIBLE);
+
 
         mBox1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +80,20 @@ public class MentalFragment extends Fragment {
             }
         });
 
+        mSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mFinish.setVisibility(View.VISIBLE);
+            }
+        });
+        mFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(),SummaryActivity.class);
+                startActivity(i);
+                getActivity().finish();
+            }
+        });
 
         return v;
     }

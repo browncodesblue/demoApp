@@ -1,70 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/girtblue"
-    tools:context=".WatsonTone.MainActivity">
+    >
 
-    <TextView
+    <RelativeLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        >
 
-        android:text="@string/watson_toneresults_prompt_"
-
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:layout_margin="15dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="vertical">
-        <EditText
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="0dp"
+            android:id="@+id/tone_prompt"
+            android:text="@string/story_prompt"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:layout_margin="15dp"
+            android:layout_alignParentTop="true"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/tone_prompt"
+            android:id="@+id/tone_enter"
+            >
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/sign_up"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Enter Story Here"
+                android:id="@+id/watson_tone_text_returned"/>
+            <!-- -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#6fdc6f"
+                android:layout_marginEnd="20dp"
+                android:layout_gravity="end"
+                android:id="@+id/analyze_me"
+                android:text="Analyze Me!"/>
+            <View
+                android:layout_width="75dp"
+                android:layout_height="1dp"
+                android:layout_marginEnd="20dp"
+                android:layout_gravity="end"
+                android:background="#6fdc6f"
+                android:id="@+id/analyze_me_underline"
+                android:text="Analyze Me!"/>
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tone_table"
             android:background="@drawable/sign_up"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="35dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginTop="35dp"
             android:layout_marginBottom="10dp"
-            android:id="@+id/watson_tone_text_returned"/>
-        <!-- -->
+            android:layout_below="@+id/tone_enter"
+            android:visibility="invisible"
+            >
+        </TableLayout>
+
         <Button
-            android:layout_width="150dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:textColor="#6fdc6f"
             android:background="@drawable/sign_up"
-            android:layout_marginEnd="20dp"
-            android:layout_gravity="right"
-            android:id="@+id/analyze_me"
-            android:text="Analyze Me!"/>
-    </LinearLayout>
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:id="@+id/tone_save_button"
+            android:layout_below="@+id/tone_table"
+            android:text="@string/save"/>
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/tone_table"
-        android:background="@drawable/sign_up"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginBottom="10dp">
+    </RelativeLayout>
 
-
-
-    </TableLayout>
-
-       <Button
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:textColor="#6fdc6f"
-        android:background="@drawable/sign_up"
-        android:layout_margin="20dp"
-        android:layout_gravity="center"
-        android:id="@+id/tone_save_button"
-        android:text="@string/save"/>
-
-</LinearLayout>
+</ScrollView>

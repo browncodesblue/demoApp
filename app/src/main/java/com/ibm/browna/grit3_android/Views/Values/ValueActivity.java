@@ -20,6 +20,7 @@ import android.widget.ListView;
 import com.ibm.browna.grit3_android.HRV.HRVActivity;
 import com.ibm.browna.grit3_android.R;
 import com.ibm.browna.grit3_android.Views.Assessments.AssessmentActivity;
+import com.ibm.browna.grit3_android.Views.Goals.GoalPagerActivity;
 import com.ibm.browna.grit3_android.WatsonTone.MainActivity;
 
 /**
@@ -66,12 +67,20 @@ public class ValueActivity extends ActionBarActivity {
                         startActivity(i);
                         break;
                     case 1:
-                        Intent i2 = new Intent(getApplicationContext(),HRVActivity.class);
-                        startActivity(i2);
+                        Intent i1 = new Intent(getApplicationContext(),ValueActivity.class);
+                        startActivity(i1);
                         break;
                     case 2:
-                        Intent i3 = new Intent(getApplicationContext(),MainActivity.class);
+                        Intent i2 = new Intent(getApplicationContext(),GoalPagerActivity.class);
+                        startActivity(i2);
+                        break;
+                    case 3:
+                        Intent i3 = new Intent(getApplicationContext(),HRVActivity.class);
                         startActivity(i3);
+                        break;
+                    case 4:
+                        Intent i4 = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(i4);
                         break;
                 }
 
@@ -113,12 +122,11 @@ public class ValueActivity extends ActionBarActivity {
         fragmentTransaction.commit();
     }
     private void addDrawerItems() {
-        String[] navArray = { "GRIT Experience", "HRV", "ToneAnalyzer"};
+        String[] navArray = { "Level Set", "Values","Goals", "HRV", "ToneAnalyzer"};
         mAdapter = new ArrayAdapter<String>(this, R.layout.list_item_nav, navArray);
         mDrawerList.setAdapter(mAdapter);
 
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mDrawerToggle.onOptionsItemSelected(item)) {

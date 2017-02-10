@@ -33,6 +33,7 @@ public class SquadAdderFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(getActivity(), ValueActivity.class);
                 startActivity(i);
+                getActivity().finish();
             }
         });
         mAdder1.setOnClickListener(new View.OnClickListener() {
