@@ -58,7 +58,7 @@ import android.support.v7.widget.Toolbar;
 public class HRVActivity extends ActionBarActivity implements OnItemSelectedListener, Observer {
 
 
-    private int MAX_SIZE = 10; //graph max size
+    private int MAX_SIZE = 20; //graph max size
     boolean searchBt = true;
     BluetoothAdapter mBluetoothAdapter;
     List<BluetoothDevice> pairedDevices = new ArrayList<>();
@@ -69,10 +69,10 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
     private Spinner spinner1;
     private Spinner fileSpinner;
     private Context context;
-    private ListView mDrawerList;
+   // private ListView mDrawerList;
     private ArrayAdapter<String> mAdapter;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private DrawerLayout mDrawerLayout;
+  //  private ActionBarDrawerToggle mDrawerToggle;
+   // private DrawerLayout mDrawerLayout;
     private String mActivityTitle;
     LineAndPointFormatter series1Format;
     // private LineChart mChart;
@@ -86,15 +86,17 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hrv_main);
+        setContentView(R.layout.activity_hrv_temp);
 
-        mDrawerList = (ListView)findViewById(R.id.navList);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+     //   mDrawerList = (ListView)findViewById(R.id.navList);
+    //    Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+    //    mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
 
+        /**
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        /**
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -117,6 +119,8 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
 
         setupDrawer();
         addDrawerItems();
+
+         **/
 
         mActivityTitle = getTitle().toString();
 
@@ -174,13 +178,18 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
 
 
             plot = (XYPlot) findViewById(R.id.dynamicPlot);
-            if (plot.getY() == 0)
+
+
+            if (DataHandler.getInstance().getSeries1() == null)
 
             {
                 Number[] series1Numbers = {};
-                DataHandler.getInstance().setSeries1(new SimpleXYSeries(Arrays.asList(series1Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "HRV"));
+                DataHandler.getInstance().setSeries1(new SimpleXYSeries(Arrays.asList(series1Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Heart Beat"));
             }
+
+
             DataHandler.getInstance().setNewValue(false);
+
 
 
         } else {
@@ -194,17 +203,34 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
         }
         //LOAD Graph
 
+
+
         series1Format = new LineAndPointFormatter(Color.rgb(0, 0, 255), Color.rgb(200, 200, 200), null, null);
-        // series1Format.setPointLabelFormatter(new PointLabelFormatter());
-     //   series1Format.setInterpolationParams( new CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal));
+
+         series1Format.setPointLabelFormatter(new PointLabelFormatter());
+         series1Format.setInterpolationParams( new CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal));
 
 
         plot.addSeries(DataHandler.getInstance().getSeries1(), series1Format);
-        plot.setRangeBoundaries(20,90,BoundaryMode.SHRINK);
-        plot.setRangeLabel("HRV Score");
-        plot.setDomainLabel("");
+
+        plot.getGraph().getDomainGridLinePaint().setColor(Color.TRANSPARENT);
+        plot.getGraph().getRangeGridLinePaint().setColor(Color.TRANSPARENT);
+
+
+
+
+        // remove the background stuff.
+         //   plot.setBackgroundPaint(null);
+        //    plot.getGraphWidget().setBackgroundPaint(null);
+         //   plot.getGraph().set
+      //  plot.getGraph().setGridBackgroundPaint();
+
+
+       // plot.setRangeBoundaries(20,90,BoundaryMode.SHRINK);
+        plot.setRangeLabel("Heart Beat");
+
       //  plot.setDomainStep(StepMode.INCREMENT_BY_VAL,10);
-      //  plot.setTicksPerRangeLabel(3);
+        // plot.setTicksPerRangeLabel(3);
      //   plot.getG.setDomainLabelOrientation(-45);
 
 
@@ -404,9 +430,12 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
      * When menu button are pressed
      */
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        /**
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
+         **/
 
         int id = item.getItemId();
         Log.d("Main Activity", "Menu pressed");
@@ -543,32 +572,21 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
 
 
 
-                if (DataHandler.getInstance().getmHRV() > 0) {
+                if (DataHandler.getInstance().getLastBPMIntValue() != 0) {
 
 
-
-
-                    DataHandler.getInstance().getSeries1().addLast(0, DataHandler.getInstance().getmHRV());
+                    DataHandler.getInstance().getSeries1().addLast(0, DataHandler.getInstance().getLastBPMIntValue());
                     if (DataHandler.getInstance().getSeries1().size() > MAX_SIZE) {
                         DataHandler.getInstance().getSeries1().removeFirst();//Prevent graph to overload data.
                     }
 
-                    if (DataHandler.getInstance().getSeries1().size() > 2){
 
-                        series1Format.setInterpolationParams( new CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal));
-                    }
                     plot.redraw();
 
-
-
-                //  addEntry((float)DataHandler.getInstance().getmHRV());
-
-                    TextView textHRV = (TextView) findViewById(R.id.hrv);
-                    textHRV.setText("HRV Score: " + String.valueOf(DataHandler.getInstance().getmHRV()));
-                    DataHandler.getInstance().resetHRV();
-
-
                 }
+
+
+
 
 
 
@@ -582,12 +600,12 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
                 max.setText(DataHandler.getInstance().getMax());
 
 
-                /**
+
                 if (DataHandler.getInstance().getmHRV() > 0) {
                     TextView textHRV = (TextView) findViewById(R.id.hrv);
                     textHRV.setText("Score: " + String.valueOf(DataHandler.getInstance().getmHRV()));
                 }
-                 **/
+
 
             }
         });
@@ -598,20 +616,24 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
         super.onStop();
     }
 
+
+    /**
     private void setupDrawer() {
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+       mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.string.drawer_open, R.string.drawer_close) {
 
-            /** Called when a drawer has settled in a completely open state. */
+            /** Called when a drawer has settled in a completely open state.
             public void onDrawerOpened(View drawerView) {
             }
-            /** Called when a drawer has settled in a completely closed state. */
+            /** Called when a drawer has settled in a completely closed state.
             public void onDrawerClosed(View view) {
             }
         };
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
+
+
 
     public void onDrawerClosed(View view) {
         onDrawerClosed(view);
@@ -630,18 +652,18 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
        // mDrawerList.setAdapter(mAdapter);
 
     }
-
+     **/
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        mDrawerToggle.syncState();
+       // mDrawerToggle.syncState();
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
+       // mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
 }
