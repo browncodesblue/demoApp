@@ -1,6 +1,7 @@
 package com.ibm.browna.grit3_android.Views.Assessments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.app.Fragment;
@@ -86,7 +87,13 @@ public class WatsonToneFragment extends Fragment {
         mSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((AssessmentActivity)getActivity()).lifeButton.callOnClick();
+               if (getActivity() instanceof AssessmentActivity){
+                   ((AssessmentActivity)getActivity()).lifeButton.callOnClick();
+               }else{
+                   Intent i = new Intent(getActivity(),AssessmentActivity.class);
+                   i.putExtra("Page",2);
+                   startActivity(i);
+               }
             }
         });
 

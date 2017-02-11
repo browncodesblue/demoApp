@@ -2,24 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/girtblue"
+    android:background="@drawable/blue_background"
+    android:padding="20dp"
     >
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/video_clickout"
             android:layout_marginTop="30dp"
+
             />
 
         <Button
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:textColor="#6fdc6f"
-            android:background="@drawable/sign_up"
-            android:layout_marginTop="40dp"
             android:layout_gravity="center_horizontal"
             android:id="@+id/video_feedback_back"
-            android:text="Back"/>
+            android:text="Back"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/sign_up"
+            android:layout_width="match_parent"
+            android:layout_marginTop="30dp"/>
 
 
 </LinearLayout>

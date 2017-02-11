@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -30,7 +31,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/girtblue">
+                android:background="@drawable/blue_background"
+                android:padding="20dp">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -39,16 +41,13 @@
                     android:text="Summary"
                     android:id="@+id/draggable_prompt_text"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginEnd="15dp"/>
+                    />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/white"
                     android:layout_below="@+id/draggable_prompt_text"
                     android:layout_marginTop="5dp"
-                    android:layout_marginEnd="45dp"
-                    android:layout_marginStart="35dp"
                     android:id="@+id/draggable_white_line"/>
 
                 <TextView
@@ -72,7 +71,6 @@
                     android:layout_marginTop="10dp"
                     android:id="@+id/draggable_box1"
                     android:layout_marginStart="5dp"
-                    android:layout_marginEnd="45dp"
                     >
                     <TextView
                         android:layout_width="wrap_content"
@@ -112,7 +110,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_alignStart="@+id/alts"
                     android:layout_marginStart="5dp"
-                    android:layout_marginEnd="45dp"
                     >
                     <TextView
                         android:layout_width="wrap_content"
@@ -142,7 +139,6 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/sign_up"
                     android:layout_below="@+id/comms"
-                    android:layout_marginEnd="45dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
                     android:layout_alignStart="@+id/alts"
@@ -176,7 +172,6 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/sign_up"
                     android:layout_below="@+id/physical"
-                    android:layout_marginEnd="45dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
                     android:layout_alignStart="@+id/alts"
@@ -210,7 +205,6 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/sign_up"
                     android:layout_below="@+id/mental"
-                    android:layout_marginEnd="45dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
                     android:layout_alignStart="@+id/alts"

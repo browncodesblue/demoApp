@@ -119,6 +119,22 @@ public class AssessmentActivity extends ActionBarActivity {
             }
         });
 
+        int page = getIntent().getIntExtra("Page",0);
+        switch (page){
+            case 0:
+                pickerButton.callOnClick();
+                break;
+            case 1:
+                storyButton.callOnClick();
+                break;
+            case 2:
+                lifeButton.callOnClick();
+                break;
+            case 3:
+                squadButton.callOnClick();
+                break;
+        }
+
     }
 
     @Override

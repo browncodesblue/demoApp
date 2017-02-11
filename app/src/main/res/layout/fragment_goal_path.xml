@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/girtblue">
+    android:background="@drawable/blue_background"
+    android:padding="20dp">
 
 
     <TextView
@@ -13,17 +14,13 @@
         android:textSize="30sp"
         android:text="Choose a Physical Path"
         android:id="@+id/draggable_prompt_text"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="15dp"/>
+        />
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/white"
         android:layout_below="@+id/draggable_prompt_text"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginStart="35dp"
         android:id="@+id/draggable_white_line"/>
 
     <TextView
@@ -33,7 +30,6 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:text="Recommended"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/draggable_white_line"
         android:layout_alignStart="@id/draggable_white_line"/>
@@ -47,7 +43,6 @@
         android:layout_marginTop="10dp"
         android:id="@+id/draggable_box1"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="45dp"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -73,7 +68,6 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:text="Recommended"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/draggable_box1"
         android:layout_alignStart="@id/draggable_white_line"/>
@@ -87,7 +81,6 @@
         android:layout_marginTop="10dp"
         android:layout_alignStart="@+id/alts"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="45dp"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -111,7 +104,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/sign_up"
         android:layout_below="@+id/draggable_box2"
-        android:layout_marginEnd="45dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:layout_alignStart="@+id/alts"
@@ -138,25 +130,26 @@
 
 
     <Button
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
-        android:textColor="#6fdc6f"
         android:layout_above="@+id/goal_path_finish"
         android:background="@drawable/sign_up"
         android:id="@+id/goal_path_save"
-        android:text="@string/save"/>
-    <Button
-        android:layout_width="250dp"
+        android:text="@string/save"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textColor="#6fdc6f"
+        android:textColor="@color/colorPrimary"
         android:layout_alignParentBottom="true"
         android:background="@drawable/sign_up"
         android:id="@+id/goal_path_finish"
         android:visibility="invisible"
-        android:text="finish"/>
+        android:text="Finish"/>
 
 </RelativeLayout>

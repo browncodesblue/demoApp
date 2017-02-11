@@ -1,12 +1,18 @@
 package com.ibm.browna.grit3_android.WatsonTone;
 
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -15,13 +21,22 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.ibm.browna.grit3_android.HRVFragments.HRVViewHolder;
+import com.ibm.browna.grit3_android.Views.Assessments.AssessmentActivity;
+import com.ibm.browna.grit3_android.Views.Assessments.PickerFragment;
+import com.ibm.browna.grit3_android.Views.Assessments.WatsonToneFragment;
+import com.ibm.browna.grit3_android.Views.Goals.GoalPagerActivity;
+import com.ibm.browna.grit3_android.Views.Values.ValueActivity;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.SentenceTone;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneAnalysis;
@@ -52,14 +67,21 @@ public class MainActivity extends AppCompatActivity {
     private final  String VERYLIKELY = "Very Likely";
     private final  String UNLIKELY = "Not likely";
     private TableLayout tableLayout;
+    private ListView mDrawerList;
+    private ArrayAdapter<String> mAdapter;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private DrawerLayout mDrawerLayout;
+    private String mActivityTitle;
+
 /*
     private final int ColorUnlikely = Color.GRAY;
     private final int ColorLikely = Color.MAGENTA;
     private final int ColorVeryLikely = Color.RED;
 
+
     **/
 
-    public String getTextToAnalyze() {
+   /* public String getTextToAnalyze() {
         return textToAnalyze;
     }
 
@@ -71,38 +93,99 @@ public class MainActivity extends AppCompatActivity {
 
 
     public MainActivity() {
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_tone_results);
+        setContentView(R.layout.activity_values);
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        mDrawerList = (ListView)findViewById(R.id.navList);
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        setupDrawer();
+        addDrawerItems();
 
-        messageToAnalyze = (EditText) findViewById(R.id.watson_tone_text_returned);
-        analysisButton = (TextView) findViewById(R.id.analyze_me);
-        tableLayout = (TableLayout) findViewById(R.id.tone_table);
-       // gridView.setRowCount(12);
+        mActivityTitle = getTitle().toString();
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().add(R.id.fragmentContainer, new WatsonToneFragment(),"");
+        fragmentTransaction.commit();
 
 
-
-        analysisButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                    InputMethodManager imm =  (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                if (!messageToAnalyze.getText().toString().isEmpty()) {
-
-                    String message = messageToAnalyze.getText().toString();
-                    new ToneAnalyzerCall().execute(message, null, null);
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        Intent i = new Intent(getApplicationContext(),AssessmentActivity.class);
+                        startActivity(i);
+                        break;
+                    case 1:
+                        Intent i1 = new Intent(getApplicationContext(),ValueActivity.class);
+                        startActivity(i1);
+                        break;
+                    case 2:
+                        Intent i2 = new Intent(getApplicationContext(),GoalPagerActivity.class);
+                        startActivity(i2);
+                        break;
+                    case 3:
+                        Intent i3 = new Intent(getApplicationContext(),HRVViewHolder.class);
+                        startActivity(i3);
+                        break;
+                    case 4:
+                        Intent i4 = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(i4);
+                        break;
                 }
 
             }
-
         });
 
+    }
+    private void setupDrawer() {
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                R.string.drawer_open, R.string.drawer_close) {
+
+            /** Called when a drawer has settled in a completely open state. */
+            public void onDrawerOpened(View drawerView) {
+               /* onDrawerOpened(drawerView);
+                getActionBar().setTitle("Navigation!");
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()*/
+            }
+            /** Called when a drawer has settled in a completely closed state. */
+            public void onDrawerClosed(View view) {
+                /*onDrawerClosed(view);
+                getActionBar().setTitle(mActivityTitle);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()*/
+            }
+        };
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+    }
+
+    private void addDrawerItems() {
+        String[] navArray = { "Level Set", "Values","Goals", "HRV", "ToneAnalyzer"};
+        mAdapter = new ArrayAdapter<String>(this, R.layout.list_item_nav, navArray);
+        mDrawerList.setAdapter(mAdapter);
 
     }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+
 
 
 
@@ -432,7 +515,9 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;

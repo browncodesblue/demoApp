@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/girtblue">
+    android:background="@drawable/blue_background"
+    android:padding="20dp">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,19 +20,18 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/life_check_count"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textSize="35sp"
         android:textColor="@color/white"
-        android:layout_margin="20dp"
         android:text="@string/life_check_question_1"
         android:id="@+id/life_check_prompt"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="20dp"
         android:id="@+id/life_check_number_box"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/life_check_prompt"
+        android:layout_marginTop="60dp"
         >
 
         <ImageView
@@ -87,14 +87,16 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
-        android:textColor="#6fdc6f"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/sign_up"
         android:id="@+id/life_check_save"
-        android:text="@string/save"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/sign_up"
+        android:text="@string/save"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"/>
 
 </RelativeLayout>
