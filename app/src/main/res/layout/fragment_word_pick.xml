@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/blue_background"
     android:layout_height="match_parent"
-    android:background="@color/girtblue">
+    android:padding="20dp">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
+        android:layout_gravity="center"
         android:textColor="@color/white"
-        android:layout_marginTop="10dp"
         android:textSize="30sp"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
-        android:text="@string/word_picker_prompt"/>
+        android:text="@string/word_picker_prompt"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
             android:src="@drawable/word_pick_left"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:id="@+id/leftArrow1"
             android:contentDescription="@string/word_picker_leftarrow"
-            />
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,29 +34,36 @@
             android:textColor="@color/white"
             android:layout_centerInParent="true"
             android:id="@+id/word_tumbler1"
-            android:textSize="30sp"
+            android:textSize="22sp"
             android:text="@string/word_picker_choice1"/>
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
             android:src="@drawable/word_pick_right"
             android:contentDescription="@string/word_picker_rightarrow"
             android:layout_centerVertical="true"
             android:id="@+id/RightArrow1"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
     </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#fff"
+        android:text=""
+        android:textAlignment="center"
+        android:alpha=".1" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
             android:src="@drawable/word_pick_left"
             android:layout_centerVertical="true"
             android:contentDescription="@string/word_picker_leftarrow"
             android:id="@+id/leftArrow2"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -63,29 +71,36 @@
             android:textColor="@color/white"
             android:layout_centerInParent="true"
             android:id="@+id/word_tumbler2"
-            android:textSize="30sp"
+            android:textSize="22sp"
             android:text="@string/word_picker_choice2"/>
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
             android:layout_centerVertical="true"
             android:src="@drawable/word_pick_right"
             android:contentDescription="@string/word_picker_rightarrow"
             android:id="@+id/RightArrow2"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
     </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#fff"
+        android:text=""
+        android:textAlignment="center"
+        android:alpha=".1" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
             android:layout_centerVertical="true"
             android:src="@drawable/word_pick_left"
             android:contentDescription="@string/word_picker_leftarrow"
             android:id="@+id/leftArrow3"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -94,57 +109,64 @@
             android:textColor="@color/white"
             android:layout_centerInParent="true"
             android:id="@+id/word_tumbler3"
-            android:textSize="30sp"
+            android:textSize="22sp"
 
             android:text="@string/word_picker_choice3"/>
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
             android:layout_centerVertical="true"
             android:contentDescription="@string/word_picker_rightarrow"
             android:src="@drawable/word_pick_right"
             android:id="@+id/RightArrow3"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
     </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#fff"
+        android:text=""
+        android:textAlignment="center"
+        android:alpha=".1" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
             android:layout_centerVertical="true"
             android:src="@drawable/word_pick_left"
             android:contentDescription="@string/word_picker_leftarrow"
             android:id="@+id/leftArrow4"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textColor="@color/white"
             android:layout_centerInParent="true"
-            android:textSize="30sp"
+            android:textSize="22sp"
             android:id="@+id/word_tumbler4"
             android:text="@string/word_picker_choice4"/>
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
             android:layout_centerVertical="true"
             android:src="@drawable/word_pick_right"
             android:id="@+id/RightArrow4"
             android:contentDescription="@string/word_picker_rightarrow"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
     </RelativeLayout>
     <Button
-        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:layout_gravity="center"
-        android:textColor="#6fdc6f"
+        android:textColor="@color/colorPrimary"
         android:background="@drawable/sign_up"
         android:id="@+id/picker_save_button"
-        android:text="@string/save"/>
+        android:text="@string/save"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp" />
 
 
 </LinearLayout>

@@ -27,18 +27,34 @@ public class ValuesFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_drag_rank_boxes,container,false);
         mSave =(Button) v.findViewById(R.id.drag_rank_save);
         mDragBox3 = (RelativeLayout)v.findViewById(R.id.draggable_box3);
+        mDragBox1 = (RelativeLayout)v.findViewById(R.id.draggable_box1);
+        mDragBox2 = (RelativeLayout)v.findViewById(R.id.draggable_box2);
+
+        mDragBox1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((ValueActivity)getActivity()).swapFragments(new TextFeedbackFragment(), 1);
+            }
+        });
+
+        mDragBox2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((ValueActivity)getActivity()).swapFragments(new TextFeedbackFragment(), 2);
+            }
+        });
 
         mDragBox3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ValueActivity)getActivity()).swapFragments(new TextFeedbackFragment());
+                ((ValueActivity)getActivity()).swapFragments(new TextFeedbackFragment(), 3);
 
             }
         });
         mSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ValueActivity)getActivity()).swapFragments(new GrowthFragment());
+                ((ValueActivity)getActivity()).swapFragments(new GrowthFragment(),0);
             }
         });
         return v;

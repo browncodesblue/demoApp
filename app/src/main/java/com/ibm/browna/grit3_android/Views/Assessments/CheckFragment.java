@@ -56,6 +56,13 @@ public class CheckFragment extends Fragment {
                         count=1;
                         break;
                 }
+                mButton1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_1_notselected));
+                mButton2.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_2_notselected));
+                mButton3.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_3_notselected));
+                mButton4.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_4_notselected));
+                mButton5.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_5_notselected));
+                mButton6.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_6_notselected));
+                mButton7.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_7_notselected));
 
             }
         });

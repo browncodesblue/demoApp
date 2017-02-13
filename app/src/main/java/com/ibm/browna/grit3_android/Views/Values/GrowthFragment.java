@@ -33,15 +33,31 @@ public class GrowthFragment extends Fragment{
         mTextBox1 = (TextView)v.findViewById(R.id.drag_text_1);
         mTextBox2 = (TextView)v.findViewById(R.id.drag_text_2);
         mTextBox3 = (TextView)v.findViewById(R.id.drag_text_3);
+        mDragBox3 = (RelativeLayout)v.findViewById(R.id.draggable_box3);
+        mDragBox1 = (RelativeLayout)v.findViewById(R.id.draggable_box1);
+        mDragBox2 = (RelativeLayout)v.findViewById(R.id.draggable_box2);
 
-        mPrompt.setText("Letʼs keep you unbreakable! Select or create your top growth areas");
+
+        mPrompt.setText("Select or create your top growth areas");
         mTextBox1.setText("Relationships");
         mTextBox2.setText("Finance");
         mTextBox3.setText("Fitness");
 
-        mDragBox3 = (RelativeLayout)v.findViewById(R.id.draggable_box3);
+
 
         mDragBox3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((ValueActivity)getActivity()).swapFragments(new VideoFeedBackFragment());
+            }
+        });
+        mDragBox2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((ValueActivity)getActivity()).swapFragments(new VideoFeedBackFragment());
+            }
+        });
+        mDragBox1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((ValueActivity)getActivity()).swapFragments(new VideoFeedBackFragment());

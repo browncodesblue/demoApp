@@ -3,9 +3,8 @@
      android:layout_width="fill_parent"
      android:layout_height="fill_parent"
      android:orientation="vertical"
-     android:background="@color/girtblue"
-     xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:tools="http://schemas.android.com/tools">
+     android:background="@drawable/blue_background"
+     xmlns:android="http://schemas.android.com/apk/res/android">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -59,7 +58,8 @@
                 ap:rangeTitle="range"
                 ap:domainTitle="domain"
                 ap:lineLabels="left|bottom"
-                ap:lineLabelRotationBottom="-45"/>
+                ap:lineLabelRotationBottom="-45"
+                />
 
             <!--
                <com.androidplot.xy.XYPlot
@@ -75,7 +75,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HRV"
+                android:text="@string/HRV"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/white"
                 android:textSize="25sp"

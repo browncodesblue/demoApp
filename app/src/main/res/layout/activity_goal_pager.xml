@@ -20,6 +20,7 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:src="@drawable/grit_spelling"
+                android:contentDescription="@string/app_name"
                 android:id="@+id/grit_spelling"/>
         </android.support.v7.widget.Toolbar>
 
