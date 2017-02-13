@@ -53,6 +53,7 @@ public class HRVFragment extends Fragment implements AdapterView.OnItemSelectedL
     private Spinner spinner1;
     private Spinner fileSpinner;
     private Context context;
+    List<String> list;
 
     //
 
@@ -146,7 +147,7 @@ public class HRVFragment extends Fragment implements AdapterView.OnItemSelectedL
         Log.d("Main Activity", "Listing BT elements");
         if (searchBt) {
             //Discover bluetooth devices
-            final List<String> list = new ArrayList<>();
+            list = new ArrayList<>();
             list.add("");
             pairedDevices.addAll(mBluetoothAdapter.getBondedDevices());
             // If there are paired devices
@@ -274,28 +275,33 @@ public class HRVFragment extends Fragment implements AdapterView.OnItemSelectedL
             Log.d("Main Activity", "in the app");
             menuBool = false;
             final HRVFragment ac = this;
-            getActivity().runOnUiThread(new Runnable() {
-                public void run() {
-                    Toast.makeText(getActivity().getBaseContext(), getString(R.string.couldnotconnect), Toast.LENGTH_SHORT).show();
-                    //TextView rpm = (TextView) findViewById(R.id.rpm);
-                    //rpm.setText("0 BMP");
-                    Spinner spinner1 = (Spinner) getView().findViewById(R.id.HRV_device_spinner1);
-                    if (DataHandler.getInstance().getID() < spinner1.getCount())
-                        spinner1.setSelection(DataHandler.getInstance().getID());
-                    if (!h7) {
-                        Log.w("Main Activity", "starting H7 after error");
-                        DataHandler.getInstance().setReader(null);
-                        DataHandler.getInstance().setH7(new H7ConnectThread((BluetoothDevice) pairedDevices.toArray()[DataHandler.getInstance().getID() - 1], ac));
-                        h7 = true;
-                    } else if (!normal) {
-                        Log.w("Main Activity", "Starting normal after error");
-                        DataHandler.getInstance().setH7(null);
-                        DataHandler.getInstance().setReader(new ConnectThread((BluetoothDevice) pairedDevices.toArray()[DataHandler.getInstance().getID() - 1], ac));
-                        DataHandler.getInstance().getReader().start();
-                        normal = true;
+            if (getActivity()!=null){
+                getActivity().runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(getActivity().getBaseContext(), getString(R.string.couldnotconnect), Toast.LENGTH_SHORT).show();
+                        //TextView rpm = (TextView) findViewById(R.id.rpm);
+                        //rpm.setText("0 BMP");
+                        Spinner spinner1 = (Spinner) getView().findViewById(R.id.HRV_device_spinner1);
+                        if (DataHandler.getInstance().getID() < spinner1.getCount())
+                            spinner1.setSelection(DataHandler.getInstance().getID());
+                        if (!h7) {
+                            Log.w("Main Activity", "starting H7 after error");
+                            DataHandler.getInstance().setReader(null);
+                            DataHandler.getInstance().setH7(new H7ConnectThread((BluetoothDevice) pairedDevices.toArray()[DataHandler.getInstance().getID() - 1], ac));
+                            h7 = true;
+                        } else if (!normal) {
+                            Log.w("Main Activity", "Starting normal after error");
+                            DataHandler.getInstance().setH7(null);
+                            DataHandler.getInstance().setReader(new ConnectThread((BluetoothDevice) pairedDevices.toArray()[DataHandler.getInstance().getID() - 1], ac));
+                            DataHandler.getInstance().getReader().start();
+                            normal = true;
+                        }
                     }
-                }
-            });
+                });
+            }else {
+                Log.e("HRVFragment","Null Activity");
+            }
+
         }
     }
 
@@ -308,6 +314,10 @@ public class HRVFragment extends Fragment implements AdapterView.OnItemSelectedL
      */
     public void receiveData() {
 
+        if (getActivity()==null){
+            Log.e("HRVFragment","Null Activity");
+            return;
+        }
         getActivity().runOnUiThread(new Runnable() {
             public void run() {
                 //menuBool=true;
