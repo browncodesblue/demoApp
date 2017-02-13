@@ -9,22 +9,8 @@ import java.util.Observer;
 
 
 import com.androidplot.xy.*;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
+
 import com.ibm.browna.grit3_android.R;
-
-import com.ibm.browna.grit3_android.Views.Assessments.AssessmentActivity;
-import com.ibm.browna.grit3_android.Views.Goals.GoalPagerActivity;
-import com.ibm.browna.grit3_android.Views.Values.ValueActivity;
-import com.ibm.browna.grit3_android.WatsonTone.MainActivity;
-
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -38,6 +24,7 @@ import android.graphics.DashPathEffect;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -60,7 +47,7 @@ import android.support.v7.widget.Toolbar;
 public class HRVActivity extends ActionBarActivity implements OnItemSelectedListener, Observer {
 
 
-    private int MAX_SIZE = 20; //graph max size
+    private int MAX_SIZE = 10; //graph max size
     boolean searchBt = true;
     BluetoothAdapter mBluetoothAdapter;
     List<BluetoothDevice> pairedDevices = new ArrayList<>();
@@ -179,12 +166,17 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
             plot = (XYPlot) findViewById(R.id.dynamicPlot);
 
 
+
             if (DataHandler.getInstance().getSeries1() == null)
 
             {
                 Number[] series1Numbers = {};
                 DataHandler.getInstance().setSeries1(new SimpleXYSeries(Arrays.asList(series1Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Heart Beat"));
             }
+
+
+
+
 
 
             DataHandler.getInstance().setNewValue(false);
@@ -206,17 +198,15 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
 
         series1Format = new LineAndPointFormatter(Color.rgb(0, 0, 255), Color.rgb(200, 200, 200), null, null);
 
-         series1Format.setPointLabelFormatter(new PointLabelFormatter());
+         series1Format.setPointLabelFormatter(new PointLabelFormatter(Color.RED));
          series1Format.setInterpolationParams( new CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal));
+
 
 
         plot.addSeries(DataHandler.getInstance().getSeries1(), series1Format);
 
         plot.getGraph().getDomainGridLinePaint().setColor(Color.TRANSPARENT);
         plot.getGraph().getRangeGridLinePaint().setColor(Color.TRANSPARENT);
-
-
-
 
         // remove the background stuff.
          //   plot.setBackgroundPaint(null);
@@ -228,7 +218,7 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
        // plot.setRangeBoundaries(20,90,BoundaryMode.SHRINK);
         plot.setRangeLabel("Heart Beat");
 
-      //  plot.setDomainStep(StepMode.INCREMENT_BY_VAL,10);
+     // plot.setDomainStep(StepMode.INCREMENT_BY_VAL,0);
         // plot.setTicksPerRangeLabel(3);
      //   plot.getG.setDomainLabelOrientation(-45);
 
@@ -453,14 +443,21 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
 
                 if (DataHandler.getInstance().getLastBPMIntValue() != 0) {
 
-
-                    DataHandler.getInstance().getSeries1().addLast(0, DataHandler.getInstance().getLastBPMIntValue());
+                    int lastBPM = DataHandler.getInstance().getLastBPMIntValue();
+                    DataHandler.getInstance().getSeries1().addLast(0, lastBPM);
                     if (DataHandler.getInstance().getSeries1().size() > MAX_SIZE) {
                         DataHandler.getInstance().getSeries1().removeFirst();//Prevent graph to overload data.
                     }
 
 
                     plot.redraw();
+
+                    plot.setRangeBoundaries(lastBPM - 5, lastBPM + 5, BoundaryMode.FIXED);
+
+
+
+
+
 
                 }
 
@@ -482,7 +479,7 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
 
                 if (DataHandler.getInstance().getmHRV() > 0) {
                     TextView textHRV = (TextView) findViewById(R.id.hrv);
-                    textHRV.setText("Score: " + String.valueOf(DataHandler.getInstance().getmHRV()));
+                    textHRV.setText("HRV: " + String.valueOf(DataHandler.getInstance().getmHRV()));
                 }
 
 

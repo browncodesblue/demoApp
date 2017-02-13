@@ -19,7 +19,10 @@
         android:screenOrientation="portrait" >
         <activity android:name=".WatsonTone.MainActivity"/>
         <activity android:name=".WatsonTone.SecondActivity"/>
-        <activity android:name=".HRV.HRVActivity"/>
+        <activity android:name=".HRV.HRVActivity">
+
+
+           </activity>
         <activity android:name=".HRV.AboutActivity"/>
         <activity android:name=".HRV.HRVSecondActivity"/>
         <activity android:name=".Views.Assessments.AssessmentActivity">
@@ -28,10 +31,13 @@
         <activity android:name=".Views.WelcomeActivity"/>
 
         <activity android:name=".Views.LoginActivity">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
         </activity>
 
         <activity android:name=".Views.Goals.GoalPagerActivity"/>

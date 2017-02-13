@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Observable;
 
 import com.androidplot.xy.SimpleXYSeries;
+import com.androidplot.xy.NormedXYSeries;
 
 /**
  * This handler is specalised for decoding my polar hart rate monitor and get the data from it
@@ -36,6 +37,16 @@ public class DataHandler extends Observable{
 	//DATA FOR SAVING
 	boolean newValue = true;
 	SimpleXYSeries series1;
+
+	public NormedXYSeries getNormedXYSeries() {
+		return normedXYSeries;
+	}
+
+	public void setNormedXYSeries(NormedXYSeries normedXYSeries) {
+		this.normedXYSeries = normedXYSeries;
+	}
+
+	NormedXYSeries normedXYSeries;
 	ConnectThread reader;
 	H7ConnectThread H7;
 
@@ -46,6 +57,15 @@ public class DataHandler extends Observable{
 	int pos=0;
 	int valBPM =0;
 	int min=0;
+
+	public int getMaxInt() {
+		return max;
+	}
+
+	public int getMinInt() {
+		return min;
+	}
+
 	int max=0;
 	
 	//for the average maths

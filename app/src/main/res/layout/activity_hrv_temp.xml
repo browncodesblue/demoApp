@@ -50,7 +50,9 @@
             android:id="@+id/dynamicPlot"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            ap:lineLabelRotationBottom="-45"/>
+            ap:lineLabelRotationBottom="-45"
+
+           />
 
 
 
@@ -69,7 +71,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HRV"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/white"
             android:textSize="25sp"
