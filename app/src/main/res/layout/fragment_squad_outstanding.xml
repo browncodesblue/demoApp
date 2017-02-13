@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:textColor="@color/white"
-        android:text="OUTSTANDING"/>
+        android:text="@string/outstanding"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,14 +19,15 @@
         android:layout_marginTop="10dp"
         android:textSize="25sp"
         android:textColor="@color/white"
-        android:text="We combined your results and your squads feedback. View the suggested path to grow your GRIT"/>
+        android:text="@string/outstanding_text"/>
 
     <ImageView
         android:layout_width="249dp"
-        android:layout_height="100dp"
+        android:layout_height="0dp"
         android:src="@drawable/trophy"
         android:layout_weight="0.82"
         android:layout_gravity="center"
+        android:contentDescription="@string/trophy_desc"
         android:layout_margin="20dp"/>
 
     <Button
@@ -36,7 +37,7 @@
         android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
         android:id="@+id/path_Button"
-        android:text="View Path"
+        android:text="@string/view_path"
         android:textColor="@color/colorPrimary" />
 
 </LinearLayout>

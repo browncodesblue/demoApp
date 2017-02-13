@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.ibm.browna.grit3_android.R;
 import com.ibm.browna.grit3_android.Views.Goals.GoalPagerActivity;
 import com.ibm.browna.grit3_android.Views.Values.SquadCongratsFragment;
 import com.ibm.browna.grit3_android.Views.Values.ValueActivity;
+import com.ibm.browna.grit3_android.R;import com.ibm.browna.grit3_android.R;
 
 
 /**
@@ -36,12 +36,23 @@ public class SquadAdderFragment extends Fragment {
                 getActivity().finish();
             }
         });
+        one =false;
+        two = false;
+        three = false;
+        four = false;
+        five = false;
         mAdder1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!one){
                     mAdder1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.contact_added));
                     one = true;
+                    return;
+                }
+                if (one){
+                    mAdder1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.plus_contact_button));
+                    one = false;
+                    return;
                 }
 
 
@@ -53,6 +64,12 @@ public class SquadAdderFragment extends Fragment {
                 if (!two){
                     mAdder2.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.contact_added));
                     two = true;
+                    return;
+                }
+                if (two){
+                    mAdder2.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.plus_contact_button));
+                    two = false;
+                    return;
                 }
 
             }
@@ -63,6 +80,12 @@ public class SquadAdderFragment extends Fragment {
                 if (!three){
                     mAdder3.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.contact_added));
                     three = true;
+                    return;
+                }
+                if (three){
+                    mAdder3.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.plus_contact_button));
+                    three = false;
+                    return;
                 }
             }
         });
@@ -72,6 +95,12 @@ public class SquadAdderFragment extends Fragment {
                 if (!four){
                     mAdder4.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.contact_added));
                     four = true;
+                    return;
+                }
+                if (four){
+                    mAdder4.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.plus_contact_button));
+                    four = false;
+                    return;
                 }
             }
         });
@@ -81,6 +110,12 @@ public class SquadAdderFragment extends Fragment {
                 if (!five){
                     mAdder5.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.contact_added));
                     five = true;
+                    return;
+                }
+                if (five){
+                    mAdder5.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.plus_contact_button));
+                    five = false;
+                    return;
                 }
             }
         });

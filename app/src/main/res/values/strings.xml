@@ -1,7 +1,7 @@
 <resources>
     <!-- -->
-    <string name="app_name"></string>
-    <string name="story_prompt">Record a story about a time you overcame a stressful event.</string>
+    <string name="app_name">GRIT</string>
+    <string name="story_prompt">Tell a story about a time you overcame a stressful event.</string>
     <string name="save">Save</string>
     <string name="logo_text">Grit Logo</string>
     <string name="email_hint">Your Email</string>
@@ -24,6 +24,7 @@
     <string name="word_picker_choice2">Credit</string>
     <string name="word_picker_choice3">Fun</string>
     <string name="word_picker_choice4">Outgoing</string>
+    <string name="number_one_of_five">1 / 5</string>
     <string name="nunber_two_of_five">2 / 5</string>
     <string name="nunber_three_of_five">3 / 5</string>
     <string name="nunber_four_of_five">4 / 5</string>
@@ -67,7 +68,7 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="value_prompt">Is this what you value? The order matters</string>
     <string name="value_stock1">Family</string>
-    <string name="value_stock2">Wellbeing</string>
+    <string name="value_stock2">Well Being</string>
     <string name="value_stock3">Community</string>
     <string name="one_list">1.</string>
     <string name="two_list">2.</string>
@@ -77,7 +78,54 @@
     <string name="goals_directions_bullet1">1.  Choose a method to communicate with your squad</string>
     <string name="goals_directions_bullet2">2.  Set a physical task to keep you on track</string>
     <string name="goals_directions_bullet3">3.  Set a mental task to keep you on track</string>
-
-
-
+    <string name="Finish">Finish</string>
+    <string name="add_image_desc">add image</string>
+    <string name="meetup_path_text">Go to a meetup</string>
+    <string name="squadwork_path_text">Workout with Squad</string>
+    <string name="hrv_path_text">Track HRV</string>
+    <string name="alt_path_text">Clostest Alternative</string>
+    <string name="recommend_path_text">Recommended</string>
+    <string name="physical_path_prompt">Choose a Physical Path</string>
+    <string name="profile_image_desc">Profile Image</string>
+    <string name="email">Email</string>
+    <string name="text">Text</string>
+    <string name="phone">Phone</string>
+    <string name="next">Next</string>
+    <string name="HRV">HRV</string>
+    <string name="summary">Summary</string>
+    <string name="values">Values</string>
+    <string name="manage_stress">Stress Management</string>
+    <string name="family">Family</string>
+    <string name="mission">Mission</string>
+    <string name="comms">Communication</string>
+    <string name="goals_physical">Physical Goals</string>
+    <string name="goals_mental">Mental Goals</string>
+    <string name="comms_style">Communications Style</string>
+    <string name="mindful_path_text">Mindfulness</string>
+    <string name="welcome_beginning">As we get to know each other, you will:</string>
+    <string name="welcome1">1. Connect with people you trust</string>
+    <string name="welcome2">2. Complete some icebreaking activities</string>
+    <string name="welcome3">3. Decide if and how you want to share your data</string>
+    <string name="start">Start</string>
+    <string name="commit">Commit</string>
+    <string name="commitment1">I will grow my ability to</string>
+    <string name="commitment2">Manage Stress </string>
+    <string name="commitment3">with the help of my squad over the</string>
+    <string name="commitment4">next 6 months.</string>
+    <string name="outstanding">OUTSTANDING</string>
+    <string name="outstanding_text">We combined your results and your squads feedback. View the suggested path to grow your GRIT</string>
+    <string name="trophy_desc">Trophy</string>
+    <string name="view_path">View Path</string>
+    <string name="record_button">Record</string>
+    <string name="community">Community</string>
+    <string name="community_feedback">We added Community to your top values list. Communitiy includes feelings of fellowship with others as a result of sharing common interest, attitudes or goals.</string>
+    <string name="back">Back</string>
+    <string name="enter_story">Enter Story Here</string>
+    <string name="analyze_me">Analyze Me!</string>
+    <string name="video_feedback_desc">video feedback image</string>
+    <string name="adjust_mission_hint">Adjust Your Mission</string>
+    <string name="adjust_mission_time_hint">Adjust Your Timeframe</string>
+    <string name="family_feedback">We added Family to your top values list. Family includes any group of people closely related such as parents, children, uncles, aunts, and cousins who share a common bond.</string>
+    <string name="well_being_feedback">We added well-being to your top values list. Well being or wellness relates to the condition of an individuals state; a high level of well being means in some sense the condition is positive, while low well-being is associated with negative happenings.</string>
+    <string name="Well_being">Well Being</string>
 </resources>

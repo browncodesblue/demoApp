@@ -1,6 +1,5 @@
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -19,6 +18,7 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:src="@drawable/grit_spelling"
+                android:contentDescription="@string/app_name"
                 android:id="@+id/grit_spelling"/>
         </android.support.v7.widget.Toolbar>
         <RelativeLayout
@@ -86,7 +86,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HRV"
+                android:text="@string/HRV"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/white"
                 android:textSize="25sp"

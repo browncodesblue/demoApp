@@ -4,10 +4,12 @@ import android.Manifest;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -20,9 +22,12 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.support.v7.widget.Toolbar;
@@ -62,12 +67,13 @@ public class AssessmentActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assess);
 
+        //Assigning the variables to resource elements
+
         mDrawerList = (ListView)findViewById(R.id.navList);
         pickerButton = (LinearLayout) findViewById(R.id.word_nav);
         storyButton = (LinearLayout) findViewById(R.id.story_nav);
         lifeButton = (LinearLayout) findViewById(R.id.life_nav);
         squadButton = (LinearLayout) findViewById(R.id.squad_nav);
-
         pickerDot = (ImageView)findViewById(R.id.word_dot);
         storyDot = (ImageView)findViewById(R.id.story_dot);
         lifeDot = (ImageView)findViewById(R.id.life_dot);
@@ -82,58 +88,35 @@ public class AssessmentActivity extends ActionBarActivity {
         setupDrawer();
         addDrawerItems();
 
-        mActivityTitle = getTitle().toString();
+        //Creates the intial fragment and places it in this activity
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().add(R.id.fragmentContainer, new PickerFragment(),"");
         fragmentTransaction.commit();
 
+        /**Adds all click listeners to navigation elements*/
         addOnClick();
 
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
-                    case 0:
-                        Intent i = new Intent(getApplicationContext(),AssessmentActivity.class);
-                        startActivity(i);
-                        break;
-                    case 1:
-                        Intent i1 = new Intent(getApplicationContext(),ValueActivity.class);
-                        startActivity(i1);
-                        break;
-                    case 2:
-                        Intent i2 = new Intent(getApplicationContext(),GoalPagerActivity.class);
-                        startActivity(i2);
-                        break;
-                    case 3:
-                        Intent i3 = new Intent(getApplicationContext(),HRVViewHolder.class);
-                        startActivity(i3);
-                        break;
-                    case 4:
-                        Intent i4 = new Intent(getApplicationContext(),MainActivity.class);
-                        startActivity(i4);
-                        break;
-                }
-
+        /**Allows navigation to a specific page upon starting this activity by pulling data from the
+        * intent that starts the activity if data was sent with the intent */
+        if (getIntent().hasExtra("Page")){
+            int page = getIntent().getIntExtra("Page",0);
+            switch (page){
+                case 0:
+                    pickerButton.callOnClick();
+                    break;
+                case 1:
+                    storyButton.callOnClick();
+                    break;
+                case 2:
+                    lifeButton.callOnClick();
+                    break;
+                case 3:
+                    squadButton.callOnClick();
+                    break;
             }
-        });
-
-        int page = getIntent().getIntExtra("Page",0);
-        switch (page){
-            case 0:
-                pickerButton.callOnClick();
-                break;
-            case 1:
-                storyButton.callOnClick();
-                break;
-            case 2:
-                lifeButton.callOnClick();
-                break;
-            case 3:
-                squadButton.callOnClick();
-                break;
         }
+
 
     }
 
@@ -147,23 +130,13 @@ public class AssessmentActivity extends ActionBarActivity {
                 R.string.drawer_open, R.string.drawer_close) {
 
             /** Called when a drawer has settled in a completely open state. */
-            public void onDrawerOpened(View drawerView) {
-               /* onDrawerOpened(drawerView);
-                getActionBar().setTitle("Navigation!");
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()*/
-            }
+            public void onDrawerOpened(View drawerView) {}
             /** Called when a drawer has settled in a completely closed state. */
-            public void onDrawerClosed(View view) {
-                /*onDrawerClosed(view);
-                getActionBar().setTitle(mActivityTitle);
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()*/
-            }
+            public void onDrawerClosed(View view) {}
         };
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
-
-
 
     private void addOnClick(){
         pickerButton.setOnClickListener(new View.OnClickListener() {
@@ -228,14 +201,45 @@ public class AssessmentActivity extends ActionBarActivity {
 
             }
         });
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        Intent i = new Intent(getApplicationContext(),AssessmentActivity.class);
+                        startActivity(i);
+                        break;
+                    case 1:
+                        Intent i1 = new Intent(getApplicationContext(),ValueActivity.class);
+                        startActivity(i1);
+                        break;
+                    case 2:
+                        Intent i2 = new Intent(getApplicationContext(),GoalPagerActivity.class);
+                        startActivity(i2);
+                        break;
+                    case 3:
+                        Intent i3 = new Intent(getApplicationContext(),HRVViewHolder.class);
+                        startActivity(i3);
+                        break;
+                    case 4:
+                        Intent i4 = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(i4);
+                        break;
+                }
+
+            }
+        });
 
     }
+
     public void swapFragments(Fragment fragment){
+        /** removes the current fragment and repalces it with a new fragment*/
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment,"");
         fragmentTransaction.commit();
     }
     private void addDrawerItems() {
+        /**creates the list of items for the nav drawer and sets the adapter*/
         String[] navArray = { "Level Set", "Values","Goals", "HRV", "ToneAnalyzer"};
         mAdapter = new ArrayAdapter<String>(this, R.layout.list_item_nav, navArray);
         mDrawerList.setAdapter(mAdapter);
@@ -261,6 +265,44 @@ public class AssessmentActivity extends ActionBarActivity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+
+        boolean handleReturn = super.dispatchTouchEvent(ev);
+
+        View view = getCurrentFocus();
+
+        int x = (int) ev.getX();
+        int y = (int) ev.getY();
+
+        if(view instanceof EditText){
+            View innerView = getCurrentFocus();
+
+            if (ev.getAction() == MotionEvent.ACTION_UP &&
+                    !getLocationOnScreen(innerView).contains(x, y)) {
+
+                InputMethodManager input = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                input.hideSoftInputFromWindow(getWindow().getCurrentFocus()
+                        .getWindowToken(), 0);
+            }
+        }
+
+        return handleReturn;
+    }
+    protected Rect getLocationOnScreen(View mEditText) {
+        Rect mRect = new Rect();
+        int[] location = new int[2];
+
+        mEditText.getLocationOnScreen(location);
+
+        mRect.left = location[0];
+        mRect.top = location[1];
+        mRect.right = location[0] + mEditText.getWidth();
+        mRect.bottom = location[1] + mEditText.getHeight();
+
+        return mRect;
     }
 
 

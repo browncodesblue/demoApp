@@ -18,6 +18,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/profpicture1"
+            android:contentDescription="@string/profile_image_desc"
             android:scaleType="centerCrop"/>
         <TextView
             android:layout_width="0dp"
@@ -35,6 +36,7 @@
             android:layout_weight="1"
             android:src="@drawable/plus_contact_button"
             android:id="@+id/plus1"
+            android:contentDescription="@string/add_image_desc"
             android:scaleType="centerCrop"
             />
 
@@ -52,6 +54,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/profpicture2"
+            android:contentDescription="@string/profile_image_desc"
             android:scaleType="centerCrop"/>
         <TextView
             android:layout_width="0dp"
@@ -68,6 +71,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/plus_contact_button"
+            android:contentDescription="@string/add_image_desc"
+
             android:id="@+id/plus2"
             android:scaleType="centerCrop"
             />
@@ -85,6 +90,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:contentDescription="@string/profile_image_desc"
             android:src="@drawable/profpicture3"
             android:scaleType="centerCrop"/>
         <TextView
@@ -103,6 +109,7 @@
             android:layout_weight="1"
             android:src="@drawable/plus_contact_button"
             android:id="@+id/plus3"
+            android:contentDescription="@string/add_image_desc"
             android:scaleType="centerCrop"
             />
 
@@ -120,6 +127,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/profpicture4"
+            android:contentDescription="@string/profile_image_desc"
             android:scaleType="centerCrop"/>
         <TextView
             android:layout_width="0dp"
@@ -137,6 +145,7 @@
             android:layout_weight="1"
             android:src="@drawable/plus_contact_button"
             android:id="@+id/plus4"
+            android:contentDescription="@string/add_image_desc"
             android:scaleType="centerCrop"
             />
 
@@ -153,6 +162,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:contentDescription="@string/profile_image_desc"
             android:src="@drawable/profpicture5"
             android:scaleType="centerCrop"/>
         <TextView
@@ -171,6 +181,7 @@
             android:layout_weight="1"
             android:id="@+id/plus5"
             android:src="@drawable/plus_contact_button"
+            android:contentDescription="@string/add_image_desc"
             android:scaleType="centerCrop"
             />
 

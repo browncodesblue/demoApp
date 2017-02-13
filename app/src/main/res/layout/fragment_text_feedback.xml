@@ -3,43 +3,52 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/blue_background">
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
         android:background="@color/girtblue"
+        android:layout_margin="25dp"
         android:elevation="4dp"
-        android:orientation="vertical"
         >
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/gritgreen"
-            android:textSize="35sp"
-            android:text="Community"
-            android:textStyle="bold"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="55dp"/>
-        <TextView
-            android:layout_width="260dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:layout_gravity="center_horizontal"
-            android:text="Communitiy includes feelings of fellowship with others as a result of sharing common interest, attitudes or goals."
-            />
-        <Button
-            android:layout_width="260dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
-            android:background="@drawable/sign_up"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="50dp"
-            android:layout_gravity="center"
-            android:id="@+id/text_feedback_back"
-            android:text="Back"/>
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gritgreen"
+                android:textSize="35sp"
+                android:text="@string/community"
+                android:textStyle="bold"
+                android:id="@+id/title"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="15dp"/>
+            <TextView
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/feedback"
+                android:text="@string/community_feedback"
+                />
+            <Button
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/sign_up"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="50dp"
+                android:layout_gravity="center"
+                android:id="@+id/text_feedback_back"
+                android:text="@string/back"/>
 
-    </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
 
 </FrameLayout>

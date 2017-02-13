@@ -48,7 +48,7 @@
         android:background="@drawable/sign_up"
         android:id="@+id/goals_next_button"
         android:layout_marginTop="20dp"
-        android:text="Next"
+        android:text="@string/next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimary"

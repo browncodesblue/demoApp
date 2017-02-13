@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,7 +16,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:id="@+id/tone_prompt"
             android:text="@string/story_prompt"
             android:textColor="@color/white"
@@ -35,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/sign_up"
                 android:layout_marginTop="10dp"
-                android:hint="Enter Story Here"
+                android:hint="@string/enter_story"
                 android:id="@+id/watson_tone_text_returned"/>
             <!-- -->
             <TextView
@@ -45,14 +44,14 @@
                 android:layout_gravity="end"
                 android:layout_marginTop="5dp"
                 android:id="@+id/analyze_me"
-                android:text="Analyze Me!"/>
+                android:text="@string/analyze_me"/>
             <View
                 android:layout_width="75dp"
                 android:layout_height="1dp"
                 android:layout_gravity="end"
                 android:background="#6fdc6f"
                 android:id="@+id/analyze_me_underline"
-                android:text="Analyze Me!"/>
+                />
         </LinearLayout>
 
         <TableLayout

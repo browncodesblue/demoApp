@@ -10,13 +10,14 @@
             android:layout_height="wrap_content"
             android:src="@drawable/video_clickout"
             android:layout_marginTop="30dp"
+            android:contentDescription="@string/video_feedback_desc"
 
             />
 
         <Button
             android:layout_gravity="center_horizontal"
             android:id="@+id/video_feedback_back"
-            android:text="Back"
+            android:text="@string/back"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:background="@drawable/sign_up"

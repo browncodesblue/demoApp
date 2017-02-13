@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/blue_background"
+    >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/blue_background"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="20dp">
 
@@ -19,6 +20,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/profpicture1"
+                android:contentDescription="@string/profile_image_desc"
                 android:scaleType="centerCrop"/>
             <RelativeLayout
                 android:layout_height="match_parent"
@@ -41,7 +43,7 @@
                     android:layout_centerInParent="true"
                     android:id="@+id/word_tumbler1"
                     android:textSize="30sp"
-                    android:text="Facebook"/>
+                    android:text="@string/facebook"/>
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
@@ -64,6 +66,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/profpicture2"
+                android:contentDescription="@string/profile_image_desc"
                 android:scaleType="centerCrop"/>
             <RelativeLayout
                 android:layout_height="match_parent"
@@ -86,7 +89,7 @@
                     android:layout_centerInParent="true"
                     android:id="@+id/word_tumbler2"
                     android:textSize="30sp"
-                    android:text="Text"/>
+                    android:text="@string/text"/>
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
@@ -110,6 +113,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/profpicture3"
+                android:contentDescription="@string/profile_image_desc"
                 android:scaleType="centerCrop"/>
             <RelativeLayout
                 android:layout_height="match_parent"
@@ -132,7 +136,7 @@
                     android:layout_centerInParent="true"
                     android:id="@+id/word_tumbler3"
                     android:textSize="30sp"
-                    android:text="Email"/>
+                    android:text="@string/email"/>
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
@@ -156,6 +160,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/profpicture4"
+                android:contentDescription="@string/profile_image_desc"
                 android:scaleType="centerCrop"/>
             <RelativeLayout
                 android:layout_height="match_parent"
@@ -178,7 +183,7 @@
                     android:layout_centerInParent="true"
                     android:id="@+id/word_tumbler4"
                     android:textSize="30sp"
-                    android:text="Text"/>
+                    android:text="@string/text"/>
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
@@ -202,6 +207,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/profpicture5"
+                android:contentDescription="@string/profile_image_desc"
                 android:scaleType="centerCrop"/>
             <RelativeLayout
                 android:layout_height="match_parent"
@@ -224,7 +230,7 @@
                     android:layout_centerInParent="true"
                     android:id="@+id/word_tumbler5"
                     android:textSize="30sp"
-                    android:text="Phone"/>
+                    android:text="@string/phone"/>
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
