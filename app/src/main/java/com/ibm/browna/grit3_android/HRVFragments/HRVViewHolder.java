@@ -32,7 +32,6 @@ import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.PointLabelFormatter;
 import com.androidplot.xy.SimpleXYSeries;
 import com.androidplot.xy.XYPlot;
-import com.ibm.browna.grit3_android.HRV.HRVActivity;
 import com.ibm.browna.grit3_android.R;
 import com.ibm.browna.grit3_android.Views.Assessments.AssessmentActivity;
 import com.ibm.browna.grit3_android.Views.Assessments.PickerFragment;

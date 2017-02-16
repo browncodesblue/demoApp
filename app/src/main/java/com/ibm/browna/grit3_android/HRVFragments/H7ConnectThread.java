@@ -9,7 +9,7 @@ import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.util.Log;
 
-import com.ibm.browna.grit3_android.HRV.HRVActivity;
+
 
 import java.util.List;
 import java.util.UUID;

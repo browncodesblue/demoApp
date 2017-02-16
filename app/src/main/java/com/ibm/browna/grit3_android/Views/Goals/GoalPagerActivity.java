@@ -19,7 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.ibm.browna.grit3_android.HRV.HRVActivity;
+
 import com.ibm.browna.grit3_android.HRVFragments.HRVViewHolder;
 import com.ibm.browna.grit3_android.R;
 import com.ibm.browna.grit3_android.Views.Assessments.AssessmentActivity;
