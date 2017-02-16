@@ -18,7 +18,6 @@
         android:theme="@style/AppTheme"
         android:screenOrientation="portrait" >
         <activity android:name=".WatsonTone.MainActivity"/>
-        <activity android:name=".HRV.HRVActivity"/>
         <activity android:name=".Views.Assessments.AssessmentActivity">
 
         </activity>
