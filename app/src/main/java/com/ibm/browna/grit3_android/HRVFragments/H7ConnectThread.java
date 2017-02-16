@@ -30,7 +30,7 @@ public class H7ConnectThread  extends Thread{
 	private static String TAG = "BEAT_BY_BEAT_TEST";
 	
 	public H7ConnectThread(BluetoothDevice device, HRVFragment ac) {
-		Log.i("H7ConnectThread", "Starting H7 reader BTLE");
+		Log.e("H7ConnectThread", "Starting H7 reader BTLE");
 		this.ac=ac;
 		gat = device.connectGatt(ac.getContext(), false, btleGattCallback); // Connect to the device and store the server (gatt)
 	}
@@ -70,7 +70,7 @@ public class H7ConnectThread  extends Thread{
 	    	}
 	    	else{
 				gatt.discoverServices();
-				Log.d("H7ConnectThread", "Connected and discovering services");
+				Log.e("H7ConnectThread", "Connected and discovering services");
 	    	}
 	    }
 	 
@@ -93,7 +93,7 @@ public class H7ConnectThread  extends Thread{
 						gatt.setCharacteristicNotification(cc,true);//Register to updates
 						descriptor.setValue( BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
 					    gatt.writeDescriptor(descriptor);
-						Log.d("H7ConnectThread", "Connected and regisering to info");
+						Log.e("H7ConnectThread", "Connected and regisering to info");
 					}
 				}
 	    }

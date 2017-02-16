@@ -86,7 +86,7 @@ public class HRVViewHolder extends ActionBarActivity {
                         startActivity(i2);
                         break;
                     case 3:
-                        Intent i3 = new Intent(getApplicationContext(),HRVActivity.class);
+                        Intent i3 = new Intent(getApplicationContext(),HRVViewHolder.class);
                         startActivity(i3);
                         break;
                     case 4:
@@ -150,17 +150,6 @@ public class HRVViewHolder extends ActionBarActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    public void onDrawerClosed(View view) {
-        onDrawerClosed(view);
-        getActionBar().setTitle(mActivityTitle);
-        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-    }
-
-    public void onDrawerOpened(View drawerView) {
-        onDrawerOpened(drawerView);
-        getActionBar().setTitle("Navigation!");
-        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-    }
     private void addDrawerItems() {
         String[] navArray = { "Level Set", "Values","Goals", "HRV", "ToneAnalyzer"};
         mAdapter = new ArrayAdapter<String>(this, R.layout.list_item_nav, navArray);

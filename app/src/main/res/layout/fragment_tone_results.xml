@@ -20,7 +20,7 @@
             android:id="@+id/tone_prompt"
             android:text="@string/story_prompt"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:layout_alignParentTop="true"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,6 +35,7 @@
                 android:background="@drawable/sign_up"
                 android:layout_marginTop="10dp"
                 android:hint="@string/enter_story"
+                android:padding="20dp"
                 android:id="@+id/watson_tone_text_returned"/>
             <!-- -->
             <TextView
@@ -42,11 +43,12 @@
                 android:layout_height="wrap_content"
                 android:textColor="#6fdc6f"
                 android:layout_gravity="end"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
                 android:id="@+id/analyze_me"
                 android:text="@string/analyze_me"/>
             <View
-                android:layout_width="75dp"
+                android:layout_width="105dp"
                 android:layout_height="1dp"
                 android:layout_gravity="end"
                 android:background="#6fdc6f"
@@ -59,8 +61,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/tone_table"
             android:background="@drawable/sign_up"
-            android:layout_marginStart="35dp"
-            android:layout_marginEnd="20dp"
             android:layout_marginTop="35dp"
             android:layout_marginBottom="10dp"
             android:layout_below="@+id/tone_enter"

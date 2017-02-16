@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.ibm.browna.grit3_android.HRV.HRVActivity;
+import com.ibm.browna.grit3_android.HRVFragments.HRVViewHolder;
 import com.ibm.browna.grit3_android.R;
 import com.ibm.browna.grit3_android.Views.Assessments.AssessmentActivity;
 import com.ibm.browna.grit3_android.Views.Goals.GoalPagerActivity;
@@ -59,8 +60,6 @@ public class ValueActivity extends ActionBarActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
 
-
-
         setupDrawer();
         addDrawerItems();
 
@@ -88,7 +87,7 @@ public class ValueActivity extends ActionBarActivity {
                         startActivity(i2);
                         break;
                     case 3:
-                        Intent i3 = new Intent(getApplicationContext(),HRVActivity.class);
+                        Intent i3 = new Intent(getApplicationContext(),HRVViewHolder.class);
                         startActivity(i3);
                         break;
                     case 4:

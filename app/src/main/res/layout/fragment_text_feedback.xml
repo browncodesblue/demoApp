@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         android:background="@color/girtblue"
         android:layout_margin="25dp"
+        android:padding="5dp"
         android:elevation="4dp"
         >
         <LinearLayout

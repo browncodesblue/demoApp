@@ -37,7 +37,7 @@ public class Algorithm {
 
         // take natural logarithm of the number above – this is is the result.
         score = Math.log10(Math.sqrt(sum / (hrvRaw_array.size() -1)));
-        System.out.println("Inside org.marco45.polarheartmonitor.Algorithm Class LN(rmssd): " + score );
+        System.out.println("Inside Algorithm Class LN(rmssd): " + score );
 
         return extrapolateScore(score, LN_MEAN,LN_VAR, HRV_MEAN, HRV_VAR);
 

@@ -38,10 +38,10 @@ public class PickerFragment extends Fragment {
 
 
 
-        String [] tumblerWords1 =	{"Career", "Active", "Outgoing", "Money", "Activity", "Breathe"};
-        String [] tumblerWords2 =	{"Social" , "Credit", "Professional" , "Pastime", "Love", "Affect", "Endurance"};
-        String [] tumblerWords3=	{"Fitness" , "Fun", "Popular" , "Earn", "Service", "Related", "Feeling"};
-        String [] tumblerWords4 =	{"Occupation" , "nergy", "Peers" , "Investment", "Passion", "Partner", "Satisfaction"};
+        String [] tumblerWords1 =	{"Career", "Workout", "Community", "Money", "Activity", "Family", "Feeling"};
+        String [] tumblerWords2 =	{"Health", "Community", "Credit", "Amusement", "Partner", "Emotion", "Occupation"};
+        String [] tumblerWords3=	{"Friend", "Finance", "Entertainment", "Marriage", "Stress", "Vocation", "Exercise"};
+        String [] tumblerWords4 =	{"Friends", "Investment", "Pastime", "Children", "Satisfaction","Job", "Fitness"};
 
         mTumbler1 = new Tumbler(R.id.leftArrow1,R.id.RightArrow1, R.id.word_tumbler1, tumblerWords1,1);
         mTumbler2 = new Tumbler(R.id.leftArrow2,R.id.RightArrow2,R.id.word_tumbler2, tumblerWords2,2);
@@ -68,6 +68,7 @@ public class PickerFragment extends Fragment {
         final TextView textView =(TextView) v.findViewById(tumbler.getmWordsTV());
         ImageView leftArrow = (ImageView) v.findViewById(tumbler.getmLeftArrow());
         ImageView rightArrow = (ImageView) v.findViewById(tumbler.getmRightArrow());
+
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override

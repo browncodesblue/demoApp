@@ -226,28 +226,11 @@ public class WatsonToneFragment extends Fragment {
                 viewEmotions = new TextView(getActivity());
                 viewEmotions.setText("Emotions");
                 viewEmotions.setTextColor(Color.BLACK);
-                viewEmotions.setTextSize(20f);
+                viewEmotions.setTextSize(25f);
 
                 headRowEmotions.addView(viewEmotions);
                 tableLayout.addView(headRowEmotions);
                 headRowEmotions = null;
-
-                //   GridLayout.LayoutParams param =new GridLayout.LayoutParams();
-
-                //   param.setGravity(Gravity.LEFT);
-
-                //    viewEmotions.setLayoutParams (param);
-
-                //    viewEmotionsScore = new TextView(getApplicationContext());
-                //     viewEmotionsScore.setText("");
-                //   tableLayout.addView(viewEmotionsScore);
-
-                //      GridLayout.LayoutParams param1 =new GridLayout.LayoutParams();
-
-                //      param1.setGravity(Gravity.CENTER);
-                //    viewEmotionsScore.setLayoutParams(param1);
-
-
 
                 Iterator entries = emotionValuesMap.entrySet().iterator();
                 while (entries.hasNext()) {
@@ -302,29 +285,11 @@ public class WatsonToneFragment extends Fragment {
                 viewSocial = new TextView(getActivity());
                 viewSocial.setText("Social Tone");
                 viewSocial.setTextColor(Color.BLACK);
-                viewSocial.setTextSize(20f);
+                viewSocial.setTextSize(25f);
                 socialHead.addView(viewSocial);
                 tableLayout.addView(socialHead);
                 socialHead = null;
 
-
-                /**
-                 GridLayout.LayoutParams paramS =new GridLayout.LayoutParams();
-
-                 paramS.setGravity(Gravity.LEFT);
-
-                 viewSocial.setLayoutParams (paramS);
-
-                 viewSocialScore = new TextView(getApplicationContext());
-                 viewSocialScore.setText("");
-                 gridView.addView(viewSocialScore);
-
-                 GridLayout.LayoutParams paramS1 =new GridLayout.LayoutParams();
-
-                 paramS1.setGravity(Gravity.CENTER);
-                 viewSocialScore.setLayoutParams(paramS1);
-
-                 **/
 
                 Iterator socials = socialValuesMap.entrySet().iterator();
                 while (socials.hasNext()) {
@@ -335,8 +300,6 @@ public class WatsonToneFragment extends Fragment {
                     TableRow socialRow = new TableRow(getActivity());
                     viewSocial = new TextView(getActivity());
                     viewSocialScore = new TextView(getActivity());
-
-
 
 
                     viewSocial.setText((CharSequence) thisEntry.getKey() + ": ");
@@ -350,34 +313,6 @@ public class WatsonToneFragment extends Fragment {
 
 
                     createTableRow(viewSocial, viewSocialScore);
-
-
-
-
-                    /**
-
-                     GridLayout.LayoutParams paramEmotions =new GridLayout.LayoutParams();
-
-                     paramEmotions.setGravity(Gravity.LEFT);
-
-                     viewSocial.setLayoutParams (paramEmotions);
-
-
-
-                     gridView.addView(viewSocialScore);
-
-                     GridLayout.LayoutParams paramScore =new GridLayout.LayoutParams();
-
-                     paramScore.setGravity(Gravity.CENTER);
-
-                     viewSocial.setLayoutParams (paramScore);
-
-                     **/
-
-
-
-
-
 
                 }
 
@@ -399,7 +334,6 @@ public class WatsonToneFragment extends Fragment {
         tr.addView(v1);
         tr.addView(v2);
         tableLayout.addView(tr);
-
 
 
     }

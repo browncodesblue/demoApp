@@ -13,6 +13,9 @@
         <item name="android:editTextStyle">@style/RobotoEditTextViewStyle</item>
         <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
 
+
+
+
     </style>
 
     <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
@@ -37,6 +40,16 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+    <style name="GritHRV" parent="APDefacto.Dark">
+        <item name="gridBackgroundColor">@color/girtblue</item>
+        <item name="background">@drawable/blue_background</item>
+        <item name="backgroundColor">@color/girtblue</item>
+        <item name="graphBackgroundColor">@color/girtblue</item>
+        <item name="borderColor">@color/girtblue</item>
+        <item name="domainLineColor">@color/ap_transparent</item>
+        <item name="rangeLineColor">@color/ap_transparent</item>
+
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

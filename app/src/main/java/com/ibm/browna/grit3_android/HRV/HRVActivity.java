@@ -75,53 +75,7 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hrv_temp);
-
-     //   mDrawerList = (ListView)findViewById(R.id.navList);
-    //    Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-    //    mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-
-        /**
-        setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        /**
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
-                    case 0:
-                        Intent i = new Intent(getApplicationContext(),AssessmentActivity.class);
-                        startActivity(i);
-                        break;
-                    case 1:
-                        Intent i1 = new Intent(getApplicationContext(),ValueActivity.class);
-                        startActivity(i1);
-                        break;
-                    case 2:
-                        Intent i2 = new Intent(getApplicationContext(),GoalPagerActivity.class);
-                        startActivity(i2);
-                        break;
-                    case 3:
-                        Intent i3 = new Intent(getApplicationContext(),HRVActivity.class);
-                        startActivity(i3);
-                        break;
-                    case 4:
-                        Intent i4 = new Intent(getApplicationContext(),MainActivity.class);
-                        startActivity(i4);
-                        break;
-                }
-
-            }
-        });
-
-        setupDrawer();
-        addDrawerItems();
-
-         **/
-
-        mActivityTitle = getTitle().toString();
-
+        setContentView(R.layout.fragment_hrv);
         Log.i("Main Activity", "Starting Polar HR monitor main activity");
         DataHandler.getInstance().addObserver(this);
         //Verify if device is to old for BTLE
@@ -197,11 +151,8 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
 
 
         series1Format = new LineAndPointFormatter(Color.rgb(0, 0, 255), Color.rgb(200, 200, 200), null, null);
-
-         series1Format.setPointLabelFormatter(new PointLabelFormatter(Color.RED));
-         series1Format.setInterpolationParams( new CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal));
-
-
+        series1Format.setPointLabelFormatter(new PointLabelFormatter(Color.RED));
+        series1Format.setInterpolationParams( new CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal));
 
         plot.addSeries(DataHandler.getInstance().getSeries1(), series1Format);
 
@@ -214,25 +165,17 @@ public class HRVActivity extends ActionBarActivity implements OnItemSelectedList
          //   plot.getGraph().set
       //  plot.getGraph().setGridBackgroundPaint();
 
-
        // plot.setRangeBoundaries(20,90,BoundaryMode.SHRINK);
         plot.setRangeLabel("Heart Beat");
 
      // plot.setDomainStep(StepMode.INCREMENT_BY_VAL,0);
         // plot.setTicksPerRangeLabel(3);
      //   plot.getG.setDomainLabelOrientation(-45);
-
-
-
-
         /**
         mChart.setDrawGridBackground(false);
         mChart.getDescription().setEnabled(false);
-
         mChart.invalidate();
          **/
-
-
 
 
     }

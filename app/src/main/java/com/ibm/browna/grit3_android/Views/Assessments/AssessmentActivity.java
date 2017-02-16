@@ -1,25 +1,16 @@
 package com.ibm.browna.grit3_android.Views.Assessments;
 
-import android.Manifest;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -32,20 +23,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.ibm.browna.grit3_android.HRV.HRVActivity;
 import com.ibm.browna.grit3_android.HRVFragments.HRVViewHolder;
 import com.ibm.browna.grit3_android.R;
-import com.ibm.browna.grit3_android.Views.Goals.GoalDirectionsActivity;
 import com.ibm.browna.grit3_android.Views.Goals.GoalPagerActivity;
 import com.ibm.browna.grit3_android.Views.Values.ValueActivity;
-import com.ibm.browna.grit3_android.Views.WelcomeActivity;
 import com.ibm.browna.grit3_android.WatsonTone.MainActivity;
-
-import static android.Manifest.permission.RECORD_AUDIO;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-
 
 
 /**

@@ -1,70 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:orientation="vertical" android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="@drawable/blue_background"
-    android:padding="20dp">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blue_background">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/squad_directions_top_text"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
-        android:id="@+id/textView2" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/squad_directions_top_text"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/textView2" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/squad_directions_add"
-        android:layout_gravity="center_horizontal"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:layout_marginBottom="7dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/squad_directions_1"
-        android:textColor="@color/white"
-        android:layout_marginBottom="7dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/squad_directions_2"
-        android:textColor="@color/white"
-        android:layout_marginBottom="7dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/squad_directions_3"
-        android:textColor="@color/white"
-        android:layout_marginBottom="7dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/squad_directions_4"
-        android:textColor="@color/white"
-        android:layout_marginBottom="7dp" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/sign_up"
-        android:id="@+id/add_from_facebook"
-        android:layout_marginTop="15dp"
-        android:text="@string/sqaud_direction_addfrom_facebook"
-        android:textSize="16sp"
-        android:textStyle="normal|bold"
-        android:textColor="@color/colorPrimary" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/sqaud_direction_addfrom_contacts"
-        android:textColor="@color/white"
-        android:layout_gravity="center_horizontal"
-        android:textSize="12sp" />
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/squad_directions_add"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="7dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/squad_directions_1"
+            android:textColor="@color/white"
+            android:layout_marginBottom="7dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/squad_directions_2"
+            android:textColor="@color/white"
+            android:layout_marginBottom="7dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/squad_directions_3"
+            android:textColor="@color/white"
+            android:layout_marginBottom="7dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/squad_directions_4"
+            android:textColor="@color/white"
+            android:layout_marginBottom="7dp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/sign_up"
+            android:id="@+id/add_from_facebook"
+            android:layout_marginTop="15dp"
+            android:text="@string/sqaud_direction_addfrom_facebook"
+            android:textSize="16sp"
+            android:textStyle="normal|bold"
+            android:textColor="@color/colorPrimary" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/sqaud_direction_addfrom_contacts"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:textSize="12sp" />
+    </LinearLayout>
+</ScrollView>
+

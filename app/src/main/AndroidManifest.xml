@@ -19,11 +19,7 @@
         android:screenOrientation="portrait" >
         <activity android:name=".WatsonTone.MainActivity"/>
         <activity android:name=".WatsonTone.SecondActivity"/>
-        <activity android:name=".HRV.HRVActivity">
-
-
-           </activity>
-        <activity android:name=".HRV.AboutActivity"/>
+        <activity android:name=".HRV.HRVActivity"/>
         <activity android:name=".HRV.HRVSecondActivity"/>
         <activity android:name=".Views.Assessments.AssessmentActivity">
 

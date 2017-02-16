@@ -27,10 +27,10 @@
                 android:layout_width="0dp"
                 android:layout_weight="5">
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/word_pick_left"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_alignParentStart="true"
+                    android:src="@drawable/word_pick_left"
                     android:layout_centerVertical="true"
                     android:id="@+id/leftArrow1"
                     android:contentDescription="@string/word_picker_leftarrow"
@@ -45,13 +45,14 @@
                     android:textSize="30sp"
                     android:text="@string/facebook"/>
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_alignParentEnd="true"
                     android:src="@drawable/word_pick_right"
                     android:contentDescription="@string/word_picker_rightarrow"
                     android:layout_centerVertical="true"
                     android:id="@+id/RightArrow1"
-                    android:layout_alignParentEnd="true"/>
+                   />
             </RelativeLayout>
 
         </LinearLayout>
@@ -73,10 +74,10 @@
                 android:layout_width="0dp"
                 android:layout_weight="5">
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/word_pick_left"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_alignParentStart="true"
+                    android:src="@drawable/word_pick_left"
                     android:layout_centerVertical="true"
                     android:id="@+id/leftArrow2"
                     android:contentDescription="@string/word_picker_leftarrow"
@@ -91,13 +92,14 @@
                     android:textSize="30sp"
                     android:text="@string/text"/>
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_alignParentEnd="true"
                     android:src="@drawable/word_pick_right"
                     android:contentDescription="@string/word_picker_rightarrow"
                     android:layout_centerVertical="true"
                     android:id="@+id/RightArrow2"
-                    android:layout_alignParentEnd="true"/>
+                    />
             </RelativeLayout>
 
 
@@ -120,8 +122,8 @@
                 android:layout_width="0dp"
                 android:layout_weight="5">
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:src="@drawable/word_pick_left"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
@@ -138,8 +140,8 @@
                     android:textSize="30sp"
                     android:text="@string/email"/>
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:src="@drawable/word_pick_right"
                     android:contentDescription="@string/word_picker_rightarrow"
                     android:layout_centerVertical="true"
@@ -167,8 +169,8 @@
                 android:layout_width="0dp"
                 android:layout_weight="5">
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:src="@drawable/word_pick_left"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
@@ -185,13 +187,14 @@
                     android:textSize="30sp"
                     android:text="@string/text"/>
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:src="@drawable/word_pick_right"
                     android:contentDescription="@string/word_picker_rightarrow"
                     android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
                     android:id="@+id/RightArrow4"
-                    android:layout_alignParentEnd="true"/>
+                    />
             </RelativeLayout>
 
 
@@ -214,10 +217,10 @@
                 android:layout_width="0dp"
                 android:layout_weight="5">
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/word_pick_left"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_alignParentStart="true"
+                    android:src="@drawable/word_pick_left"
                     android:layout_centerVertical="true"
                     android:id="@+id/leftArrow5"
                     android:contentDescription="@string/word_picker_leftarrow"
@@ -232,13 +235,14 @@
                     android:textSize="30sp"
                     android:text="@string/phone"/>
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_alignParentEnd="true"
                     android:src="@drawable/word_pick_right"
                     android:contentDescription="@string/word_picker_rightarrow"
                     android:layout_centerVertical="true"
                     android:id="@+id/RightArrow5"
-                    android:layout_alignParentEnd="true"/>
+                    />
             </RelativeLayout>
 
         </LinearLayout>

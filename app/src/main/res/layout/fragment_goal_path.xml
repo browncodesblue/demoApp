@@ -1,157 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/blue_background"
-    android:padding="20dp">
+    >
 
-
-    <TextView
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:text="@string/physical_path_prompt"
-        android:id="@+id/draggable_prompt_text"
-        />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/white"
-        android:layout_below="@+id/draggable_prompt_text"
-        android:layout_marginTop="5dp"
-        android:id="@+id/draggable_white_line"/>
+        android:padding="20dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/recommended"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:text="@string/recommend_path_text"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/draggable_white_line"
-        android:layout_alignStart="@id/draggable_white_line"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/sign_up"
-        android:layout_below="@+id/recommended"
-        android:layout_alignStart="@+id/recommended"
-        android:layout_marginTop="10dp"
-        android:id="@+id/draggable_box1"
-        android:layout_marginStart="5dp"
-        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:text="@string/physical_path_prompt"
+            android:id="@+id/draggable_prompt_text"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/white"
+            android:layout_below="@+id/draggable_prompt_text"
+            android:layout_marginTop="5dp"
+            android:id="@+id/draggable_white_line"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="20dp"
-            android:textSize="25sp"
-            android:textColor="@android:color/black"
-            android:id="@+id/drag_text_1"
-            android:text="@string/hrv_path_text"/>
-        <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/recommended"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="@string/recommend_path_text"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/draggable_white_line"
+            android:layout_alignStart="@id/draggable_white_line"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:contentDescription="@string/add_image_desc"/>
+            android:background="@drawable/sign_up"
+            android:layout_below="@+id/recommended"
+            android:layout_alignStart="@+id/recommended"
+            android:layout_marginTop="10dp"
+            android:id="@+id/draggable_box1"
+            android:layout_marginStart="5dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="20dp"
+                android:textSize="25sp"
+                android:textColor="@android:color/black"
+                android:id="@+id/drag_text_1"
+                android:text="@string/hrv_path_text"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="@string/add_image_desc"/>
 
 
-    </RelativeLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/alts"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:text="@string/alt_path_text"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/draggable_box1"
-        android:layout_alignStart="@id/draggable_white_line"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/sign_up"
-        android:layout_below="@+id/alts"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/draggable_box2"
-        android:layout_marginTop="10dp"
-        android:layout_alignStart="@+id/alts"
-        android:layout_marginStart="5dp"
-        >
+        </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="20dp"
-            android:textSize="25sp"
-            android:textColor="@android:color/black"
-            android:id="@+id/drag_text_2"
-            android:text="@string/squadwork_path_text"/>
-        <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/alts"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="@string/alt_path_text"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/draggable_box1"
+            android:layout_alignStart="@id/draggable_white_line"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:contentDescription="@string/add_image_desc"/>
+            android:background="@drawable/sign_up"
+            android:layout_below="@+id/alts"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/draggable_box2"
+            android:layout_marginTop="10dp"
+            android:layout_alignStart="@+id/alts"
+            android:layout_marginStart="5dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="20dp"
+                android:textSize="25sp"
+                android:textColor="@android:color/black"
+                android:id="@+id/drag_text_2"
+                android:text="@string/squadwork_path_text"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="@string/add_image_desc"/>
 
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sign_up"
+            android:layout_below="@+id/draggable_box2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:layout_alignStart="@+id/alts"
+            android:layout_marginStart="5dp"
+            android:id="@+id/draggable_box3"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="20dp"
+                android:textSize="25sp"
+                android:textColor="@android:color/black"
+                android:id="@+id/drag_text_3"
+                android:text="@string/meetup_path_text"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="@string/add_image_desc"/>
+
+
+        </RelativeLayout>
+
+
+        <Button
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/draggable_box3"
+            android:background="@drawable/sign_up"
+            android:id="@+id/goal_path_save"
+            android:text="@string/save"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="match_parent"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/goal_path_save"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/sign_up"
+            android:id="@+id/goal_path_finish"
+            android:visibility="invisible"
+            android:text="@string/Finish"/>
 
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/sign_up"
-        android:layout_below="@+id/draggable_box2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:layout_alignStart="@+id/alts"
-        android:layout_marginStart="5dp"
-        android:id="@+id/draggable_box3"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="20dp"
-            android:textSize="25sp"
-            android:textColor="@android:color/black"
-            android:id="@+id/drag_text_3"
-            android:text="@string/meetup_path_text"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:contentDescription="@string/add_image_desc"/>
-
-
-    </RelativeLayout>
-
-
-    <Button
-        android:layout_marginBottom="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/goal_path_finish"
-        android:background="@drawable/sign_up"
-        android:id="@+id/goal_path_save"
-        android:text="@string/save"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="@color/colorPrimary"
-        android:layout_width="match_parent"
-/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/colorPrimary"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/sign_up"
-        android:id="@+id/goal_path_finish"
-        android:visibility="invisible"
-        android:text="@string/Finish"/>
-
-</RelativeLayout>
+</ScrollView>
