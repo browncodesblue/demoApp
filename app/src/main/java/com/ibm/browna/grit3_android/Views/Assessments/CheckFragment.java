@@ -31,9 +31,13 @@ public class CheckFragment extends Fragment {
         initViews(v);
         setNumberClickListeners();
 
+
         mCheckSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /**The switch changes the question text based on the count variable
+                 * and when all five questions have been saved it move to the next section
+                 * */
                 switch (count){
                     case 1:
                         setNewQuestion(2,R.string.nunber_two_of_five,R.string.life_check_question_2);
@@ -56,6 +60,7 @@ public class CheckFragment extends Fragment {
                         count=1;
                         break;
                 }
+                //All of the numbers a set to nonselected as the questions change
                 mButton1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_1_notselected));
                 mButton2.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_2_notselected));
                 mButton3.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.circle_3_notselected));
@@ -69,11 +74,13 @@ public class CheckFragment extends Fragment {
 
         return v;
     }
+    //Iterates the question being asked in this activity
     public void setNewQuestion(int i, int newText, int newQuestion){
         mCountofFive.setText(getActivity().getString(newText));
         mQuestion.setText(getActivity().getString(newQuestion));
     }
 
+    //Assigns member vairables to layout IDs
     private void initViews(View v){
         mButton1 = (ImageView)v.findViewById(R.id.life_check_button_1) ;
         mButton2 = (ImageView)v.findViewById(R.id.life_check_button_2);
@@ -89,6 +96,7 @@ public class CheckFragment extends Fragment {
         count = 1;
     }
 
+    //Swaps active and non active numbers so only one choice on the lycra scale can be selected at a time
     private void setNumberClickListeners(){
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override

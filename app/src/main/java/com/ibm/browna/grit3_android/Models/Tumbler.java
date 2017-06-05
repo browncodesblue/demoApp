@@ -7,6 +7,14 @@ import android.view.View;
  */
 
 public class Tumbler {
+
+    /**
+     * This model represent any of the visual data that has words that are being cycled
+     * In the first instance of this the word picker required a variety of tumblers and warrented
+     * a class that had text with arrows on each side to be turned into its own object
+     *
+     */
+
     private int mLeftArrow;
     private int mRightArrow;
     private int mWordsTV;

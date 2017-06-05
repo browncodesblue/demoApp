@@ -37,7 +37,6 @@ public class PickerFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_word_pick,null,false);
 
 
-
         String [] tumblerWords1 =	{"Career", "Workout", "Community", "Money", "Activity", "Family", "Feeling"};
         String [] tumblerWords2 =	{"Health", "Community", "Credit", "Amusement", "Partner", "Emotion", "Occupation"};
         String [] tumblerWords3=	{"Friend", "Finance", "Entertainment", "Marriage", "Stress", "Vocation", "Exercise"};

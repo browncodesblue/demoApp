@@ -37,6 +37,12 @@ import com.ibm.browna.grit3_android.WatsonTone.MainActivity;
 
 public class AssessmentActivity extends ActionBarActivity {
 
+    /**
+     * This class is the activity that holds the initial assessement of the user after login
+     * In the application it is referred to as the level-set because no one likes being assessed
+     * The general model here is that the activity holds the nav and the fragment
+     */
+
     LinearLayout pickerButton, storyButton,lifeButton,squadButton;
     ImageView   pickerDot, storyDot, lifeDot, squadDot;
     private ListView mDrawerList;
@@ -52,6 +58,9 @@ public class AssessmentActivity extends ActionBarActivity {
 
         //Assigning the variables to resource elements
 
+
+        //Assigning the member variable to elements of the layoutfile
+
         mDrawerList = (ListView)findViewById(R.id.navList);
         pickerButton = (LinearLayout) findViewById(R.id.word_nav);
         storyButton = (LinearLayout) findViewById(R.id.story_nav);
@@ -64,15 +73,16 @@ public class AssessmentActivity extends ActionBarActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
 
+        //Setting up the actionbar
         setSupportActionBar(myToolbar);
+
+        //Setting up the Drawer nav and the hamburger menu
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-
         setupDrawer();
         addDrawerItems();
 
         //Creates the intial fragment and places it in this activity
-
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().add(R.id.fragmentContainer, new PickerFragment(),"");
         fragmentTransaction.commit();
@@ -121,6 +131,10 @@ public class AssessmentActivity extends ActionBarActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
+    /**this method set all of the click listeners in the nav for the buttons it replaces the current
+     * fragment with the fragemtn associate with the button click and set the indicator to active and
+     * turns off all other indicators.
+     */
     private void addOnClick(){
         pickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -249,6 +263,11 @@ public class AssessmentActivity extends ActionBarActivity {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
+
+    /**
+     * This method and getLocactionOnScreen both identify an edit text on the screen
+     * and close the soft keyboard if it is open
+     * */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
 
